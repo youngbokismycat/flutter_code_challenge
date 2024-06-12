@@ -15,37 +15,43 @@ class WriterAndAgoRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final info = ApiService.infos[index];
-    return Row(
-      children: [
-        Text(
-          info['name'],
-          style: Theme.of(context).textTheme.bodyMedium,
-        ),
-        Gaps.h5,
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 5.0),
-          child: Opacity(
-            opacity: info['verified'] ? 1 : 0,
-            child: SvgPicture.asset(
-              ApiService.verifiedSVGPath,
-              width: 15,
+    return LayoutBuilder(
+      builder: (context, constraints) => Row(
+        children: [
+          Text(
+            info['name'],
+            style: Theme.of(context).textTheme.bodyMedium,
+          ),
+          Gaps.h5,
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 5.0),
+            child: Opacity(
+              opacity: info['verified'] ? 1 : 0,
+              child: SvgPicture.asset(
+                ApiService.verifiedSVGPath,
+                width: 15,
+              ),
             ),
           ),
-        ),
-        const Spacer(),
-        Text(
-          info['ago'],
-          style: CustomTextStyle.greyBodyMidium,
-        ),
-        Gaps.h14,
-        const Padding(
-          padding: EdgeInsets.symmetric(vertical: 3.0),
-          child: FaIcon(
-            FontAwesomeIcons.ellipsis,
-            size: 18,
+          const Spacer(),
+          Row(
+            children: [
+              Text(
+                info['ago'],
+                style: CustomTextStyle.greyBodyMidium,
+              ),
+              Gaps.h14,
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 3.0),
+                child: FaIcon(
+                  FontAwesomeIcons.ellipsis,
+                  size: 18,
+                ),
+              ),
+            ],
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

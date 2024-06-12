@@ -42,7 +42,7 @@ class MainHomeScreen extends StatelessWidget {
             separatorBuilder: (context, index) => Divider(
               height: 30,
               color: Theme.of(context).dividerColor.withOpacity(
-                    0.5,
+                    0.4,
                   ),
             ),
             itemCount: ApiService.infos.length,

@@ -70,7 +70,8 @@ class BubbleProfiles extends StatelessWidget {
             ),
           ),
           Positioned(
-            left: -5,
+            left: -3,
+            top: -10,
             child: Offstage(
               offstage: info['replies'] != "2",
               child: Transform.scale(
@@ -82,7 +83,8 @@ class BubbleProfiles extends StatelessWidget {
             ),
           ),
           Positioned(
-            right: -5,
+            right: -8,
+            top: -10,
             child: Offstage(
               offstage: info['replies'] != "2",
               child: Transform.scale(

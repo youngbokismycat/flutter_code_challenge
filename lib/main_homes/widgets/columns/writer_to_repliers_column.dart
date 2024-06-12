@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:tread_clone_assignment/consts/api_service.dart';
 import 'package:tread_clone_assignment/consts/gaps.dart';
+import 'package:tread_clone_assignment/main_homes/widgets/profiles/bubble_profiles.dart';
 import 'package:tread_clone_assignment/main_homes/widgets/profiles/circular_profile.dart';
 
 class WriterToRepliersColumn extends StatelessWidget {
   final int index;
-  final double landscapeSize;
+
   const WriterToRepliersColumn({
     super.key,
     required this.index,
-    required this.landscapeSize,
   });
 
   @override
@@ -20,10 +20,7 @@ class WriterToRepliersColumn extends StatelessWidget {
       children: [
         CircularProfile(index: index),
         Gaps.v10,
-        SizedBox(
-          height: info['landscape'] == null
-              ? size.height * 0.04
-              : landscapeSize + size.height * 0.04,
+        Expanded(
           child: VerticalDivider(
             thickness: 2,
             color: Theme.of(context).dividerColor.withOpacity(
@@ -31,6 +28,10 @@ class WriterToRepliersColumn extends StatelessWidget {
                 ),
             width: 1,
           ),
+        ),
+        Gaps.v10,
+        BubbleProfiles(
+          index: index,
         ),
       ],
     );

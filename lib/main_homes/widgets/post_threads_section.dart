@@ -7,7 +7,7 @@ import 'package:tread_clone_assignment/main_homes/widgets/buttons/four_buttons.d
 import 'package:tread_clone_assignment/main_homes/widgets/rows/replies_and_likes_row.dart';
 import 'package:tread_clone_assignment/main_homes/widgets/columns/writer_to_repliers_column.dart';
 
-class PostThreadsSection extends StatelessWidget {
+class PostThreadsSection extends StatefulWidget {
   final int index;
   const PostThreadsSection({
     super.key,
@@ -15,56 +15,118 @@ class PostThreadsSection extends StatelessWidget {
   });
 
   @override
+  State<PostThreadsSection> createState() => _PostThreadsSectionState();
+}
+
+class _PostThreadsSectionState extends State<PostThreadsSection> {
+  final GlobalKey _contentskey = GlobalKey();
+
+  Size? columnSize;
+  Offset? offset;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      setState(() {
+        columnSize = getSize();
+      });
+    });
+  }
+
+  Size? getSize() {
+    if (_contentskey.currentContext != null) {
+      final RenderBox renderBox =
+          _contentskey.currentContext!.findRenderObject() as RenderBox;
+      Size columnSize = renderBox.size;
+      return columnSize;
+    }
+    return null;
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final info = ApiService.infos[index];
+    final info = ApiService.infos[widget.index];
     final size = MediaQuery.of(context).size;
+
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 15.0,
       ),
-      child: Column(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              WriterToRepliersColumn(
-                landscapeSize: size.height * 0.23,
-                index: index,
-              ),
-              Gaps.h11,
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    WriterAndAgoRow(index: index),
-                    Text(
-                      info['content'],
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.bodySmall,
-                    ),
-                    Gaps.v10,
-                    if (info['landscape'] != null) ...[
-                      LandscapeCard(index: index),
-                      Gaps.v16,
-                    ],
-                    const FourButtons(),
-                  ],
-                ),
-              ),
-            ],
+          RealWriterRepliersColumn(
+            index: widget.index,
+            contentsHeight: columnSize?.height,
           ),
-          Row(
-            children: [
-              BubbleProfiles(
-                index: index,
-              ),
-              Gaps.h10,
-              RepliesAndLikesRow(index: index),
-            ],
+          Gaps.h10,
+          ContentsColumn(
+            key: _contentskey,
+            index: widget.index,
+            info: info,
           ),
         ],
       ),
+    );
+  }
+}
+
+class ContentsColumn extends StatelessWidget {
+  const ContentsColumn({
+    super.key,
+    required this.index,
+    required this.info,
+  });
+
+  final int index;
+  final Map<String, dynamic> info;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          WriterAndAgoRow(
+            index: index,
+          ),
+          Text(
+            info['content'],
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
+          LandscapeCard(
+            index: index,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class RealWriterRepliersColumn extends StatelessWidget {
+  const RealWriterRepliersColumn({
+    super.key,
+    required this.index,
+    required this.contentsHeight,
+  });
+  final double? contentsHeight;
+  final int index;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        ConstrainedBox(
+          constraints: BoxConstraints(
+            maxHeight: contentsHeight ?? 200,
+            maxWidth: 200,
+          ),
+          child: WriterToRepliersColumn(
+            index: index,
+          ),
+        ),
+      ],
     );
   }
 }
