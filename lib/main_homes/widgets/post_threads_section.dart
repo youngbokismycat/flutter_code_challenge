@@ -85,26 +85,27 @@ class LandscapeCard extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     final info = ApiService.infos[index];
     return FractionallySizedBox(
-        widthFactor: 3,
-        child: SizedBox(
-          height: size.height * 0.23,
-          child: PageView(
-            controller: _pageController,
-            clipBehavior: Clip.none,
-            scrollDirection: Axis.horizontal,
-            children: [
-              for (var landscape in info['landscape'])
-                Row(
-                  children: [
-                    LandScapes(
-                      size: size,
-                      landscape: landscape,
-                    ),
-                  ],
-                ),
-            ],
-          ),
-        ));
+      widthFactor: 3,
+      child: SizedBox(
+        height: size.height * 0.23,
+        child: PageView(
+          controller: _pageController,
+          clipBehavior: Clip.none,
+          scrollDirection: Axis.horizontal,
+          children: [
+            for (var landscape in info['landscape'])
+              Row(
+                children: [
+                  LandScapes(
+                    size: size,
+                    landscape: landscape,
+                  ),
+                ],
+              ),
+          ],
+        ),
+      ),
+    );
   }
 }
 
