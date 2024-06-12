@@ -42,12 +42,12 @@ class MainHomeScreen extends StatelessWidget {
             separatorBuilder: (context, index) => Divider(
               height: 30,
               color: Theme.of(context).dividerColor.withOpacity(
-                    0.4,
+                    0.5,
                   ),
             ),
             itemCount: ApiService.infos.length,
             itemBuilder: (context, index) {
-              return PostThreadsSection(
+              return Thread(
                 index: index,
               );
             },

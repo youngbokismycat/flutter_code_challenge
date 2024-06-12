@@ -6,10 +6,11 @@ class ApiService {
         "assets/images/clone_images/3.jpg",
         "assets/images/clone_images/4.jpg",
         "assets/images/clone_images/6.jpg",
+        "assets/images/clone_images/3.jpg",
+        "assets/images/clone_images/4.jpg",
       ],
       "profile": "assets/images/clone_images/profile0.jpg",
-      "content":
-          "Meow meow mewww mew mwmw moew moew mewwwww moewewew moewwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",
+      "content": "Meow meow mewww mew mwmw moew moew mewwwww moewewew",
       "verified": true,
       "name": "Fluffy",
       "replies": "2",
@@ -17,9 +18,10 @@ class ApiService {
       "ago": "2h"
     },
     {
-      "landscape": null,
+      "landscape": [],
       "profile": "assets/images/clone_images/profile2.jpg",
-      "content": "Meow meow!",
+      "content":
+          "Meow meow Meow meowMeow meowMeow meowMeow meowMeow meowMeow meowMeow meowMeow meowMeow meowMeow meowMeow meow!",
       "verified": false,
       "name": "Whiskers",
       "replies": "8",
@@ -29,7 +31,12 @@ class ApiService {
     {
       "landscape": [
         "assets/images/clone_images/3.jpg",
-        "assets/images/clone_images/6.jpg"
+        "assets/images/clone_images/6.jpg",
+        "assets/images/clone_images/3.jpg",
+        "assets/images/clone_images/4.jpg",
+        "assets/images/clone_images/6.jpg",
+        "assets/images/clone_images/3.jpg",
+        "assets/images/clone_images/4.jpg",
       ],
       "profile": "assets/images/clone_images/profile3.jpg",
       "content": "Meow meow meow!",
@@ -52,7 +59,7 @@ class ApiService {
       "ago": "5h"
     },
     {
-      "landscape": null,
+      "landscape": [],
       "profile": "assets/images/clone_images/profile5.jpg",
       "content": "Meow meow!",
       "verified": true,
