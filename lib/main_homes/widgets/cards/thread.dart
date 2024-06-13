@@ -1,6 +1,6 @@
 import 'package:faker_dart/faker_dart.dart';
 import 'package:flutter/material.dart';
-import 'package:tread_clone_assignment/consts/api_service.dart';
+import 'package:tread_clone_assignment/consts/informations.dart';
 import 'package:tread_clone_assignment/consts/gaps.dart';
 import 'package:tread_clone_assignment/main_homes/widgets/columns/content_column.dart';
 import 'package:tread_clone_assignment/main_homes/widgets/rows/writer_and_ago_row.dart';

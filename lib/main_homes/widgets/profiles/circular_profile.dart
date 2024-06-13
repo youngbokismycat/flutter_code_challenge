@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tread_clone_assignment/consts/api_service.dart';
+import 'package:tread_clone_assignment/consts/informations.dart';
 
 class CircularProfile extends StatelessWidget {
   final int index;
@@ -11,7 +11,7 @@ class CircularProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final info = ApiService.infos[index];
+    final info = Informations.infos[index];
     return Stack(
       clipBehavior: Clip.none,
       children: [

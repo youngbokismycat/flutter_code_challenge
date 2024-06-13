@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tread_clone_assignment/consts/sizes.dart';
@@ -24,18 +26,32 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
 
   void _onMakeThreadButtonTap(BuildContext cotext) async {
     _isWritingThread = true;
+    WidgetsFlutterBinding.ensureInitialized();
 
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle.light,
+    );
     setState(() {});
     await showModalBottomSheet(
+      isScrollControlled: true,
+      clipBehavior: Clip.hardEdge,
       context: context,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(
+          Sizes.size14,
+        ),
+      ),
       barrierColor: Colors.black.withOpacity(0.2),
       backgroundColor: Colors.white,
       builder: (context) {
         return const WritingThreadScreen();
       },
     );
-    setState(() {});
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle.dark,
+    );
     _isWritingThread = false;
+    setState(() {});
   }
 
   @override
@@ -43,8 +59,8 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
     return AnimatedPadding(
       duration: const Duration(milliseconds: 500),
       padding: _isWritingThread
-          ? const EdgeInsets.only(
-              top: Sizes.size20,
+          ? EdgeInsets.only(
+              top: MediaQuery.of(context).viewPadding.top,
             )
           : EdgeInsets.zero,
       curve: Curves.easeOutCirc,

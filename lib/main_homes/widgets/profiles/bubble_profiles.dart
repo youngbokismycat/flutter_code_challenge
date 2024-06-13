@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:tread_clone_assignment/consts/api_service.dart';
+import 'package:tread_clone_assignment/consts/informations.dart';
 import 'package:tread_clone_assignment/main_homes/widgets/profiles/circular_profile.dart';
 
 class BubbleProfiles extends StatelessWidget {
@@ -13,23 +13,24 @@ class BubbleProfiles extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final info = ApiService.infos[index];
+    final info = Informations.infos[index];
     List<int> indices0 =
-        List<int>.generate(ApiService.infos.length, (index) => index);
+        List<int>.generate(Informations.infos.length, (index) => index);
     indices0.shuffle(Random());
-    final randomInfo0 = ApiService.infos[indices0[index]];
+    final randomInfo0 = Informations.infos[indices0[index]];
     List<int> indices1 =
-        List<int>.generate(ApiService.infos.length, (index) => index);
+        List<int>.generate(Informations.infos.length, (index) => index);
     indices1.shuffle(Random());
-    final randomInfo1 = ApiService.infos[indices1[index]];
+    final randomInfo1 = Informations.infos[indices1[index]];
     List<int> indices2 =
-        List<int>.generate(ApiService.infos.length, (index) => index);
+        List<int>.generate(Informations.infos.length, (index) => index);
     indices2.shuffle(Random());
-    final randomInfo2 = ApiService.infos[indices2[index]];
+    final randomInfo2 = Informations.infos[indices2[index]];
     return SizedBox(
       width: 50,
-      height: 50,
+      height: 30,
       child: Stack(
+        clipBehavior: Clip.none,
         children: [
           Positioned(
             top: -10,
@@ -57,7 +58,7 @@ class BubbleProfiles extends StatelessWidget {
             ),
           ),
           Positioned(
-            bottom: -10,
+            bottom: -30,
             right: 0,
             child: Offstage(
               offstage: info['replies'] == "2" || info['replies'] == "1",

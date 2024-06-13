@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tread_clone_assignment/consts/api_service.dart';
+import 'package:tread_clone_assignment/consts/informations.dart';
 import 'package:tread_clone_assignment/consts/gaps.dart';
 import 'package:tread_clone_assignment/main_homes/widgets/buttons/four_buttons.dart';
 import 'package:tread_clone_assignment/main_homes/widgets/pageviews/landscape_pageview.dart';
@@ -16,7 +16,7 @@ class ContentsColumn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final info = ApiService.infos[index];
+    final info = Informations.infos[index];
     final List<dynamic>? images = info['landscape'];
 
     return Expanded(
