@@ -1,3 +1,4 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tread_clone_assignment/consts/custom_text_style.dart';
@@ -8,7 +9,12 @@ void main() {
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle.dark,
   );
-  runApp(const MyApp());
+  runApp(DevicePreview(
+      enabled: false,
+      tools: const [
+        ...DevicePreview.defaultTools,
+      ],
+      builder: (context) => const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
