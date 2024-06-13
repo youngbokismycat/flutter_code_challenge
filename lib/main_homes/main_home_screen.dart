@@ -9,7 +9,7 @@ import 'package:tread_clone_assignment/main_homes/widgets/profiles/bubble_profil
 import 'package:tread_clone_assignment/main_homes/widgets/profiles/circular_profile.dart';
 import 'package:tread_clone_assignment/main_homes/widgets/buttons/cusom_icon_button.dart';
 import 'package:tread_clone_assignment/main_homes/widgets/buttons/four_buttons.dart';
-import 'package:tread_clone_assignment/main_homes/widgets/post_threads_section.dart';
+import 'package:tread_clone_assignment/main_homes/widgets/thread.dart';
 import 'package:tread_clone_assignment/main_homes/widgets/rows/replies_and_likes_row.dart';
 import 'package:tread_clone_assignment/main_homes/widgets/columns/writer_to_repliers_column.dart';
 

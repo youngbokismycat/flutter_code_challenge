@@ -3,7 +3,6 @@ import 'package:tread_clone_assignment/consts/api_service.dart';
 import 'package:tread_clone_assignment/consts/gaps.dart';
 import 'package:tread_clone_assignment/main_homes/widgets/buttons/four_buttons.dart';
 import 'package:tread_clone_assignment/main_homes/widgets/pageviews/landscape_pageview.dart';
-import 'package:tread_clone_assignment/main_homes/widgets/post_threads_section.dart';
 import 'package:tread_clone_assignment/main_homes/widgets/rows/replies_and_likes_row.dart';
 import 'package:tread_clone_assignment/main_homes/widgets/rows/writer_and_ago_row.dart';
 

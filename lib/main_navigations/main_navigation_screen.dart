@@ -4,7 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tread_clone_assignment/consts/sizes.dart';
 import 'package:tread_clone_assignment/main_homes/main_home_screen.dart';
 import 'package:tread_clone_assignment/main_navigations/widgets/custom_navigation_bar.dart';
-import 'package:tread_clone_assignment/writing_thread_screen.dart';
+import 'package:tread_clone_assignment/writing_thread/writing_thread_screen.dart';
 
 class MainNavigationScreen extends StatefulWidget {
   const MainNavigationScreen({super.key});

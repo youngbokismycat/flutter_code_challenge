@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tread_clone_assignment/consts/api_service.dart';
 import 'package:tread_clone_assignment/main_homes/widgets/cards/landscape_card.dart';
-import 'package:tread_clone_assignment/main_homes/widgets/post_threads_section.dart';
 
 class LandscapePageView extends StatelessWidget {
   final PageController _pageController = PageController(
