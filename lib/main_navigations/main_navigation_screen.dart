@@ -33,6 +33,8 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
     );
     setState(() {});
     await showModalBottomSheet(
+      scrollControlDisabledMaxHeightRatio: 1,
+      enableDrag: true,
       isScrollControlled: true,
       clipBehavior: Clip.hardEdge,
       context: context,

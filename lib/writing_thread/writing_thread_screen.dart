@@ -42,10 +42,16 @@ class _WritingThreadScreenState extends State<WritingThreadScreen> {
     });
   }
 
-  void _onChanged() {
+  void _onChanged() async {
     _controller.value.text.isEmpty
         ? _isPostEnabled = false
         : _isPostEnabled = true;
+
+    await Future.delayed(
+      const Duration(
+        milliseconds: 25,
+      ),
+    );
     setState(() {
       columnSize = getSize();
     });
@@ -63,32 +69,42 @@ class _WritingThreadScreenState extends State<WritingThreadScreen> {
       padding: EdgeInsets.only(
         bottom: MediaQuery.of(context).viewInsets.bottom,
       ),
-      child: SizedBox(
-        height: MediaQuery.of(context).size.height * 0.55,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const BottomSheetAppbar(),
-            Divider(
-              color: Theme.of(context).dividerColor.withOpacity(
-                    0.5,
+      child: Stack(
+        children: [
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.55,
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const BottomSheetAppbar(),
+                  Divider(
+                    color: Theme.of(context).dividerColor.withOpacity(
+                          0.5,
+                        ),
+                    height: 1,
                   ),
-              height: 1,
-            ),
-            Gaps.v10,
-            WriterToWriterColumn(
-              onChanged: _onChanged,
-              dividerHeight: dividerHeight,
-              commentskey: _commentskey,
-              controller: _controller,
-              focusNode: _focusNode,
-            ),
-            const Spacer(),
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 14,
-                vertical: 18,
+                  Gaps.v10,
+                  WriteThread(
+                    onChanged: _onChanged,
+                    dividerHeight: dividerHeight,
+                    commentskey: _commentskey,
+                    controller: _controller,
+                    focusNode: _focusNode,
+                  ),
+                ],
               ),
+            ),
+          ),
+          Positioned(
+            bottom: 0,
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              padding: const EdgeInsets.symmetric(
+                horizontal: 18,
+                vertical: 14,
+              ),
+              color: Colors.white,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -117,16 +133,16 @@ class _WritingThreadScreenState extends State<WritingThreadScreen> {
                   ),
                 ],
               ),
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ),
     );
   }
 }
 
-class WriterToWriterColumn extends StatelessWidget {
-  const WriterToWriterColumn({
+class WriteThread extends StatelessWidget {
+  const WriteThread({
     super.key,
     required this.dividerHeight,
     required GlobalKey<State<StatefulWidget>> commentskey,
@@ -166,23 +182,37 @@ class WriterToWriterColumn extends StatelessWidget {
                 duration: const Duration(
                   milliseconds: 500,
                 ),
-                curve: Curves.easeOut,
+                curve: Curves.easeOutCirc,
                 constraints: BoxConstraints(
                   minHeight: dividerHeight,
+                  maxHeight: dividerHeight,
                 ),
                 width: 2,
                 color: Theme.of(context).dividerColor.withOpacity(0.5),
               ),
               Opacity(
                 opacity: 0.5,
-                child: Transform.scale(
-                  scale: 0.5,
-                  child: const CircleAvatar(
-                    radius: Sizes.size20,
-                    foregroundImage: AssetImage(
-                      "assets/images/default_profile.webp",
+                child: Stack(
+                  clipBehavior: Clip.none,
+                  children: [
+                    Transform.scale(
+                      scale: 0.5,
+                      child: const CircleAvatar(
+                        radius: Sizes.size20,
+                        foregroundImage: AssetImage(
+                          "assets/images/default_profile.webp",
+                        ),
+                      ),
                     ),
-                  ),
+                    const Positioned(
+                      right: -30,
+                      top: -30,
+                      child: FaIcon(
+                        FontAwesomeIcons.link,
+                        size: Sizes.size18,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
@@ -198,10 +228,15 @@ class WriterToWriterColumn extends StatelessWidget {
                 ),
                 TextField(
                   onChanged: (value) => onChanged(),
+                  style: const TextStyle(
+                    height: 1.2,
+                  ),
                   cursorColor: Colors.blue.shade800,
                   controller: _controller,
                   focusNode: _focusNode,
                   decoration: InputDecoration(
+                    isDense: true,
+                    contentPadding: const EdgeInsets.only(bottom: 30),
                     hintText: "Start a thread...",
                     hintStyle: Theme.of(context).textTheme.bodySmall!.copyWith(
                           color: Colors.black.withOpacity(
@@ -214,13 +249,6 @@ class WriterToWriterColumn extends StatelessWidget {
                   maxLines: null,
                 ),
                 Gaps.v10,
-                const Opacity(
-                  opacity: 0.5,
-                  child: FaIcon(
-                    FontAwesomeIcons.link,
-                    size: Sizes.size18,
-                  ),
-                ),
               ],
             ),
           ),
