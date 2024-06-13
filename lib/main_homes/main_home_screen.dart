@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tread_clone_assignment/consts/custom_text_style.dart';
 import 'package:tread_clone_assignment/consts/gaps.dart';
 import 'package:tread_clone_assignment/consts/api_service.dart';
+import 'package:tread_clone_assignment/consts/sizes.dart';
 import 'package:tread_clone_assignment/main_homes/widgets/profiles/bubble_profiles.dart';
 import 'package:tread_clone_assignment/main_homes/widgets/profiles/circular_profile.dart';
 import 'package:tread_clone_assignment/main_homes/widgets/buttons/cusom_icon_button.dart';
@@ -18,8 +19,19 @@ class MainHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Scaffold(
-      body: SafeArea(
+    return Container(
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(
+            Sizes.size14,
+          ),
+          topRight: Radius.circular(
+            Sizes.size14,
+          ),
+        ),
+        color: Colors.white,
+      ),
+      child: SafeArea(
         child: NestedScrollView(
           physics: const BouncingScrollPhysics(),
           headerSliverBuilder: (context, innerBoxIsScrolled) => [
