@@ -49,6 +49,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.18.0"
+  crypto:
+    dependency: transitive
+    description:
+      name: crypto
+      sha256: ff625774173754681d66daaf4a448684fb04b78f902da9cb3d308c19cc5e8bab
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.3"
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -81,14 +89,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.3.1"
-  faker_dart:
+  faker:
     dependency: "direct main"
     description:
-      name: faker_dart
-      sha256: "73c082ed0d71e0824b9a59ba61640479d536588030b2c55033593d8bd820b204"
+      name: faker
+      sha256: "746e59f91d8b06a389e74cf76e909a05ed69c12691768e2f93557fdf29200fd0"
       url: "https://pub.dev"
     source: hosted
-    version: "0.2.2"
+    version: "2.1.0"
   ffi:
     dependency: transitive
     description:
@@ -474,6 +482,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.4"
+  visibility_detector:
+    dependency: "direct main"
+    description:
+      name: visibility_detector
+      sha256: dd5cc11e13494f432d15939c3aa8ae76844c42b723398643ce9addb88a5ed420
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.4.0+2"
   vm_service:
     dependency: transitive
     description:

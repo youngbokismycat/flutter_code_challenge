@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tread_clone_assignment/activity/activity_screen.dart';
 import 'package:tread_clone_assignment/consts/sizes.dart';
 import 'package:tread_clone_assignment/main_homes/main_home_screen.dart';
 import 'package:tread_clone_assignment/main_navigations/widgets/custom_navigation_bar.dart';
+import 'package:tread_clone_assignment/search/search_screen.dart';
 import 'package:tread_clone_assignment/writing_thread/writing_thread_screen.dart';
 
 class MainNavigationScreen extends StatefulWidget {
@@ -16,7 +18,7 @@ class MainNavigationScreen extends StatefulWidget {
 }
 
 class _MainNavigationScreenState extends State<MainNavigationScreen> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 3;
   bool _isWritingThread = false;
 
   void _onselectedTap(int index) {
@@ -48,11 +50,25 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
       builder: (context) {
         return const WritingThreadScreen();
       },
+    ).whenComplete(
+      () async {
+        FocusScope.of(context).unfocus();
+        await Future.delayed(
+          const Duration(milliseconds: 25),
+        );
+        if (mounted) {
+          FocusScope.of(context).unfocus();
+        }
+      },
     );
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle.dark,
     );
     _isWritingThread = false;
+    if (mounted) {
+      FocusScope.of(context).unfocus();
+    }
+
     setState(() {});
   }
 
@@ -70,32 +86,44 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
         curve: Curves.easeOutCirc,
         duration: const Duration(milliseconds: 500),
         scale: _isWritingThread ? 0.95 : 1,
-        child: Scaffold(
-          backgroundColor: Colors.black,
-          body: Stack(
-            children: [
-              Offstage(
-                offstage: _selectedIndex != 0,
-                child: const MainHomeScreen(),
+        child: Container(
+          clipBehavior: Clip.hardEdge,
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(
+                Sizes.size14,
               ),
-              Offstage(
-                offstage: _selectedIndex != 1,
-                child: const Placeholder(),
+              topRight: Radius.circular(
+                Sizes.size14,
               ),
-              Offstage(
-                offstage: _selectedIndex != 3,
-                child: const Placeholder(),
-              ),
-              Offstage(
-                offstage: _selectedIndex != 4,
-                child: const Placeholder(),
-              ),
-            ],
+            ),
           ),
-          bottomNavigationBar: CustomNavigationBar(
-            onselectedTap: _onselectedTap,
-            onMakeThreadButtonTap: _onMakeThreadButtonTap,
-            selectedIndex: _selectedIndex,
+          child: Scaffold(
+            body: Stack(
+              children: [
+                Offstage(
+                  offstage: _selectedIndex != 0,
+                  child: const MainHomeScreen(),
+                ),
+                Offstage(
+                  offstage: _selectedIndex != 1,
+                  child: const SearchScreen(),
+                ),
+                Offstage(
+                  offstage: _selectedIndex != 3,
+                  child: const ActivityScreen(),
+                ),
+                Offstage(
+                  offstage: _selectedIndex != 4,
+                  child: const Placeholder(),
+                ),
+              ],
+            ),
+            bottomNavigationBar: CustomNavigationBar(
+              onselectedTap: _onselectedTap,
+              onMakeThreadButtonTap: _onMakeThreadButtonTap,
+              selectedIndex: _selectedIndex,
+            ),
           ),
         ),
       ),

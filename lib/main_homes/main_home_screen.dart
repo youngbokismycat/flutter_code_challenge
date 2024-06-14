@@ -5,6 +5,7 @@ import 'package:tread_clone_assignment/consts/custom_text_style.dart';
 import 'package:tread_clone_assignment/consts/gaps.dart';
 import 'package:tread_clone_assignment/consts/informations.dart';
 import 'package:tread_clone_assignment/consts/sizes.dart';
+import 'package:tread_clone_assignment/consts/utils.dart';
 import 'package:tread_clone_assignment/main_homes/widgets/profiles/bubble_profiles.dart';
 import 'package:tread_clone_assignment/main_homes/widgets/profiles/circular_profile.dart';
 import 'package:tread_clone_assignment/main_homes/widgets/buttons/cusom_icon_button.dart';
@@ -19,52 +20,37 @@ class MainHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Container(
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(
-            Sizes.size14,
-          ),
-          topRight: Radius.circular(
-            Sizes.size14,
-          ),
-        ),
-        color: Colors.white,
-      ),
-      child: SafeArea(
-        child: NestedScrollView(
-          physics: const BouncingScrollPhysics(),
-          headerSliverBuilder: (context, innerBoxIsScrolled) => [
-            SliverAppBar(
-              toolbarHeight: size.height * 0.1,
-              surfaceTintColor: Colors.white,
-              snap: true,
-              floating: true,
-              centerTitle: true,
-              title: Align(
-                child: SvgPicture.asset(
-                  Informations.threadsLogoPath,
-                  width: 40,
-                  height: 40,
-                ),
-              ),
-            )
-          ],
-          body: ListView.separated(
-            separatorBuilder: (context, index) => Divider(
-              height: 30,
-              color: Theme.of(context).dividerColor.withOpacity(
-                    0.5,
-                  ),
+    return NestedScrollView(
+      physics: const BouncingScrollPhysics(),
+      headerSliverBuilder: (context, innerBoxIsScrolled) => [
+        SliverAppBar(
+          toolbarHeight: size.height * 0.1,
+          surfaceTintColor: Colors.white,
+          snap: true,
+          floating: true,
+          centerTitle: true,
+          title: Align(
+            child: SvgPicture.asset(
+              Informations.threadsLogoPath,
+              width: 40,
+              height: 40,
             ),
-            itemCount: Informations.infos.length,
-            itemBuilder: (context, index) {
-              return Thread(
-                index: index,
-              );
-            },
           ),
+        )
+      ],
+      body: ListView.separated(
+        separatorBuilder: (context, index) => Divider(
+          height: 30,
+          color: Theme.of(context).dividerColor.withOpacity(
+                0.5,
+              ),
         ),
+        itemCount: Informations.infos.length,
+        itemBuilder: (context, index) {
+          return Thread(
+            index: index,
+          );
+        },
       ),
     );
   }

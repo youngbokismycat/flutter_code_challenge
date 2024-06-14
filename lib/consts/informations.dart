@@ -1,4 +1,18 @@
+import 'package:faker/faker.dart';
+
 class Informations {
+  static final random = RandomGenerator(seed: 90135135790);
+  static final faker = Faker.withGenerator(random);
+
+  static const _baseImageUrl = 'https://picsum.photos/seed';
+
+  static String generateSeededImageUrl() {
+    final date = DateTime.now();
+    final seed =
+        '${date.year}${date.month}${date.day}${date.hour}${date.minute}${date.second}';
+    return '$_baseImageUrl/$seed/200';
+  }
+
   static const List<Map<String, dynamic>> infos = [
     {
       "landscape": [

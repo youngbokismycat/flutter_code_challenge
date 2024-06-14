@@ -62,6 +62,13 @@ class _WritingThreadScreenState extends State<WritingThreadScreen> {
   }
 
   @override
+  void dispose() {
+    _focusNode.dispose();
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final double dividerHeight =
         columnSize?.height != null ? columnSize!.height - 40 : 0;
