@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tread_clone_assignment/consts/sizes.dart';
 
 String getImage() {
@@ -24,7 +25,21 @@ Color getColor() {
   return Color.fromARGB(255, red, green, blue); // Full opacity (255)
 }
 
-String randomNum() {
+IconData getIcon() {
+  final random = Random();
+
+  List<IconData> icons = [
+    FontAwesomeIcons.solidHeart,
+    FontAwesomeIcons.solidStar,
+    FontAwesomeIcons.solidUser,
+    FontAwesomeIcons.share,
+    FontAwesomeIcons.threads
+  ];
+
+  return icons[random.nextInt(icons.length)];
+}
+
+String getNum() {
   final random = Random();
   int randomInt = random.nextInt(100);
   int randomDouble = random.nextInt(10);
@@ -38,6 +53,12 @@ String randomNum() {
     // Generates a random double between 0.0 and 1.0
     return '$randomInt.${randomDouble}K';
   }
+}
+
+String getInt() {
+  final random = Random();
+  int randomInt = random.nextInt(10);
+  return randomInt.toString();
 }
 
 double getScreenHeight(BuildContext context) =>
@@ -86,6 +107,152 @@ class DefaultPadding extends StatelessWidget {
         horizontal: Sizes.size16,
       ),
       child: child,
+    );
+  }
+}
+
+class CircleProfileNoNeedPathOrIndex extends StatefulWidget {
+  const CircleProfileNoNeedPathOrIndex({
+    super.key,
+  });
+
+  @override
+  State<CircleProfileNoNeedPathOrIndex> createState() =>
+      _CircleProfileNoNeedPathOrIndexState();
+}
+
+class _CircleProfileNoNeedPathOrIndexState
+    extends State<CircleProfileNoNeedPathOrIndex>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return Stack(
+      children: [
+        CircleAvatar(
+          backgroundImage: const AssetImage(
+            "assets/images/default_profile.webp",
+          ),
+          foregroundImage: NetworkImage(
+            getImage(),
+          ),
+        ),
+        Positioned.fill(
+          child: Opacity(
+            opacity: getBoolean() && getBoolean() && getBoolean() ? 1 : 0,
+            child: Container(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(
+                  width: 2,
+                  color: getColor(),
+                ),
+              ),
+            ),
+          ),
+        )
+      ],
+    );
+  }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
+}
+
+class FollowButton extends StatelessWidget {
+  final bool isFollow;
+  final bool isFilled;
+  const FollowButton({
+    super.key,
+    required this.isFollow,
+    required this.isFilled,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        horizontal: Sizes.size24,
+        vertical: Sizes.size4,
+      ),
+      decoration: BoxDecoration(
+        color: isFilled ? Colors.black : Colors.transparent,
+        borderRadius: BorderRadius.circular(
+          Sizes.size10,
+        ),
+        border: isFilled
+            ? null
+            : Border.all(
+                width: 1.3,
+                color: Theme.of(context).dividerColor,
+              ),
+      ),
+      child: Align(
+        widthFactor: 1,
+        heightFactor: 1,
+        alignment: Alignment.center,
+        child: Opacity(
+          opacity: isFollow ? 0.5 : 1,
+          child: Text(
+            isFollow ? "Following" : "Follow",
+            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                  color: isFilled ? Colors.white : null,
+                ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class StackedTwoProfiles extends StatelessWidget {
+  final Color backgroundColor;
+  const StackedTwoProfiles({
+    super.key,
+    required this.backgroundColor,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(right: Sizes.size24),
+      child: Stack(
+        alignment: Alignment.center,
+        clipBehavior: Clip.none,
+        children: [
+          CircleAvatar(
+            radius: 10,
+            backgroundImage: const AssetImage(
+              "assets/images/default_profile.webp",
+            ),
+            foregroundImage: NetworkImage(
+              getImage(),
+            ),
+          ),
+          Positioned(
+            left: 15,
+            child: Container(
+              width: 25,
+              height: 25,
+              decoration:
+                  BoxDecoration(shape: BoxShape.circle, color: backgroundColor),
+              child: FractionallySizedBox(
+                widthFactor: 0.8,
+                child: CircleAvatar(
+                  radius: 10,
+                  backgroundImage: const AssetImage(
+                    "assets/images/default_profile.webp",
+                  ),
+                  foregroundImage: NetworkImage(
+                    getImage(),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

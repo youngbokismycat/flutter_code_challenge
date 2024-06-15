@@ -17,7 +17,7 @@ class _CustomCupertinoSearchTextFieldState
     extends State<CustomCupertinoSearchTextField>
     with TickerProviderStateMixin {
   late FocusNode _focusSearchNode;
-  late AnimationController _animationController;
+  late AnimationController _animationColorController;
   late AnimationController _animationCancelController;
   late Animation<Color?> _colorAnimation;
   late Animation<double> _cancelAnimation;
@@ -29,7 +29,7 @@ class _CustomCupertinoSearchTextFieldState
     super.initState();
     _focusSearchNode = FocusNode();
 
-    _animationController = AnimationController(
+    _animationColorController = AnimationController(
       duration: const Duration(milliseconds: 200),
       vsync: this,
     );
@@ -43,7 +43,7 @@ class _CustomCupertinoSearchTextFieldState
         0.5,
       ),
       end: CupertinoColors.systemGrey5,
-    ).animate(_animationController);
+    ).animate(_animationColorController);
 
     _animationCancelController.addListener(() {
       setState(() {});
@@ -53,8 +53,8 @@ class _CustomCupertinoSearchTextFieldState
       () async {
         if (_focusSearchNode.hasFocus) {
           _animationCancelController.forward();
-          await _animationController.forward();
-          _animationController.reverse();
+          await _animationColorController.forward();
+          _animationColorController.reverse();
         } else {
           _animationCancelController.reverse();
         }
@@ -80,13 +80,12 @@ class _CustomCupertinoSearchTextFieldState
   void dispose() {
     _focusSearchNode.dispose();
     _animationCancelController.dispose();
-    _animationController.dispose();
+    _animationColorController.dispose();
     super.dispose();
   }
 
   void _onTextFieldTap() {
     _focusSearchNode.requestFocus();
-    if (_focusSearchNode.hasFocus) {}
   }
 
   void _onCancelTap() {
@@ -104,7 +103,7 @@ class _CustomCupertinoSearchTextFieldState
     return GestureDetector(
       onTap: _onTextFieldTap,
       child: AnimatedBuilder(
-        animation: _animationController,
+        animation: _animationColorController,
         builder: (context, child) => SingleChildScrollView(
           physics: const NeverScrollableScrollPhysics(),
           scrollDirection: Axis.horizontal,

@@ -2,9 +2,10 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:tread_clone_assignment/consts/informations.dart';
+import 'package:tread_clone_assignment/consts/utils.dart';
 import 'package:tread_clone_assignment/main_homes/widgets/profiles/circular_profile.dart';
 
-class BubbleProfiles extends StatelessWidget {
+class BubbleProfiles extends StatefulWidget {
   final int index;
   const BubbleProfiles({
     super.key,
@@ -12,20 +13,16 @@ class BubbleProfiles extends StatelessWidget {
   });
 
   @override
+  State<BubbleProfiles> createState() => _BubbleProfilesState();
+}
+
+class _BubbleProfilesState extends State<BubbleProfiles>
+    with AutomaticKeepAliveClientMixin {
+  @override
   Widget build(BuildContext context) {
-    final info = Informations.infos[index];
-    List<int> indices0 =
-        List<int>.generate(Informations.infos.length, (index) => index);
-    indices0.shuffle(Random());
-    final randomInfo0 = Informations.infos[indices0[index]];
-    List<int> indices1 =
-        List<int>.generate(Informations.infos.length, (index) => index);
-    indices1.shuffle(Random());
-    final randomInfo1 = Informations.infos[indices1[index]];
-    List<int> indices2 =
-        List<int>.generate(Informations.infos.length, (index) => index);
-    indices2.shuffle(Random());
-    final randomInfo2 = Informations.infos[indices2[index]];
+    super.build(context);
+    final info = Informations.infos[widget.index];
+
     return SizedBox(
       width: 50,
       height: 30,
@@ -40,7 +37,7 @@ class BubbleProfiles extends StatelessWidget {
               child: Transform.scale(
                 scale: 0.5,
                 child: BubbleProfile(
-                  profilePath: randomInfo0['profile'],
+                  profilePath: getImage(),
                 ),
               ),
             ),
@@ -52,7 +49,7 @@ class BubbleProfiles extends StatelessWidget {
               child: Transform.scale(
                 scale: 0.4,
                 child: BubbleProfile(
-                  profilePath: randomInfo1['profile'],
+                  profilePath: getImage(),
                 ),
               ),
             ),
@@ -65,7 +62,7 @@ class BubbleProfiles extends StatelessWidget {
               child: Transform.scale(
                 scale: 0.3,
                 child: BubbleProfile(
-                  profilePath: randomInfo2['profile'],
+                  profilePath: getImage(),
                 ),
               ),
             ),
@@ -77,7 +74,7 @@ class BubbleProfiles extends StatelessWidget {
               child: Transform.scale(
                 scale: 0.4,
                 child: BubbleProfile(
-                  profilePath: randomInfo1['profile'],
+                  profilePath: getImage(),
                 ),
               ),
             ),
@@ -97,7 +94,7 @@ class BubbleProfiles extends StatelessWidget {
                   child: FractionallySizedBox(
                     widthFactor: 0.7,
                     child: BubbleProfile(
-                      profilePath: randomInfo2['profile'],
+                      profilePath: getImage(),
                     ),
                   ),
                 ),
@@ -108,4 +105,8 @@ class BubbleProfiles extends StatelessWidget {
       ),
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }

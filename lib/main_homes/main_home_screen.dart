@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tread_clone_assignment/consts/custom_text_style.dart';
@@ -24,10 +25,10 @@ class MainHomeScreen extends StatelessWidget {
       physics: const BouncingScrollPhysics(),
       headerSliverBuilder: (context, innerBoxIsScrolled) => [
         SliverAppBar(
-          toolbarHeight: size.height * 0.1,
+          systemOverlayStyle: const SystemUiOverlayStyle(
+            systemStatusBarContrastEnforced: false,
+          ),
           surfaceTintColor: Colors.white,
-          snap: true,
-          floating: true,
           centerTitle: true,
           title: Align(
             child: SvgPicture.asset(

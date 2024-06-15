@@ -1,3 +1,4 @@
+import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -39,7 +40,7 @@ class WriterAndAgoRow extends StatelessWidget {
       builder: (context, constraints) => Row(
         children: [
           Text(
-            info['name'],
+            faker.person.name(),
             style: Theme.of(context).textTheme.bodyMedium,
           ),
           Gaps.h5,

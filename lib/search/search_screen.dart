@@ -17,45 +17,51 @@ class SearchScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
-      child: NestedScrollView(
-        physics: const BouncingScrollPhysics(),
-        headerSliverBuilder: (context, innerBoxIsScrolled) {
-          return [
-            const SliverAppBar(
-              centerTitle: false,
-              surfaceTintColor: Colors.white,
-              flexibleSpace: FlexibleSpaceBar(
-                titlePadding: EdgeInsets.zero,
-                stretchModes: [
-                  StretchMode.fadeTitle,
-                ],
-                title: DefaultPadding(
-                  child: Align(
-                    alignment: Alignment.bottomLeft,
-                    child: Text(
-                      "Search",
+    return SafeArea(
+      child: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: NestedScrollView(
+          physics: const BouncingScrollPhysics(),
+          headerSliverBuilder: (context, innerBoxIsScrolled) {
+            return [
+              const SliverAppBar(
+                centerTitle: false,
+                surfaceTintColor: Colors.white,
+                flexibleSpace: FlexibleSpaceBar(
+                  titlePadding: EdgeInsets.zero,
+                  stretchModes: [
+                    StretchMode.fadeTitle,
+                  ],
+                  title: DefaultPadding(
+                    child: Align(
+                      alignment: Alignment.bottomLeft,
+                      child: Text(
+                        "Search",
+                      ),
                     ),
                   ),
                 ),
               ),
+              SliverPersistentHeader(
+                pinned: true,
+                delegate: PinnedSearchBar(
+                    child: const CustomCupertinoSearchTextField()),
+              ),
+            ];
+          },
+          body: MediaQuery.removePadding(
+            context: context,
+            removeTop: true,
+            child: ListView.separated(
+              itemCount: 100,
+              separatorBuilder: (context, index) => Divider(
+                color: Theme.of(context).dividerColor.withOpacity(
+                      0.5,
+                    ),
+              ),
+              itemBuilder: (context, index) => const ListTileProfile(),
             ),
-            SliverPersistentHeader(
-              pinned: true,
-              delegate: PinnedSearchBar(
-                  child: const CustomCupertinoSearchTextField()),
-            ),
-          ];
-        },
-        body: ListView.separated(
-          itemCount: 100,
-          separatorBuilder: (context, index) => Divider(
-            color: Theme.of(context).dividerColor.withOpacity(
-                  0.5,
-                ),
           ),
-          itemBuilder: (context, index) => const ListTileProfile(),
         ),
       ),
     );

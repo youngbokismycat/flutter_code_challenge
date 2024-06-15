@@ -190,10 +190,7 @@ class WriteThread extends StatelessWidget {
                   milliseconds: 500,
                 ),
                 curve: Curves.easeOutCirc,
-                constraints: BoxConstraints(
-                  minHeight: dividerHeight,
-                  maxHeight: dividerHeight,
-                ),
+                height: dividerHeight,
                 width: 2,
                 color: Theme.of(context).dividerColor.withOpacity(0.5),
               ),

@@ -1,9 +1,12 @@
+import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tread_clone_assignment/consts/informations.dart';
+import 'package:tread_clone_assignment/consts/utils.dart';
 
 class CircularProfile extends StatelessWidget {
   final int index;
+
   const CircularProfile({
     super.key,
     required this.index,
@@ -17,7 +20,7 @@ class CircularProfile extends StatelessWidget {
       children: [
         Positioned(
           child: BubbleProfile(
-            profilePath: info['profile'],
+            profilePath: getImage(),
           ),
         ),
         Positioned(
@@ -49,7 +52,7 @@ class CircularProfile extends StatelessWidget {
   }
 }
 
-class BubbleProfile extends StatelessWidget {
+class BubbleProfile extends StatefulWidget {
   final String profilePath;
   const BubbleProfile({
     super.key,
@@ -57,13 +60,26 @@ class BubbleProfile extends StatelessWidget {
   });
 
   @override
+  State<BubbleProfile> createState() => _BubbleProfileState();
+}
+
+class _BubbleProfileState extends State<BubbleProfile>
+    with AutomaticKeepAliveClientMixin {
+  @override
   Widget build(BuildContext context) {
     return CircleAvatar(
+      backgroundImage: const AssetImage(
+        "assets/images/default_profile.webp",
+      ),
       backgroundColor: Colors.white,
       radius: 23,
-      foregroundImage: AssetImage(
-        profilePath,
+      foregroundImage: NetworkImage(
+        widget.profilePath,
       ),
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }

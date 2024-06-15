@@ -18,7 +18,7 @@ class MainNavigationScreen extends StatefulWidget {
 }
 
 class _MainNavigationScreenState extends State<MainNavigationScreen> {
-  int _selectedIndex = 3;
+  int _selectedIndex = 0;
   bool _isWritingThread = false;
 
   void _onselectedTap(int index) {
@@ -29,7 +29,6 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   void _onMakeThreadButtonTap(BuildContext cotext) async {
     _isWritingThread = true;
     WidgetsFlutterBinding.ensureInitialized();
-
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle.light,
     );
@@ -52,7 +51,6 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
       },
     ).whenComplete(
       () async {
-        FocusScope.of(context).unfocus();
         await Future.delayed(
           const Duration(milliseconds: 25),
         );
@@ -65,9 +63,6 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
       SystemUiOverlayStyle.dark,
     );
     _isWritingThread = false;
-    if (mounted) {
-      FocusScope.of(context).unfocus();
-    }
 
     setState(() {});
   }
