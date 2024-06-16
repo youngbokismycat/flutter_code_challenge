@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tread_clone_assignment/activity/widgets/activity_profile_list_tile.dart';
+import 'package:tread_clone_assignment/consts/break_points.dart';
 import 'package:tread_clone_assignment/consts/gaps.dart';
 import 'package:tread_clone_assignment/consts/sizes.dart';
 import 'package:tread_clone_assignment/consts/utils.dart';
@@ -185,8 +186,22 @@ class _ActivityScreenState extends State<ActivityScreen>
                             itemBuilder: (context, index) {
                               return Row(
                                 children: [
-                                  for (var i = 0; i < 2; i++)
-                                    const RecommendCard(),
+                                  const Expanded(
+                                    child: RecommendCard(),
+                                  ),
+                                  const Expanded(
+                                    child: RecommendCard(),
+                                  ),
+                                  if (MediaQuery.of(context).size.width >
+                                      Breakpoints.md)
+                                    const Expanded(
+                                      child: RecommendCard(),
+                                    ),
+                                  if (MediaQuery.of(context).size.width >
+                                      Breakpoints.lg)
+                                    const Expanded(
+                                      child: RecommendCard(),
+                                    ),
                                 ],
                               );
                             },

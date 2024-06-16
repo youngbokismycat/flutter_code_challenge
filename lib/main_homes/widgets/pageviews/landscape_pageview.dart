@@ -42,6 +42,12 @@ class LandscapePageView extends StatelessWidget {
                         size: size,
                       ),
                     ),
+                  if (MediaQuery.of(context).size.width > Breakpoints.lg)
+                    Expanded(
+                      child: LandScapeCard(
+                        size: size,
+                      ),
+                    ),
                 ],
               ),
           ],
