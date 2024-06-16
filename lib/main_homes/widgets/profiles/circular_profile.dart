@@ -67,6 +67,7 @@ class _BubbleProfileState extends State<BubbleProfile>
     with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return CircleAvatar(
       backgroundImage: const AssetImage(
         "assets/images/default_profile.webp",

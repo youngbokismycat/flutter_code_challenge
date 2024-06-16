@@ -6,8 +6,12 @@ import 'package:tread_clone_assignment/search/widgets/animated_cupertino_search_
 
 class PinnedSearchBar extends SliverPersistentHeaderDelegate {
   final Widget child;
+  final bool isTabBar;
 
-  PinnedSearchBar({required this.child});
+  PinnedSearchBar({
+    required this.child,
+    required this.isTabBar,
+  });
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
@@ -15,9 +19,11 @@ class PinnedSearchBar extends SliverPersistentHeaderDelegate {
       color: Colors.white,
       child: Align(
         alignment: Alignment.center,
-        child: DefaultPadding(
-          child: child,
-        ),
+        child: isTabBar
+            ? child
+            : DefaultPadding(
+                child: child,
+              ),
       ),
     );
   }

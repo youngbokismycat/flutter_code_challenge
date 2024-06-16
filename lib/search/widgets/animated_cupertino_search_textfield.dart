@@ -30,7 +30,7 @@ class _CustomCupertinoSearchTextFieldState
     _focusSearchNode = FocusNode();
 
     _animationColorController = AnimationController(
-      duration: const Duration(milliseconds: 200),
+      duration: const Duration(milliseconds: 100),
       vsync: this,
     );
     _animationCancelController = AnimationController(

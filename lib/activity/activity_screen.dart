@@ -76,13 +76,14 @@ class _ActivityScreenState extends State<ActivityScreen>
               SliverPersistentHeader(
                 pinned: true,
                 delegate: PinnedSearchBar(
+                  isTabBar: true,
                   child: SizedBox(
                     height: 40,
                     child: TabBar(
                       tabAlignment: TabAlignment.center,
                       padding: EdgeInsets.zero,
                       labelPadding: const EdgeInsets.only(
-                        right: Sizes.size14,
+                        left: Sizes.size16,
                       ),
                       labelStyle: Theme.of(context)
                           .textTheme

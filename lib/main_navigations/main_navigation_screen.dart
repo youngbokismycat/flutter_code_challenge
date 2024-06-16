@@ -57,14 +57,14 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
         if (mounted) {
           FocusScope.of(context).unfocus();
         }
+        SystemChrome.setSystemUIOverlayStyle(
+          SystemUiOverlayStyle.dark,
+        );
+        _isWritingThread = false;
+
+        setState(() {});
       },
     );
-    SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle.dark,
-    );
-    _isWritingThread = false;
-
-    setState(() {});
   }
 
   @override

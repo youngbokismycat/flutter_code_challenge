@@ -36,9 +36,7 @@ class _WritingThreadScreenState extends State<WritingThreadScreen> {
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       FocusScope.of(context).requestFocus(_focusNode);
-      setState(() {
-        columnSize = getSize();
-      });
+      columnSize = getSize();
     });
   }
 
