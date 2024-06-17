@@ -4,10 +4,7 @@ import 'package:tread_clone_assignment/consts/utils.dart';
 class LandScapeCard extends StatefulWidget {
   const LandScapeCard({
     super.key,
-    required this.size,
   });
-
-  final Size size;
 
   @override
   State<LandScapeCard> createState() => _LandScapeCardState();

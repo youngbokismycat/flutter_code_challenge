@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tread_clone_assignment/consts/gaps.dart';
+import 'package:tread_clone_assignment/consts/sizes.dart';
 import 'package:tread_clone_assignment/consts/utils.dart';
 
 class ActivityProfileListTile extends StatelessWidget {
@@ -19,7 +20,10 @@ class ActivityProfileListTile extends StatelessWidget {
       leading: Stack(
         clipBehavior: Clip.none,
         children: [
-          const CircleProfileNoNeedPathOrIndex(),
+          const CircleProfileNoNeedPathOrIndex(
+            isHaveBorder: false,
+            radius: Sizes.size20,
+          ),
           Positioned(
             right: -3,
             bottom: -3,

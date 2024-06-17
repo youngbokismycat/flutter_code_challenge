@@ -112,8 +112,12 @@ class DefaultPadding extends StatelessWidget {
 }
 
 class CircleProfileNoNeedPathOrIndex extends StatefulWidget {
+  final double radius;
+  final bool isHaveBorder;
   const CircleProfileNoNeedPathOrIndex({
     super.key,
+    required this.radius,
+    required this.isHaveBorder,
   });
 
   @override
@@ -130,6 +134,7 @@ class _CircleProfileNoNeedPathOrIndexState
     return Stack(
       children: [
         CircleAvatar(
+          radius: widget.radius,
           backgroundImage: const AssetImage(
             "assets/images/default_profile.webp",
           ),
@@ -137,20 +142,20 @@ class _CircleProfileNoNeedPathOrIndexState
             getImage(),
           ),
         ),
-        Positioned.fill(
-          child: Opacity(
-            opacity: getBoolean() && getBoolean() && getBoolean() ? 1 : 0,
+        if (widget.isHaveBorder)
+          Positioned.fill(
             child: Container(
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 border: Border.all(
-                  width: 2,
-                  color: getColor(),
+                  width: 1,
+                  color: Theme.of(context).disabledColor.withOpacity(
+                        0.2,
+                      ),
                 ),
               ),
             ),
           ),
-        )
       ],
     );
   }

@@ -76,7 +76,7 @@ class _ActivityScreenState extends State<ActivityScreen>
               ),
               SliverPersistentHeader(
                 pinned: true,
-                delegate: PinnedSearchBar(
+                delegate: PinnedBar(
                   isTabBar: true,
                   child: SizedBox(
                     height: 40,

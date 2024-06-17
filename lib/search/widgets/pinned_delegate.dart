@@ -4,11 +4,11 @@ import 'package:tread_clone_assignment/consts/sizes.dart';
 import 'package:tread_clone_assignment/consts/utils.dart';
 import 'package:tread_clone_assignment/search/widgets/animated_cupertino_search_textfield.dart';
 
-class PinnedSearchBar extends SliverPersistentHeaderDelegate {
+class PinnedBar extends SliverPersistentHeaderDelegate {
   final Widget child;
   final bool isTabBar;
 
-  PinnedSearchBar({
+  PinnedBar({
     required this.child,
     required this.isTabBar,
   });
@@ -18,7 +18,7 @@ class PinnedSearchBar extends SliverPersistentHeaderDelegate {
     return Container(
       color: Colors.white,
       child: Align(
-        alignment: Alignment.center,
+        alignment: Alignment.bottomCenter,
         child: isTabBar
             ? child
             : DefaultPadding(
@@ -29,9 +29,9 @@ class PinnedSearchBar extends SliverPersistentHeaderDelegate {
   }
 
   @override
-  double get maxExtent => 60;
+  double get maxExtent => 40;
   @override
-  double get minExtent => 50;
+  double get minExtent => 40;
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
     return false;

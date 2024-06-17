@@ -7,6 +7,7 @@ import 'package:tread_clone_assignment/activity/activity_screen.dart';
 import 'package:tread_clone_assignment/consts/sizes.dart';
 import 'package:tread_clone_assignment/main_homes/main_home_screen.dart';
 import 'package:tread_clone_assignment/main_navigations/widgets/custom_navigation_bar.dart';
+import 'package:tread_clone_assignment/profile/profile_screen.dart';
 import 'package:tread_clone_assignment/search/search_screen.dart';
 import 'package:tread_clone_assignment/writing_thread/writing_thread_screen.dart';
 
@@ -18,7 +19,7 @@ class MainNavigationScreen extends StatefulWidget {
 }
 
 class _MainNavigationScreenState extends State<MainNavigationScreen> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 4;
   bool _isWritingThread = false;
 
   void _onselectedTap(int index) {
@@ -110,7 +111,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                 ),
                 Offstage(
                   offstage: _selectedIndex != 4,
-                  child: const Placeholder(),
+                  child: const ProfileScreen(),
                 ),
               ],
             ),

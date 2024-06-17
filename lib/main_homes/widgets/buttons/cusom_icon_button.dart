@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tread_clone_assignment/consts/sizes.dart';
 
 class CustomIconButton extends StatefulWidget {
   final IconData icon;
@@ -32,6 +33,7 @@ class _CustomIconButtonState extends State<CustomIconButton> {
                     widget.selectedicon == FontAwesomeIcons.solidHeart
                 ? Colors.red
                 : Colors.black,
+            size: Sizes.size20 + 2,
           ),
         ),
       ),

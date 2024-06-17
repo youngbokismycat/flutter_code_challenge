@@ -19,7 +19,10 @@ class ListTileProfile extends StatelessWidget {
         contentPadding: EdgeInsets.zero,
         dense: true,
         isThreeLine: true,
-        leading: const CircleProfileNoNeedPathOrIndex(),
+        leading: const CircleProfileNoNeedPathOrIndex(
+          isHaveBorder: false,
+          radius: Sizes.size20,
+        ),
         title: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(

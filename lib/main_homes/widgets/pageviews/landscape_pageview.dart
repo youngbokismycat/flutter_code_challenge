@@ -31,22 +31,16 @@ class LandscapePageView extends StatelessWidget {
             for (var i = 0; i < 100; i++)
               Row(
                 children: [
-                  Expanded(
-                    child: LandScapeCard(
-                      size: size,
-                    ),
+                  const Expanded(
+                    child: LandScapeCard(),
                   ),
                   if (MediaQuery.of(context).size.width > Breakpoints.md)
-                    Expanded(
-                      child: LandScapeCard(
-                        size: size,
-                      ),
+                    const Expanded(
+                      child: LandScapeCard(),
                     ),
                   if (MediaQuery.of(context).size.width > Breakpoints.lg)
-                    Expanded(
-                      child: LandScapeCard(
-                        size: size,
-                      ),
+                    const Expanded(
+                      child: LandScapeCard(),
                     ),
                 ],
               ),

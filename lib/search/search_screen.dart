@@ -44,7 +44,7 @@ class SearchScreen extends StatelessWidget {
               ),
               SliverPersistentHeader(
                 pinned: true,
-                delegate: PinnedSearchBar(
+                delegate: PinnedBar(
                     isTabBar: false,
                     child: const CustomCupertinoSearchTextField()),
               ),

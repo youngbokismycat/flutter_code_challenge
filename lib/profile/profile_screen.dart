@@ -1,12 +1,17 @@
+import 'package:faker/faker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tread_clone_assignment/consts/gaps.dart';
 import 'package:tread_clone_assignment/consts/informations.dart';
 import 'package:tread_clone_assignment/consts/sizes.dart';
 import 'package:tread_clone_assignment/consts/utils.dart';
+import 'package:tread_clone_assignment/main_homes/widgets/buttons/four_buttons.dart';
+import 'package:tread_clone_assignment/main_homes/widgets/cards/landscape_card.dart';
 import 'package:tread_clone_assignment/main_homes/widgets/cards/thread.dart';
+import 'package:tread_clone_assignment/main_homes/widgets/pageviews/landscape_pageview.dart';
 import 'package:tread_clone_assignment/search/widgets/pinned_delegate.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -31,93 +36,390 @@ class _ProfileScreenState extends State<ProfileScreen>
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      initialIndex: 0,
-      child: NestedScrollView(
-        physics: const BouncingScrollPhysics(),
-        headerSliverBuilder: (context, innerBoxIsScrolled) {
-          return [
-            SliverAppBar(
-              leading: const Center(
-                child: FaIcon(
-                  FontAwesomeIcons.globe,
-                ),
-              ),
-              actions: [
-                IconButton(
-                  onPressed: () {},
-                  icon: const FaIcon(
-                    FontAwesomeIcons.instagram,
+    return SafeArea(
+      child: DefaultTabController(
+        length: 2,
+        initialIndex: 0,
+        child: NestedScrollView(
+          physics: const BouncingScrollPhysics(),
+          headerSliverBuilder: (context, innerBoxIsScrolled) {
+            return [
+              SliverAppBar(
+                leading: const Center(
+                  child: FaIcon(
+                    FontAwesomeIcons.globe,
                   ),
                 ),
-                IconButton(
-                  icon: const FaIcon(FontAwesomeIcons.gripLines),
-                  onPressed: () {},
-                )
-              ],
-            ),
-            const SliverToBoxAdapter(
-              child: DefaultPadding(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Gaps.v14,
-                    ProfileReverseListTile(),
-                    Gaps.v10,
-                    ProfileFollowers(),
-                    Gaps.v24,
-                    ProfileButtons(),
-                    Gaps.v8,
-                  ],
+                actions: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: const FaIcon(
+                      FontAwesomeIcons.instagram,
+                    ),
+                  ),
+                  IconButton(
+                    icon: const FaIcon(FontAwesomeIcons.gripLines),
+                    onPressed: () {},
+                  )
+                ],
+              ),
+              const SliverToBoxAdapter(
+                child: DefaultPadding(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Gaps.v14,
+                      ProfileReverseListTile(),
+                      Gaps.v10,
+                      ProfileFollowers(),
+                      Gaps.v24,
+                      ProfileButtons(),
+                      Gaps.v8,
+                    ],
+                  ),
                 ),
               ),
-            ),
-            SliverPersistentHeader(
-              delegate: PinnedSearchBar(
-                child: TabBar(
-                  unselectedLabelColor: Theme.of(context).disabledColor,
-                  indicatorColor: Colors.black,
-                  labelStyle: Theme.of(context).textTheme.bodyMedium,
-                  indicatorSize: TabBarIndicatorSize.tab,
-                  controller: _tabController,
-                  tabs: const [
-                    Tab(
-                      child: Text("Threads"),
+              SliverPersistentHeader(
+                pinned: true,
+                delegate: PinnedBar(
+                  isTabBar: true,
+                  child: TabBar(
+                    unselectedLabelColor: Theme.of(context).disabledColor,
+                    indicatorColor: Colors.black,
+                    labelStyle: Theme.of(context).textTheme.bodyMedium,
+                    indicatorSize: TabBarIndicatorSize.tab,
+                    controller: _tabController,
+                    tabs: const [
+                      Tab(
+                        child: Text("Threads"),
+                      ),
+                      Tab(
+                        child: Text(
+                          "Relplies",
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ];
+          },
+          body: TabBarView(
+            controller: _tabController,
+            children: const [
+              ProfileListview(
+                  child: DefaultPadding(
+                child: ProfileThread(),
+              )),
+              ProfileListview(
+                child: DefaultPadding(
+                  child: RepliesThreads(),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class RepliesThreads extends StatefulWidget {
+  const RepliesThreads({
+    super.key,
+  });
+
+  @override
+  State<RepliesThreads> createState() => _RepliesThreadsState();
+}
+
+class _RepliesThreadsState extends State<RepliesThreads> {
+  final GlobalKey _contentskey = GlobalKey();
+
+  Size? columnSize;
+  Offset? offset;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      setState(() {
+        columnSize = getSize();
+      });
+    });
+  }
+
+  Size? getSize() {
+    if (_contentskey.currentContext != null) {
+      final RenderBox renderBox =
+          _contentskey.currentContext!.findRenderObject() as RenderBox;
+      Size columnSize = renderBox.size;
+      return columnSize;
+    }
+    return null;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return IntrinsicHeight(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Column(
+            children: [
+              const CircleProfileNoNeedPathOrIndex(
+                radius: Sizes.size20,
+                isHaveBorder: true,
+              ),
+              Expanded(
+                child: VerticalDivider(
+                  thickness: 2,
+                  indent: 12,
+                  endIndent: 12,
+                  color: Theme.of(context).dividerColor.withOpacity(0.5),
+                ),
+              ),
+              const ProfileProfile(
+                radius: Sizes.size20,
+                isHaveBorder: true,
+              ),
+              Gaps.v48,
+            ],
+          ),
+          Gaps.h10,
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      faker.person.name().toLowerCase().replaceAll(r' ', "_"),
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            fontWeight: FontWeight.w600,
+                            height: 1,
+                          ),
                     ),
-                    Tab(
+                    Gaps.h5,
+                    if (getBoolean())
+                      SvgPicture.asset(
+                        'assets/svgs/verified.svg',
+                        width: Sizes.size12,
+                      ),
+                    const Spacer(),
+                    Opacity(
+                      opacity: 0.4,
+                      child: Text("${getInt()}h",
+                          style: Theme.of(context).textTheme.bodySmall),
+                    ),
+                    Gaps.h10,
+                    const FaIcon(
+                      FontAwesomeIcons.ellipsis,
+                      size: Sizes.size16,
+                    ),
+                  ],
+                ),
+                Gaps.v4,
+                Text(
+                  faker.lorem.sentence(),
+                  style: Theme.of(context).textTheme.bodySmall,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                Gaps.v10,
+                if (getBoolean()) const ReThreadBox(),
+                Gaps.v5,
+                const FourButtons(),
+                Gaps.v16,
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      "young_bok",
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium!
+                          .copyWith(fontWeight: FontWeight.w600, height: 1),
+                    ),
+                    Gaps.h7,
+                    const Spacer(),
+                    Opacity(
+                      opacity: 0.4,
                       child: Text(
-                        "Relpies",
+                        "${getInt()}h",
+                        style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                              height: 1,
+                            ),
                       ),
                     ),
+                    Gaps.h10,
+                    const FaIcon(
+                      FontAwesomeIcons.ellipsis,
+                      size: Sizes.size16,
+                    )
                   ],
                 ),
-                isTabBar: true,
-              ),
+                Gaps.v5,
+                Text(
+                  faker.lorem.sentence(),
+                  style: Theme.of(context).textTheme.bodySmall,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                Gaps.v12,
+                const FourButtons()
+              ],
             ),
-          ];
-        },
-        body: TabBarView(
-          controller: _tabController,
-          children: [
-            ListView.separated(
-              separatorBuilder: (context, index) => Divider(
-                height: 30,
-                color: Theme.of(context).dividerColor.withOpacity(
-                      0.5,
-                    ),
-              ),
-              itemCount: 5,
-              itemBuilder: (context, index) {
-                return Thread(
-                  index: index,
-                );
-              },
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class ProfileListview extends StatelessWidget {
+  final Widget child;
+  const ProfileListview({
+    super.key,
+    required this.child,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.separated(
+      padding: const EdgeInsets.only(
+        top: Sizes.size10,
+      ),
+      separatorBuilder: (context, index) => Divider(
+        height: 30,
+        color: Theme.of(context).dividerColor.withOpacity(
+              0.5,
             ),
-            ListView(
-              children: const [],
-            )
-          ],
+      ),
+      itemCount: 5,
+      itemBuilder: (context, index) {
+        return child;
+      },
+    );
+  }
+}
+
+class ProfileThread extends StatelessWidget {
+  const ProfileThread({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      contentPadding: EdgeInsets.zero,
+      isThreeLine: true,
+      dense: false,
+      leading: const ProfileProfile(
+        radius: Sizes.size20 + 2,
+        isHaveBorder: true,
+      ),
+      title: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(
+            "young_bok",
+            style: Theme.of(context)
+                .textTheme
+                .bodyMedium!
+                .copyWith(fontWeight: FontWeight.w600, height: 1),
+          ),
+          Gaps.h7,
+          const Spacer(),
+          Opacity(
+            opacity: 0.4,
+            child: Text(
+              "${getInt()}h",
+              style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                    height: 1,
+                  ),
+            ),
+          ),
+          Gaps.h10,
+          const FaIcon(
+            FontAwesomeIcons.ellipsis,
+            size: Sizes.size16,
+          )
+        ],
+      ),
+      subtitle: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Gaps.v5,
+          Text(
+            faker.lorem.sentence(),
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
+          Gaps.v12,
+          const ReThreadBox(),
+          Gaps.v8,
+          const FourButtons()
+        ],
+      ),
+    );
+  }
+}
+
+class ReThreadBox extends StatelessWidget {
+  const ReThreadBox({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(
+          Sizes.size10,
+        ),
+        border: Border.all(
+          width: 1,
+          color: Theme.of(context).dividerColor,
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          vertical: Sizes.size14,
+        ),
+        child: DefaultPadding(
+          child: Column(
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const CircleProfileNoNeedPathOrIndex(
+                    radius: Sizes.size12,
+                    isHaveBorder: false,
+                  ),
+                  Gaps.h7,
+                  Text(
+                    faker.person.name().toLowerCase().replaceAll(r' ', '_'),
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                  Gaps.h5,
+                  SvgPicture.asset(
+                    'assets/svgs/verified.svg',
+                    width: Sizes.size12,
+                  ),
+                ],
+              ),
+              Gaps.v10,
+              Text(
+                "This is a very long text to test overflow and overlay style but It doesn't matter what the contents are meaning so I just write comments too long so my idea is go less please help me my english is suck and nico like suck it suck do you like suck i hate suck",
+                style: Theme.of(context).textTheme.bodySmall,
+                maxLines: 5,
+                overflow: TextOverflow.ellipsis,
+              ),
+              Gaps.v20,
+              const LandScapeCard(),
+            ],
+          ),
         ),
       ),
     );
@@ -262,15 +564,49 @@ class ProfileReverseListTile extends StatelessWidget {
           ),
         ],
       ),
-      trailing: const CircleAvatar(
+      trailing: const ProfileProfile(
         radius: Sizes.size40,
-        backgroundImage: AssetImage(
-          'assets/images/default_profile.webp',
-        ),
-        foregroundImage: AssetImage(
-          'assets/images/clone_images/profile0.jpg',
-        ),
+        isHaveBorder: false,
       ),
+    );
+  }
+}
+
+class ProfileProfile extends StatelessWidget {
+  final double radius;
+  final bool isHaveBorder;
+  const ProfileProfile({
+    super.key,
+    required this.radius,
+    required this.isHaveBorder,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        CircleAvatar(
+          radius: radius,
+          backgroundImage: const AssetImage(
+            'assets/images/default_profile.webp',
+          ),
+          foregroundImage: const AssetImage(
+            'assets/images/clone_images/profile0.jpg',
+          ),
+        ),
+        if (isHaveBorder)
+          Positioned.fill(
+            child: Container(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(
+                  width: 1,
+                  color: Theme.of(context).disabledColor.withOpacity(0.2),
+                ),
+              ),
+            ),
+          )
+      ],
     );
   }
 }
