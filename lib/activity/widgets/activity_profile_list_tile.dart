@@ -1,5 +1,4 @@
 import 'package:faker/faker.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tread_clone_assignment/consts/gaps.dart';
@@ -73,7 +72,7 @@ class ActivityProfileListTile extends StatelessWidget {
                       height: 0,
                     ),
               ),
-            )
+            ),
           ],
         ),
       ),

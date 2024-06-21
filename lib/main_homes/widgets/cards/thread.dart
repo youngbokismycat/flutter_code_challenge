@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tread_clone_assignment/consts/informations.dart';
 import 'package:tread_clone_assignment/consts/gaps.dart';
 import 'package:tread_clone_assignment/main_homes/widgets/columns/content_column.dart';
-import 'package:tread_clone_assignment/main_homes/widgets/rows/writer_and_ago_row.dart';
-import 'package:tread_clone_assignment/main_homes/widgets/profiles/bubble_profiles.dart';
-import 'package:tread_clone_assignment/main_homes/widgets/buttons/four_buttons.dart';
-import 'package:tread_clone_assignment/main_homes/widgets/rows/replies_and_likes_row.dart';
 import 'package:tread_clone_assignment/main_homes/widgets/columns/writer_to_repliers_column.dart';
 
 class Thread extends StatefulWidget {

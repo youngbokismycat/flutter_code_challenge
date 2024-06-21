@@ -40,7 +40,13 @@ dependencies:
   device_preview: ^1.2.0
   faker: ^2.1.0
   visibility_detector: ^0.4.0+2
-
+  camera: 0.10.3
+  defer_pointer: ^0.0.2
+  camerawesome: ^2.0.1
+  gal: ^2.3.0
+  video_player: ^2.8.7
+  image_picker: ^1.1.2
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

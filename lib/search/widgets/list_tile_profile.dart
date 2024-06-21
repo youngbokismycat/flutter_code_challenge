@@ -1,5 +1,4 @@
 import 'package:faker/faker.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:tread_clone_assignment/consts/gaps.dart';
@@ -78,7 +77,7 @@ class ListTileProfile extends StatelessWidget {
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ),
         trailing: const FollowButton(

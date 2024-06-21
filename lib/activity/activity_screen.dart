@@ -1,14 +1,11 @@
 import 'package:faker/faker.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tread_clone_assignment/activity/widgets/activity_profile_list_tile.dart';
 import 'package:tread_clone_assignment/consts/break_points.dart';
 import 'package:tread_clone_assignment/consts/gaps.dart';
 import 'package:tread_clone_assignment/consts/sizes.dart';
 import 'package:tread_clone_assignment/consts/utils.dart';
-import 'package:tread_clone_assignment/search/widgets/list_tile_profile.dart';
 import 'package:tread_clone_assignment/search/widgets/pinned_delegate.dart';
 
 class ActivityScreen extends StatefulWidget {
@@ -124,7 +121,7 @@ class _ActivityScreenState extends State<ActivityScreen>
                                       ),
                                       opacity: option ==
                                               options.elementAt(
-                                                  _tabController.index)
+                                                  _tabController.index,)
                                           ? 0
                                           : 1,
                                       child: Container(
@@ -141,7 +138,7 @@ class _ActivityScreenState extends State<ActivityScreen>
                                         ),
                                       ),
                                     ),
-                                  )
+                                  ),
                                 ],
                               ),
                             ),
@@ -186,22 +183,14 @@ class _ActivityScreenState extends State<ActivityScreen>
                             itemBuilder: (context, index) {
                               return Row(
                                 children: [
-                                  const Expanded(
-                                    child: RecommendCard(),
-                                  ),
-                                  const Expanded(
-                                    child: RecommendCard(),
-                                  ),
+                                  const RecommendCard(),
+                                  const RecommendCard(),
                                   if (MediaQuery.of(context).size.width >
                                       Breakpoints.md)
-                                    const Expanded(
-                                      child: RecommendCard(),
-                                    ),
+                                    const RecommendCard(),
                                   if (MediaQuery.of(context).size.width >
                                       Breakpoints.lg)
-                                    const Expanded(
-                                      child: RecommendCard(),
-                                    ),
+                                    const RecommendCard(),
                                 ],
                               );
                             },
@@ -217,7 +206,7 @@ class _ActivityScreenState extends State<ActivityScreen>
                     ),
                   ],
                 ),
-              )
+              ),
             ];
           },
           body: TabBarView(
@@ -368,7 +357,7 @@ class _RecommendCardState extends State<RecommendCard>
                                           .name()
                                           .toLowerCase()
                                           .replaceAll(
-                                              r' ', getBoolean() ? '_' : '.'),
+                                              r' ', getBoolean() ? '_' : '.',),
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
                                       style:
@@ -389,13 +378,13 @@ class _RecommendCardState extends State<RecommendCard>
                                 ),
                               ),
                             ],
-                          )
+                          ),
                         ],
                       ),
                     ),
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ),

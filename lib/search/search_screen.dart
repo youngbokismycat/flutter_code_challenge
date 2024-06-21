@@ -1,16 +1,8 @@
-import 'package:faker/faker.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:tread_clone_assignment/consts/gaps.dart';
-import 'package:tread_clone_assignment/consts/informations.dart';
-import 'package:tread_clone_assignment/consts/sizes.dart';
 import 'package:tread_clone_assignment/consts/utils.dart';
 import 'package:tread_clone_assignment/search/widgets/animated_cupertino_search_textfield.dart';
 import 'package:tread_clone_assignment/search/widgets/list_tile_profile.dart';
 import 'package:tread_clone_assignment/search/widgets/pinned_delegate.dart';
-import 'package:visibility_detector/visibility_detector.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});
@@ -46,7 +38,7 @@ class SearchScreen extends StatelessWidget {
                 pinned: true,
                 delegate: PinnedBar(
                     isTabBar: false,
-                    child: const CustomCupertinoSearchTextField()),
+                    child: const CustomCupertinoSearchTextField(),),
               ),
             ];
           },

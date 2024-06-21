@@ -31,7 +31,7 @@ class ReportButton extends StatelessWidget {
                 FontAwesomeIcons.chevronRight,
                 size: Sizes.size16,
               ),
-            )
+            ),
           ],
         ),
       ),

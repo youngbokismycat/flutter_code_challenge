@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tread_clone_assignment/consts/sizes.dart';
 
@@ -33,7 +32,7 @@ IconData getIcon() {
     FontAwesomeIcons.solidStar,
     FontAwesomeIcons.solidUser,
     FontAwesomeIcons.share,
-    FontAwesomeIcons.threads
+    FontAwesomeIcons.threads,
   ];
 
   return icons[random.nextInt(icons.length)];

@@ -6,7 +6,7 @@ class CustomIconButton extends StatefulWidget {
   final IconData icon;
   final IconData selectedicon;
   const CustomIconButton(
-      {super.key, required this.icon, required this.selectedicon});
+      {super.key, required this.icon, required this.selectedicon,});
 
   @override
   State<CustomIconButton> createState() => _CustomIconButtonState();

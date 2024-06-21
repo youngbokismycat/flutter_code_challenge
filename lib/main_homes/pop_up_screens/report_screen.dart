@@ -35,7 +35,7 @@ class ReportScreen extends StatelessWidget {
               ),
             ],
           ),
-        )
+        ),
       ],
       body: ListView.separated(
         separatorBuilder: (context, index) => Divider(

@@ -1,17 +1,13 @@
 import 'package:faker/faker.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tread_clone_assignment/consts/gaps.dart';
-import 'package:tread_clone_assignment/consts/informations.dart';
 import 'package:tread_clone_assignment/consts/sizes.dart';
 import 'package:tread_clone_assignment/consts/utils.dart';
 import 'package:tread_clone_assignment/main_homes/widgets/buttons/four_buttons.dart';
 import 'package:tread_clone_assignment/main_homes/widgets/cards/landscape_card.dart';
-import 'package:tread_clone_assignment/main_homes/widgets/cards/thread.dart';
-import 'package:tread_clone_assignment/main_homes/widgets/pageviews/landscape_pageview.dart';
+import 'package:tread_clone_assignment/profile/settings/settings_screen.dart';
 import 'package:tread_clone_assignment/search/widgets/pinned_delegate.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -32,6 +28,14 @@ class _ProfileScreenState extends State<ProfileScreen>
       length: 2,
       vsync: this,
     );
+  }
+
+  void _onSettingsTab() {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const SettingsScreen(),
+        ),);
   }
 
   @override
@@ -58,9 +62,8 @@ class _ProfileScreenState extends State<ProfileScreen>
                     ),
                   ),
                   IconButton(
-                    icon: const FaIcon(FontAwesomeIcons.gripLines),
-                    onPressed: () {},
-                  )
+                      icon: const FaIcon(FontAwesomeIcons.gripLines),
+                      onPressed: () => _onSettingsTab(),),
                 ],
               ),
               const SliverToBoxAdapter(
@@ -110,7 +113,7 @@ class _ProfileScreenState extends State<ProfileScreen>
               ProfileListview(
                   child: DefaultPadding(
                 child: ProfileThread(),
-              )),
+              ),),
               ProfileListview(
                 child: DefaultPadding(
                   child: RepliesThreads(),
@@ -211,7 +214,7 @@ class _RepliesThreadsState extends State<RepliesThreads> {
                     Opacity(
                       opacity: 0.4,
                       child: Text("${getInt()}h",
-                          style: Theme.of(context).textTheme.bodySmall),
+                          style: Theme.of(context).textTheme.bodySmall,),
                     ),
                     Gaps.h10,
                     const FaIcon(
@@ -257,7 +260,7 @@ class _RepliesThreadsState extends State<RepliesThreads> {
                     const FaIcon(
                       FontAwesomeIcons.ellipsis,
                       size: Sizes.size16,
-                    )
+                    ),
                   ],
                 ),
                 Gaps.v5,
@@ -268,10 +271,10 @@ class _RepliesThreadsState extends State<RepliesThreads> {
                   overflow: TextOverflow.ellipsis,
                 ),
                 Gaps.v12,
-                const FourButtons()
+                const FourButtons(),
               ],
             ),
-          )
+          ),
         ],
       ),
     );
@@ -345,7 +348,7 @@ class ProfileThread extends StatelessWidget {
           const FaIcon(
             FontAwesomeIcons.ellipsis,
             size: Sizes.size16,
-          )
+          ),
         ],
       ),
       subtitle: Column(
@@ -359,7 +362,7 @@ class ProfileThread extends StatelessWidget {
           Gaps.v12,
           const ReThreadBox(),
           Gaps.v8,
-          const FourButtons()
+          const FourButtons(),
         ],
       ),
     );
@@ -466,7 +469,7 @@ class ProfileFollowers extends StatelessWidget {
             "2 followers",
             style: Theme.of(context).textTheme.bodySmall,
           ),
-        )
+        ),
       ],
     );
   }
@@ -535,7 +538,7 @@ class ProfileReverseListTile extends StatelessWidget {
               Gaps.h5,
               Container(
                 padding: const EdgeInsets.symmetric(
-                    horizontal: Sizes.size10, vertical: Sizes.size5),
+                    horizontal: Sizes.size10, vertical: Sizes.size5,),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(
                     Sizes.size20,
@@ -554,7 +557,7 @@ class ProfileReverseListTile extends StatelessWidget {
                     ),
                   ),
                 ),
-              )
+              ),
             ],
           ),
           Gaps.v14,
@@ -605,7 +608,7 @@ class ProfileProfile extends StatelessWidget {
                 ),
               ),
             ),
-          )
+          ),
       ],
     );
   }

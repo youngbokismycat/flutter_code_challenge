@@ -34,7 +34,7 @@ class ContentsColumn extends StatelessWidget {
             Gaps.v10,
             LandscapePageView(
               index: index,
-            )
+            ),
           ],
           Gaps.v10,
           const FourButtons(),

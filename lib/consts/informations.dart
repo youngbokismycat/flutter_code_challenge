@@ -30,7 +30,7 @@ class Informations {
       "name": "Fluffy",
       "replies": "2",
       "likes": "120",
-      "ago": "2h"
+      "ago": "2h",
     },
     {
       "landscape": [],
@@ -41,7 +41,7 @@ class Informations {
       "name": "Whiskers",
       "replies": "8",
       "likes": "90",
-      "ago": "1d"
+      "ago": "1d",
     },
     {
       "landscape": [
@@ -60,7 +60,7 @@ class Informations {
       "name": "Shadow",
       "replies": "12",
       "likes": "105",
-      "ago": "15m"
+      "ago": "15m",
     },
     {
       "landscape": [
@@ -73,7 +73,7 @@ class Informations {
       "name": "Mittens",
       "replies": "6",
       "likes": "80",
-      "ago": "5h"
+      "ago": "5h",
     },
     {
       "landscape": [],
@@ -84,7 +84,7 @@ class Informations {
       "name": "Tiger",
       "replies": "10",
       "likes": "95",
-      "ago": "3h"
+      "ago": "3h",
     },
     {
       "landscape": ["assets/images/clone_images/6.jpg"],
@@ -95,7 +95,7 @@ class Informations {
       "name": "Simba",
       "replies": "7",
       "likes": "85",
-      "ago": "30m"
+      "ago": "30m",
     },
     {
       "landscape": ["assets/images/clone_images/7.jpg"],
@@ -106,7 +106,7 @@ class Informations {
       "name": "Luna",
       "replies": "14",
       "likes": "110",
-      "ago": "1d"
+      "ago": "1d",
     },
     {
       "landscape": ["assets/images/clone_images/8.jpg"],
@@ -116,7 +116,7 @@ class Informations {
       "name": "Bella",
       "replies": "9",
       "likes": "100",
-      "ago": "45m"
+      "ago": "45m",
     }
   ];
 
@@ -136,7 +136,7 @@ class Informations {
     "assets/images/clone_images/profile12.jpg",
     "assets/images/clone_images/profile14.jpg",
     "assets/images/clone_images/profile15.jpg",
-    "assets/images/clone_images/profil13.jpg"
+    "assets/images/clone_images/profil13.jpg",
   ];
 
   static const String verifiedSVGPath = "assets/svgs/verified.svg";
@@ -150,6 +150,6 @@ class Informations {
     "Nudity or sexual activity",
     "False information",
     "Harassment or bullying",
-    "Violence or dangerous organizations"
+    "Violence or dangerous organizations",
   ];
 }

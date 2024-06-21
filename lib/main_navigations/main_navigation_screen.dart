@@ -1,8 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tread_clone_assignment/activity/activity_screen.dart';
 import 'package:tread_clone_assignment/consts/sizes.dart';
 import 'package:tread_clone_assignment/main_homes/main_home_screen.dart';
@@ -35,9 +32,8 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
     );
     setState(() {});
     await showModalBottomSheet(
-      scrollControlDisabledMaxHeightRatio: 1,
+      scrollControlDisabledMaxHeightRatio: 0.92,
       enableDrag: true,
-      isScrollControlled: true,
       clipBehavior: Clip.hardEdge,
       context: context,
       shape: RoundedRectangleBorder(

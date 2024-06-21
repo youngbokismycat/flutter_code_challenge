@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tread_clone_assignment/consts/informations.dart';
 import 'package:tread_clone_assignment/consts/gaps.dart';
 import 'package:tread_clone_assignment/main_homes/widgets/profiles/bubble_profiles.dart';
 import 'package:tread_clone_assignment/main_homes/widgets/profiles/circular_profile.dart';
