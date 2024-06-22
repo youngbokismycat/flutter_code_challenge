@@ -270,27 +270,24 @@ class _WriteThreadState extends State<WriteThread>
       isRecieveResult = true;
 
       setState(() {});
-      WidgetsBinding.instance.addPostFrameCallback(
-        (_) {
-          Future.delayed(
-            const Duration(milliseconds: 500),
-            () {
-              final size = getSize(_contentKey);
-              if (size == null || size.height == 0) {
-                return;
-              } else {
-                contentHeight = size.height;
 
-                setState(() {});
-              }
-            },
-          );
-          Future.delayed(const Duration(seconds: 1), () {
-            _contentOpacity = 1;
+      Future.delayed(
+        const Duration(milliseconds: 500),
+        () {
+          final size = getSize(_contentKey);
+          if (size == null || size.height == 0) {
+            return;
+          } else {
+            contentHeight = size.height;
+
             setState(() {});
-          });
+          }
         },
       );
+      Future.delayed(const Duration(seconds: 1), () {
+        _contentOpacity = 1;
+        setState(() {});
+      });
     }
   }
 
