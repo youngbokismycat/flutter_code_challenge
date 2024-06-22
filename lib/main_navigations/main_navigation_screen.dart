@@ -70,7 +70,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
       duration: const Duration(milliseconds: 500),
       padding: _isWritingThread
           ? EdgeInsets.only(
-              top: MediaQuery.of(context).viewPadding.top,
+              top: MediaQuery.of(context).viewPadding.top - 20,
             )
           : EdgeInsets.zero,
       curve: Curves.easeOutCirc,
