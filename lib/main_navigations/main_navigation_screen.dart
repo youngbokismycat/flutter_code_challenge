@@ -33,7 +33,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
     );
     setState(() {});
     await showModalBottomSheet(
-      scrollControlDisabledMaxHeightRatio: 0.92,
+      scrollControlDisabledMaxHeightRatio: 0.94,
       enableDrag: true,
       clipBehavior: Clip.hardEdge,
       context: context,
@@ -75,7 +75,8 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
       duration: const Duration(milliseconds: 500),
       padding: _isWritingThread
           ? EdgeInsets.only(
-              top: MediaQuery.of(context).viewPadding.top - 20,
+              top: MediaQuery.of(context).viewPadding.top -
+                  MediaQuery.of(context).size.height * 0.03,
             )
           : EdgeInsets.zero,
       curve: Curves.easeOutCirc,

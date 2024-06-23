@@ -247,7 +247,7 @@ class _WriteThreadState extends State<WriteThread>
     );
     if (result != null) {
       imageOrVideo = result;
-      print(imageOrVideo);
+
       isRecieveResult = true;
       setState(() {});
     }
@@ -359,7 +359,6 @@ class _WriteThreadState extends State<WriteThread>
                     ),
                     TextField(
                       autofocus: true,
-                      keyboardType: TextInputType.text,
                       onChanged: (value) => widget.onChanged(),
                       style: TextStyle(
                         color:
