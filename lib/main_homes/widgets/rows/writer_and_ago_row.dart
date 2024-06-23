@@ -6,6 +6,7 @@ import 'package:tread_clone_assignment/consts/informations.dart';
 import 'package:tread_clone_assignment/consts/custom_text_style.dart';
 import 'package:tread_clone_assignment/consts/gaps.dart';
 import 'package:tread_clone_assignment/consts/sizes.dart';
+import 'package:tread_clone_assignment/consts/utils.dart';
 import 'package:tread_clone_assignment/main_homes/pop_up_screens/i_hate_you_screen.dart';
 
 class WriterAndAgoRow extends StatelessWidget {
@@ -26,7 +27,8 @@ class WriterAndAgoRow extends StatelessWidget {
         constraints: BoxConstraints(
           maxHeight: size.height * 0.35,
         ),
-        backgroundColor: Colors.white,
+        backgroundColor:
+            isDarkMode(context) ? Colors.grey.shade900 : Colors.white,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(Sizes.size16),
         ),
@@ -64,10 +66,11 @@ class WriterAndAgoRow extends StatelessWidget {
               Gaps.h14,
               GestureDetector(
                 onTap: () => onElipsisTap(context),
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 3.0),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 3.0),
                   child: FaIcon(
                     FontAwesomeIcons.ellipsis,
+                    color: isDarkMode(context) ? Colors.white : Colors.black,
                     size: 18,
                   ),
                 ),

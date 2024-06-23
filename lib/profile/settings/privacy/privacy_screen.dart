@@ -29,8 +29,9 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const FaIcon(
+                FaIcon(
                   FontAwesomeIcons.chevronLeft,
+                  color: isDarkMode(context) ? Colors.white : Colors.black,
                   size: 18,
                 ),
                 Gaps.h5,
@@ -47,23 +48,33 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
       body: ListView(
         children: [
           SwitchListTile.adaptive(
-            title: const Text('Private profile'),
+            title: Text(
+              'Private profile',
+              style: TextStyle(
+                color: isDarkMode(context) ? Colors.white : Colors.black,
+              ),
+            ),
             value: _isPrivateProfile,
-            activeColor: Colors.white,
-            activeTrackColor: Colors.black,
+            activeColor: isDarkMode(context) ? Colors.black : Colors.white,
+            activeTrackColor: isDarkMode(context) ? Colors.teal : Colors.black,
             onChanged: (bool value) {
               setState(() {
                 _isPrivateProfile = value;
               });
             },
-            secondary: const Icon(Icons.lock),
+            secondary: Icon(
+              Icons.lock,
+              color: isDarkMode(context) ? Colors.white : Colors.black,
+            ),
           ),
           PrivacyListTile(
             title: 'Mentions',
             icon: Icons.alternate_email,
             trailing: Text(
               "Everyone",
-              style: Theme.of(context).textTheme.bodySmall,
+              style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                    color: isDarkMode(context) ? Colors.white : Colors.black,
+                  ),
             ),
             onTap: () {
               // Handle tap action
@@ -173,9 +184,17 @@ class PrivacyListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text(title),
+      title: Text(
+        title,
+        style: TextStyle(
+          color: isDarkMode(context) ? Colors.white : Colors.black,
+        ),
+      ),
       subtitle: subtitle.isNotEmpty ? Text(subtitle) : null,
-      leading: Icon(icon),
+      leading: Icon(
+        icon,
+        color: isDarkMode(context) ? Colors.white : Colors.black,
+      ),
       trailing: Opacity(
         opacity: 0.4,
         child: Row(

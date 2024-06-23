@@ -28,19 +28,20 @@ class CircularProfile extends StatelessWidget {
           child: Container(
             height: 23,
             width: 23,
-            decoration: const BoxDecoration(
-              color: Colors.white,
+            decoration: BoxDecoration(
+              color: isDarkMode(context) ? Colors.black : Colors.white,
               shape: BoxShape.circle,
             ),
-            child: const FractionallySizedBox(
+            child: FractionallySizedBox(
               widthFactor: 0.83,
               heightFactor: 0.83,
               child: CircleAvatar(
-                backgroundColor: Colors.black,
+                backgroundColor:
+                    isDarkMode(context) ? Colors.white : Colors.black,
                 child: FaIcon(
                   FontAwesomeIcons.plus,
                   size: 12,
-                  color: Colors.white,
+                  color: isDarkMode(context) ? Colors.black : Colors.white,
                 ),
               ),
             ),

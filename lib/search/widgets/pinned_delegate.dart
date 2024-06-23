@@ -11,9 +11,14 @@ class PinnedBar extends SliverPersistentHeaderDelegate {
   });
   @override
   Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent,) {
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) {
     return Container(
-      color: Colors.white,
+      color: isDarkMode(context)
+          ? const Color.fromARGB(255, 22, 22, 22)
+          : Colors.white,
       child: Align(
         alignment: Alignment.bottomCenter,
         child: isTabBar

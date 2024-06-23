@@ -32,10 +32,11 @@ class _ProfileScreenState extends State<ProfileScreen>
 
   void _onSettingsTab() {
     Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const SettingsScreen(),
-        ),);
+      context,
+      MaterialPageRoute(
+        builder: (context) => const SettingsScreen(),
+      ),
+    );
   }
 
   @override
@@ -49,21 +50,25 @@ class _ProfileScreenState extends State<ProfileScreen>
           headerSliverBuilder: (context, innerBoxIsScrolled) {
             return [
               SliverAppBar(
-                leading: const Center(
+                leading: Center(
                   child: FaIcon(
                     FontAwesomeIcons.globe,
+                    color: isDarkMode(context) ? Colors.white : Colors.black,
                   ),
                 ),
                 actions: [
                   IconButton(
                     onPressed: () {},
-                    icon: const FaIcon(
+                    icon: FaIcon(
                       FontAwesomeIcons.instagram,
+                      color: isDarkMode(context) ? Colors.white : Colors.black,
                     ),
                   ),
                   IconButton(
-                      icon: const FaIcon(FontAwesomeIcons.gripLines),
-                      onPressed: () => _onSettingsTab(),),
+                    icon: const FaIcon(FontAwesomeIcons.gripLines),
+                    color: isDarkMode(context) ? Colors.white : Colors.black,
+                    onPressed: () => _onSettingsTab(),
+                  ),
                 ],
               ),
               const SliverToBoxAdapter(
@@ -87,14 +92,20 @@ class _ProfileScreenState extends State<ProfileScreen>
                 delegate: PinnedBar(
                   isTabBar: true,
                   child: TabBar(
-                    unselectedLabelColor: Theme.of(context).disabledColor,
-                    indicatorColor: Colors.black,
+                    indicatorWeight: 2,
+                    unselectedLabelColor: isDarkMode(context)
+                        ? Colors.grey.shade700
+                        : Colors.grey.shade500,
+                    indicatorColor:
+                        isDarkMode(context) ? Colors.white : Colors.black,
                     labelStyle: Theme.of(context).textTheme.bodyMedium,
                     indicatorSize: TabBarIndicatorSize.tab,
                     controller: _tabController,
                     tabs: const [
                       Tab(
-                        child: Text("Threads"),
+                        child: Text(
+                          "Threads",
+                        ),
                       ),
                       Tab(
                         child: Text(
@@ -111,9 +122,10 @@ class _ProfileScreenState extends State<ProfileScreen>
             controller: _tabController,
             children: const [
               ProfileListview(
-                  child: DefaultPadding(
-                child: ProfileThread(),
-              ),),
+                child: DefaultPadding(
+                  child: ProfileThread(),
+                ),
+              ),
               ProfileListview(
                 child: DefaultPadding(
                   child: RepliesThreads(),
@@ -213,8 +225,10 @@ class _RepliesThreadsState extends State<RepliesThreads> {
                     const Spacer(),
                     Opacity(
                       opacity: 0.4,
-                      child: Text("${getInt()}h",
-                          style: Theme.of(context).textTheme.bodySmall,),
+                      child: Text(
+                        "${getInt()}h",
+                        style: Theme.of(context).textTheme.bodySmall,
+                      ),
                     ),
                     Gaps.h10,
                     const FaIcon(
@@ -382,7 +396,7 @@ class ReThreadBox extends StatelessWidget {
           Sizes.size10,
         ),
         border: Border.all(
-          width: 1,
+          width: 0.7,
           color: Theme.of(context).dividerColor,
         ),
       ),
@@ -460,8 +474,10 @@ class ProfileFollowers extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const StackedTwoProfiles(
-          backgroundColor: Colors.white,
+        StackedTwoProfiles(
+          backgroundColor: isDarkMode(context)
+              ? const Color.fromARGB(255, 22, 22, 22)
+              : Colors.white,
         ),
         Opacity(
           opacity: 0.4,
@@ -495,7 +511,7 @@ class ProfileButton extends StatelessWidget {
             Sizes.size8,
           ),
           border: Border.all(
-            width: 1,
+            width: 0.5,
             color: Theme.of(context).dividerColor,
           ),
         ),
@@ -538,7 +554,9 @@ class ProfileReverseListTile extends StatelessWidget {
               Gaps.h5,
               Container(
                 padding: const EdgeInsets.symmetric(
-                    horizontal: Sizes.size10, vertical: Sizes.size5,),
+                  horizontal: Sizes.size10,
+                  vertical: Sizes.size5,
+                ),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(
                     Sizes.size20,

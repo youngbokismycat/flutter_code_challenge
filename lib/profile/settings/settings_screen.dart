@@ -92,10 +92,13 @@ class SettingsScreen extends StatelessWidget {
       body: ListView(
         children: [
           const CustomListTile(
-              icon: FontAwesomeIcons.userPlus,
-              text: 'Follow and invite friends',),
+            icon: FontAwesomeIcons.userPlus,
+            text: 'Follow and invite friends',
+          ),
           const CustomListTile(
-              icon: FontAwesomeIcons.bell, text: 'Notifications',),
+            icon: FontAwesomeIcons.bell,
+            text: 'Notifications',
+          ),
           CustomListTile(
             icon: FontAwesomeIcons.lock,
             text: 'Privacy',
@@ -154,7 +157,10 @@ class CustomListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: FaIcon(icon),
+      leading: FaIcon(
+        icon,
+        color: isDarkMode(context) ? Colors.white : Colors.black,
+      ),
       title: Text(
         text,
         style: Theme.of(context).textTheme.bodyMedium!.copyWith(

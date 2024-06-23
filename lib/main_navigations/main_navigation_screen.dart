@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tread_clone_assignment/activity/activity_screen.dart';
 import 'package:tread_clone_assignment/consts/sizes.dart';
+import 'package:tread_clone_assignment/consts/utils.dart';
 import 'package:tread_clone_assignment/main_homes/main_home_screen.dart';
 import 'package:tread_clone_assignment/main_navigations/widgets/custom_navigation_bar.dart';
 import 'package:tread_clone_assignment/profile/profile_screen.dart';
@@ -42,7 +43,8 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
         ),
       ),
       barrierColor: Colors.black.withOpacity(0.2),
-      backgroundColor: Colors.white,
+      backgroundColor:
+          isDarkMode(context) ? Colors.grey.shade900 : Colors.white,
       builder: (context) {
         return const WritingThreadScreen();
       },
@@ -54,8 +56,11 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
         if (mounted) {
           FocusScope.of(context).unfocus();
         }
+        if (!mounted) return;
         SystemChrome.setSystemUIOverlayStyle(
-          SystemUiOverlayStyle.dark,
+          isDarkMode(context)
+              ? SystemUiOverlayStyle.light
+              : SystemUiOverlayStyle.dark,
         );
         _isWritingThread = false;
 

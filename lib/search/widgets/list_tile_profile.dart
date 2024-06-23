@@ -66,8 +66,10 @@ class ListTileProfile extends StatelessWidget {
               child: Row(
                 children: [
                   if (getBoolean() && getBoolean())
-                    const StackedTwoProfiles(
-                      backgroundColor: Colors.white,
+                    StackedTwoProfiles(
+                      backgroundColor: isDarkMode(context)
+                          ? const Color.fromARGB(255, 22, 22, 22)
+                          : Colors.white,
                     ),
                   Text(
                     "${getNum()} followers",

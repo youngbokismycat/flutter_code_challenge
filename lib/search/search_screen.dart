@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tread_clone_assignment/consts/sizes.dart';
 import 'package:tread_clone_assignment/consts/utils.dart';
 import 'package:tread_clone_assignment/search/widgets/animated_cupertino_search_textfield.dart';
 import 'package:tread_clone_assignment/search/widgets/list_tile_profile.dart';
@@ -37,14 +38,16 @@ class SearchScreen extends StatelessWidget {
               SliverPersistentHeader(
                 pinned: true,
                 delegate: PinnedBar(
-                    isTabBar: false,
-                    child: const CustomCupertinoSearchTextField(),),
+                  isTabBar: false,
+                  child: const CustomCupertinoSearchTextField(),
+                ),
               ),
             ];
           },
-          body: MediaQuery.removePadding(
-            context: context,
-            removeTop: true,
+          body: Padding(
+            padding: const EdgeInsets.only(
+              top: Sizes.size24,
+            ),
             child: ListView.separated(
               itemCount: 100,
               separatorBuilder: (context, index) => Divider(

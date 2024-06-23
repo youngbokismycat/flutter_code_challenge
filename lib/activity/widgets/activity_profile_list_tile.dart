@@ -29,8 +29,10 @@ class ActivityProfileListTile extends StatelessWidget {
             child: Container(
               height: 23,
               width: 23,
-              decoration: const BoxDecoration(
-                color: Colors.white,
+              decoration: BoxDecoration(
+                color: isDarkMode(context)
+                    ? const Color.fromARGB(255, 22, 22, 22)
+                    : Colors.white,
                 shape: BoxShape.circle,
               ),
               child: FractionallySizedBox(

@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:camera/camera.dart';
 import 'package:camerawesome/camerawesome_plugin.dart';
 import 'package:defer_pointer/defer_pointer.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tread_clone_assignment/consts/gaps.dart';
 import 'package:tread_clone_assignment/consts/sizes.dart';
+import 'package:tread_clone_assignment/consts/utils.dart';
 import 'package:tread_clone_assignment/main.dart';
 import 'package:tread_clone_assignment/taking_pictures/preview/preview_screen.dart';
 
@@ -118,7 +118,8 @@ class _WritingThreadScreenState extends State<WritingThreadScreen> {
                   horizontal: 18,
                   vertical: 14,
                 ),
-                color: Colors.white,
+                color:
+                    isDarkMode(context) ? Colors.grey.shade900 : Colors.white,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -357,11 +358,16 @@ class _WriteThreadState extends State<WriteThread>
                       "jane_mobbinnnn",
                     ),
                     TextField(
+                      autofocus: true,
+                      keyboardType: TextInputType.text,
                       onChanged: (value) => widget.onChanged(),
-                      style: const TextStyle(
+                      style: TextStyle(
+                        color:
+                            isDarkMode(context) ? Colors.white : Colors.black,
                         height: 1.2,
                       ),
-                      cursorColor: Colors.black,
+                      cursorColor:
+                          isDarkMode(context) ? Colors.white : Colors.black,
                       controller: widget.controller,
                       focusNode: widget.focusNode,
                       decoration: InputDecoration(
@@ -370,9 +376,13 @@ class _WriteThreadState extends State<WriteThread>
                         hintText: "Start a thread...",
                         hintStyle:
                             Theme.of(context).textTheme.bodySmall!.copyWith(
-                                  color: Colors.black.withOpacity(
-                                    0.4,
-                                  ),
+                                  color: isDarkMode(context)
+                                      ? Colors.white.withOpacity(
+                                          0.4,
+                                        )
+                                      : Colors.black.withOpacity(
+                                          0.4,
+                                        ),
                                   fontWeight: FontWeight.w400,
                                 ),
                         border: InputBorder.none,
@@ -480,17 +490,19 @@ class _WriteThreadState extends State<WriteThread>
                   ThreadFileButton(
                     bottom: 50,
                     left: 50,
-                    icon: const FaIcon(
+                    icon: FaIcon(
                       FontAwesomeIcons.images,
                       size: Sizes.size20,
+                      color: isDarkMode(context) ? Colors.white : Colors.black,
                     ),
                     onTap: () => _onImagesTap(),
                   ),
                   ThreadFileButton(
                     bottom: 48.6,
                     left: 90,
-                    icon: const Icon(
+                    icon: Icon(
                       Icons.photo_camera_outlined,
+                      color: isDarkMode(context) ? Colors.white : Colors.black,
                     ),
                     onTap: () => _onPhotoTap(),
                   ),

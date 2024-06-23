@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tread_clone_assignment/consts/gaps.dart';
+import 'package:tread_clone_assignment/consts/utils.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class CustomCupertinoSearchTextField extends StatefulWidget {
@@ -19,7 +20,7 @@ class _CustomCupertinoSearchTextFieldState
   late FocusNode _focusSearchNode;
   late AnimationController _animationColorController;
   late AnimationController _animationCancelController;
-  late Animation<Color?> _colorAnimation;
+
   late Animation<double> _cancelAnimation;
 
   bool _isVisible = false;
@@ -37,17 +38,6 @@ class _CustomCupertinoSearchTextFieldState
       duration: const Duration(milliseconds: 300),
       vsync: this,
     );
-
-    _colorAnimation = ColorTween(
-      begin: CupertinoColors.systemGrey5.withOpacity(
-        0.5,
-      ),
-      end: CupertinoColors.systemGrey5,
-    ).animate(_animationColorController);
-
-    _animationCancelController.addListener(() {
-      setState(() {});
-    });
 
     _focusSearchNode.addListener(
       () async {
@@ -115,14 +105,20 @@ class _CustomCupertinoSearchTextFieldState
                 constraints: BoxConstraints(
                   maxWidth: _cancelAnimation.value,
                 ),
-                child: VisibilityDetector(
-                  key: const Key('text-field-visibility-detector'),
-                  onVisibilityChanged: _onVisibilityChanged,
-                  child: CupertinoSearchTextField(
-                    enabled: _isVisible,
-                    focusNode: _focusSearchNode,
-                    backgroundColor: _colorAnimation.value,
+                child: CupertinoSearchTextField(
+                  placeholderStyle: TextStyle(
+                    color: isDarkMode(context)
+                        ? Colors.grey.shade700
+                        : Colors.grey.shade500,
                   ),
+                  style: TextStyle(
+                    color: isDarkMode(context) ? Colors.white : Colors.black,
+                  ),
+                  enabled: true,
+                  focusNode: _focusSearchNode,
+                  backgroundColor: isDarkMode(context)
+                      ? Colors.grey.shade400
+                      : Colors.grey.shade100,
                 ),
               ),
               Gaps.h10,

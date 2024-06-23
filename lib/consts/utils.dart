@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tread_clone_assignment/consts/sizes.dart';
 
+bool isDarkMode(BuildContext context) =>
+    MediaQuery.of(context).platformBrightness == Brightness.dark;
+
 String getImage() {
   final random = Random();
   return 'https://picsum.photos/300/200?hash=${random.nextInt(10000)}';
@@ -181,14 +184,16 @@ class FollowButton extends StatelessWidget {
         vertical: Sizes.size4,
       ),
       decoration: BoxDecoration(
-        color: isFilled ? Colors.black : Colors.transparent,
+        color: isDarkMode(context)
+            ? const Color.fromARGB(255, 22, 22, 22)
+            : Colors.white,
         borderRadius: BorderRadius.circular(
           Sizes.size10,
         ),
         border: isFilled
             ? null
             : Border.all(
-                width: 1.3,
+                width: 1,
                 color: Theme.of(context).dividerColor,
               ),
       ),
@@ -201,7 +206,7 @@ class FollowButton extends StatelessWidget {
           child: Text(
             isFollow ? "Following" : "Follow",
             style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                  color: isFilled ? Colors.white : null,
+                  color: isDarkMode(context) ? Colors.white : Colors.black,
                 ),
           ),
         ),
@@ -239,8 +244,10 @@ class StackedTwoProfiles extends StatelessWidget {
             child: Container(
               width: 25,
               height: 25,
-              decoration:
-                  BoxDecoration(shape: BoxShape.circle, color: backgroundColor),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: backgroundColor,
+              ),
               child: FractionallySizedBox(
                 widthFactor: 0.8,
                 child: CircleAvatar(

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:tread_clone_assignment/consts/informations.dart';
 import 'package:tread_clone_assignment/consts/utils.dart';
@@ -86,8 +85,10 @@ class _BubbleProfilesState extends State<BubbleProfiles>
                 scale: 0.55,
                 child: Container(
                   width: 50,
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
+                  decoration: BoxDecoration(
+                    color: isDarkMode(context)
+                        ? const Color.fromARGB(255, 22, 22, 22)
+                        : Colors.white,
                     shape: BoxShape.circle,
                   ),
                   child: FractionallySizedBox(

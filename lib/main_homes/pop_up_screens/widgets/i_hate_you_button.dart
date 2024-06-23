@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tread_clone_assignment/consts/sizes.dart';
+import 'package:tread_clone_assignment/consts/utils.dart';
 import 'package:tread_clone_assignment/main_homes/pop_up_screens/report_screen.dart';
 
 class IHateYouButton extends StatelessWidget {
@@ -19,7 +20,8 @@ class IHateYouButton extends StatelessWidget {
           barrierColor: Colors.black.withOpacity(
             0.7,
           ),
-          backgroundColor: Colors.white,
+          backgroundColor:
+              isDarkMode(context) ? Colors.grey.shade900 : Colors.white,
           context: context,
           isScrollControlled: false,
           clipBehavior: Clip.hardEdge,
@@ -42,7 +44,11 @@ class IHateYouButton extends StatelessWidget {
             hateness,
             style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                   fontWeight: FontWeight.w500,
-                  color: hateness == "Report" ? Colors.red : Colors.black,
+                  color: hateness == "Report"
+                      ? Colors.red
+                      : isDarkMode(context)
+                          ? Colors.white
+                          : Colors.black,
                 ),
           ),
         ),

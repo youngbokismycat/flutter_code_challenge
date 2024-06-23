@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tread_clone_assignment/consts/informations.dart';
+import 'package:tread_clone_assignment/consts/utils.dart';
 import 'package:tread_clone_assignment/main_homes/widgets/cards/thread.dart';
 
 class MainHomeScreen extends StatelessWidget {
@@ -14,7 +15,7 @@ class MainHomeScreen extends StatelessWidget {
       physics: const BouncingScrollPhysics(),
       headerSliverBuilder: (context, innerBoxIsScrolled) => [
         SliverAppBar(
-          systemOverlayStyle: const SystemUiOverlayStyle(
+          systemOverlayStyle:  SystemUiOverlayStyle(
             systemStatusBarContrastEnforced: false,
           ),
           surfaceTintColor: Colors.white,
@@ -24,6 +25,7 @@ class MainHomeScreen extends StatelessWidget {
               Informations.threadsLogoPath,
               width: 40,
               height: 40,
+              color: isDarkMode(context) ? Colors.white : Colors.black,
             ),
           ),
         ),

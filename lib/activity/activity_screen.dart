@@ -83,18 +83,22 @@ class _ActivityScreenState extends State<ActivityScreen>
                       labelPadding: const EdgeInsets.only(
                         left: Sizes.size16,
                       ),
-                      labelStyle: Theme.of(context)
-                          .textTheme
-                          .bodyMedium!
-                          .copyWith(color: Colors.white),
-                      unselectedLabelColor: Colors.black,
+                      labelStyle:
+                          Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                color: isDarkMode(context)
+                                    ? Colors.black
+                                    : Colors.white,
+                              ),
+                      unselectedLabelColor:
+                          isDarkMode(context) ? Colors.white : Colors.black,
                       dividerColor: Colors.transparent,
                       indicatorColor: Colors.white,
                       indicator: BoxDecoration(
                         borderRadius: BorderRadius.circular(
                           Sizes.size10,
                         ),
-                        color: Colors.black,
+                        color:
+                            isDarkMode(context) ? Colors.white : Colors.black,
                       ),
                       isScrollable: true,
                       controller: _tabController,
@@ -111,7 +115,11 @@ class _ActivityScreenState extends State<ActivityScreen>
                                     padding: EdgeInsets.zero,
                                     child: SizedBox(
                                       width: 110,
-                                      child: Center(child: Text(option)),
+                                      child: Center(
+                                        child: Text(
+                                          option,
+                                        ),
+                                      ),
                                     ),
                                   ),
                                   Positioned.fill(
@@ -121,7 +129,8 @@ class _ActivityScreenState extends State<ActivityScreen>
                                       ),
                                       opacity: option ==
                                               options.elementAt(
-                                                  _tabController.index,)
+                                                _tabController.index,
+                                              )
                                           ? 0
                                           : 1,
                                       child: Container(
@@ -260,7 +269,9 @@ class _RecommendCardState extends State<RecommendCard>
         padding: const EdgeInsets.only(right: Sizes.size5),
         child: Container(
           decoration: BoxDecoration(
-            color: Theme.of(context).dividerColor.withOpacity(0.5),
+            color: isDarkMode(context)
+                ? Colors.grey.shade800
+                : Colors.grey.shade300,
             borderRadius: BorderRadius.circular(
               Sizes.size14,
             ),
@@ -345,9 +356,11 @@ class _RecommendCardState extends State<RecommendCard>
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 StackedTwoProfiles(
-                                  backgroundColor: Theme.of(context)
-                                      .dividerColor
-                                      .withOpacity(0.5),
+                                  backgroundColor: isDarkMode(context)
+                                      ? Colors.grey.shade800
+                                      : Theme.of(context)
+                                          .dividerColor
+                                          .withOpacity(0.5),
                                 ),
                                 Expanded(
                                   child: Opacity(
@@ -357,7 +370,9 @@ class _RecommendCardState extends State<RecommendCard>
                                           .name()
                                           .toLowerCase()
                                           .replaceAll(
-                                              r' ', getBoolean() ? '_' : '.',),
+                                            r' ',
+                                            getBoolean() ? '_' : '.',
+                                          ),
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
                                       style:

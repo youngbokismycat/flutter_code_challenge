@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tread_clone_assignment/consts/utils.dart';
 
 class MakeThreadButton extends StatelessWidget {
   const MakeThreadButton({
@@ -28,7 +29,7 @@ class MakeThreadButton extends StatelessWidget {
             opacity: isSelected ? 1 : 0.3,
             child: FaIcon(
               isSelected ? selectedIcon : icon,
-              color: Colors.black,
+              color: isDarkMode(context) ? Colors.white : Colors.black,
             ),
           ),
         ),

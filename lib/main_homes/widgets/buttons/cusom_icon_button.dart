@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tread_clone_assignment/consts/sizes.dart';
+import 'package:tread_clone_assignment/consts/utils.dart';
 
 class CustomIconButton extends StatefulWidget {
   final IconData icon;
   final IconData selectedicon;
-  const CustomIconButton(
-      {super.key, required this.icon, required this.selectedicon,});
+  const CustomIconButton({
+    super.key,
+    required this.icon,
+    required this.selectedicon,
+  });
 
   @override
   State<CustomIconButton> createState() => _CustomIconButtonState();
@@ -29,10 +33,7 @@ class _CustomIconButtonState extends State<CustomIconButton> {
         child: Center(
           child: FaIcon(
             _isSelected ? widget.selectedicon : widget.icon,
-            color: _isSelected &&
-                    widget.selectedicon == FontAwesomeIcons.solidHeart
-                ? Colors.red
-                : Colors.black,
+            color: isDarkMode(context) ? Colors.white : Colors.black,
             size: Sizes.size20 + 2,
           ),
         ),
