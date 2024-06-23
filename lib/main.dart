@@ -19,8 +19,14 @@ void main() {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
@@ -28,6 +34,7 @@ class MyApp extends StatelessWidget {
           ? SystemUiOverlayStyle.light
           : SystemUiOverlayStyle.dark,
     );
+    setState(() {});
     return MaterialApp(
       themeMode: ThemeMode.system,
       navigatorObservers: [routeObserver],
@@ -75,11 +82,11 @@ class MyApp extends StatelessWidget {
       darkTheme: ThemeData(
         appBarTheme: const AppBarTheme(
           centerTitle: true,
-          color: Color.fromARGB(255, 22, 22, 22),
+          color: Color.fromARGB(255, 20, 20, 20),
         ),
-        scaffoldBackgroundColor: const Color.fromARGB(255, 22, 22, 22),
+        scaffoldBackgroundColor: const Color.fromARGB(255, 20, 20, 20),
         bottomAppBarTheme: const BottomAppBarTheme(
-          color: Color.fromARGB(255, 22, 22, 22),
+          color: Color.fromARGB(255, 20, 20, 20),
           surfaceTintColor: Colors.black,
         ),
         dividerColor: const Color(

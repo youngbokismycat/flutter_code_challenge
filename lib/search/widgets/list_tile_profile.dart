@@ -68,7 +68,7 @@ class ListTileProfile extends StatelessWidget {
                   if (getBoolean() && getBoolean())
                     StackedTwoProfiles(
                       backgroundColor: isDarkMode(context)
-                          ? const Color.fromARGB(255, 22, 22, 22)
+                          ? const Color.fromARGB(255, 20, 20, 20)
                           : Colors.white,
                     ),
                   Text(

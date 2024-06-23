@@ -1,5 +1,6 @@
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tread_clone_assignment/consts/gaps.dart';
@@ -50,6 +51,9 @@ class _ProfileScreenState extends State<ProfileScreen>
           headerSliverBuilder: (context, innerBoxIsScrolled) {
             return [
               SliverAppBar(
+                systemOverlayStyle: const SystemUiOverlayStyle(
+                  systemStatusBarContrastEnforced: false,
+                ),
                 leading: Center(
                   child: FaIcon(
                     FontAwesomeIcons.globe,
@@ -476,7 +480,7 @@ class ProfileFollowers extends StatelessWidget {
       children: [
         StackedTwoProfiles(
           backgroundColor: isDarkMode(context)
-              ? const Color.fromARGB(255, 22, 22, 22)
+              ? const Color.fromARGB(255, 20, 20, 20)
               : Colors.white,
         ),
         Opacity(

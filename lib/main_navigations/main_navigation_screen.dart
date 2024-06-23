@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tread_clone_assignment/activity/activity_screen.dart';
@@ -33,7 +35,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
     );
     setState(() {});
     await showModalBottomSheet(
-      scrollControlDisabledMaxHeightRatio: 0.94,
+      scrollControlDisabledMaxHeightRatio: 0.92,
       enableDrag: true,
       clipBehavior: Clip.hardEdge,
       context: context,
@@ -73,7 +75,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   Widget build(BuildContext context) {
     return AnimatedPadding(
       duration: const Duration(milliseconds: 500),
-      padding: _isWritingThread
+      padding: _isWritingThread && Platform.isIOS
           ? EdgeInsets.only(
               top: MediaQuery.of(context).viewPadding.top -
                   MediaQuery.of(context).size.height * 0.03,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:tread_clone_assignment/consts/sizes.dart';
 import 'package:tread_clone_assignment/consts/utils.dart';
 import 'package:tread_clone_assignment/search/widgets/animated_cupertino_search_textfield.dart';
@@ -18,6 +19,9 @@ class SearchScreen extends StatelessWidget {
           headerSliverBuilder: (context, innerBoxIsScrolled) {
             return [
               const SliverAppBar(
+                systemOverlayStyle: SystemUiOverlayStyle(
+                  systemStatusBarContrastEnforced: false,
+                ),
                 centerTitle: false,
                 surfaceTintColor: Colors.white,
                 flexibleSpace: FlexibleSpaceBar(

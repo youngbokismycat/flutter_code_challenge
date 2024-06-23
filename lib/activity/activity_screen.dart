@@ -1,5 +1,6 @@
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tread_clone_assignment/activity/widgets/activity_profile_list_tile.dart';
 import 'package:tread_clone_assignment/consts/break_points.dart';
@@ -48,6 +49,9 @@ class _ActivityScreenState extends State<ActivityScreen>
           headerSliverBuilder: (context, innerBoxIsScrolled) {
             return [
               SliverAppBar(
+                systemOverlayStyle: const SystemUiOverlayStyle(
+                  systemStatusBarContrastEnforced: false,
+                ),
                 centerTitle: false,
                 surfaceTintColor: Colors.white,
                 flexibleSpace: FlexibleSpaceBar(

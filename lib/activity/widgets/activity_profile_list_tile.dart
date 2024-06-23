@@ -31,7 +31,7 @@ class ActivityProfileListTile extends StatelessWidget {
               width: 23,
               decoration: BoxDecoration(
                 color: isDarkMode(context)
-                    ? const Color.fromARGB(255, 22, 22, 22)
+                    ? const Color.fromARGB(255, 20, 20, 20)
                     : Colors.white,
                 shape: BoxShape.circle,
               ),
