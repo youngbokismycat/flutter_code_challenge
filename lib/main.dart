@@ -1,9 +1,9 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:tread_clone_assignment/consts/sizes.dart';
-import 'package:tread_clone_assignment/consts/utils.dart';
-import 'package:tread_clone_assignment/main_navigations/main_navigation_screen.dart';
+import 'package:tread_clone_assignment/core/consts/sizes.dart';
+import 'package:tread_clone_assignment/core/consts/utils.dart';
+import 'package:tread_clone_assignment/core/router/router.dart';
 
 final RouteObserver<ModalRoute<void>> routeObserver =
     RouteObserver<ModalRoute<void>>();
@@ -35,9 +35,9 @@ class _MyAppState extends State<MyApp> {
           : SystemUiOverlayStyle.dark,
     );
     setState(() {});
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: router,
       themeMode: ThemeMode.system,
-      navigatorObservers: [routeObserver],
       debugShowCheckedModeBanner: false,
       title: 'Thread Clone',
       theme: ThemeData(
@@ -125,7 +125,6 @@ class _MyAppState extends State<MyApp> {
           backgroundColor: Colors.black,
         ),
       ),
-      home: const MainNavigationScreen(),
     );
   }
 }

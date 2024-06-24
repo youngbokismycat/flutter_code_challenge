@@ -46,6 +46,9 @@ dependencies:
   gal: ^2.3.0
   video_player: ^2.8.7
   image_picker: ^1.1.2
+  go_router: 6.0.2
+  routemaster: ^1.0.1
+  provider: ^6.1.2
   
 dev_dependencies:
   flutter_test:
