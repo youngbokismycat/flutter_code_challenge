@@ -55,7 +55,7 @@ class _WritingThreadScreenState extends State<WritingThreadScreen> {
 
     await Future.delayed(
       const Duration(
-        milliseconds: 25,
+        milliseconds: 26,
       ),
     );
     setState(() {
