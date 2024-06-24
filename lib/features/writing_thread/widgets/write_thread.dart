@@ -11,7 +11,6 @@ import 'package:tread_clone_assignment/core/consts/sizes.dart';
 import 'package:tread_clone_assignment/core/consts/utils.dart';
 import 'package:tread_clone_assignment/features/taking_pictures/preview/preview_screen.dart';
 import 'package:tread_clone_assignment/features/writing_thread/widgets/thread_file_button.dart';
-import 'package:tread_clone_assignment/main.dart';
 
 class WriteThread extends StatefulWidget {
   const WriteThread({
