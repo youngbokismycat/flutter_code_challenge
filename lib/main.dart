@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.system,
       navigatorObservers: [routeObserver],
       debugShowCheckedModeBanner: false,
-      title: 'Thread Clone',
+      title: 'Thread Clomne',
       theme: ThemeData(
         appBarTheme: const AppBarTheme(
           centerTitle: true,
