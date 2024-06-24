@@ -39,7 +39,7 @@ class _MyAppState extends State<MyApp> {
       routerConfig: router,
       themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
-      title: 'Thread Clone',
+      title: 'Thread Clomne',
       theme: ThemeData(
         appBarTheme: const AppBarTheme(
           centerTitle: true,
