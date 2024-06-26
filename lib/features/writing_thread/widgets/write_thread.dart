@@ -4,13 +4,13 @@ import 'package:camerawesome/camerawesome_plugin.dart';
 import 'package:defer_pointer/defer_pointer.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tread_clone_assignment/core/consts/gaps.dart';
 import 'package:tread_clone_assignment/core/consts/sizes.dart';
 import 'package:tread_clone_assignment/core/consts/utils.dart';
 import 'package:tread_clone_assignment/features/taking_pictures/preview/preview_screen.dart';
 import 'package:tread_clone_assignment/features/writing_thread/widgets/thread_file_button.dart';
+import 'package:tread_clone_assignment/main.dart';
 
 class WriteThread extends StatefulWidget {
   const WriteThread({
@@ -33,24 +33,58 @@ class WriteThread extends StatefulWidget {
   State<WriteThread> createState() => _WriteThreadState();
 }
 
-class _WriteThreadState extends State<WriteThread> with WidgetsBindingObserver {
+class _WriteThreadState extends State<WriteThread>
+    with RouteAware, WidgetsBindingObserver {
   final GlobalKey _contentKey = GlobalKey();
   String? imageOrVideo;
   bool isRecieveResult = false;
   double contentHeight = 0;
   Size? widgetSize;
-  double _contentOpacity = 0;
 
+  double _contentOpacity = 0;
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    GoRouter.of(context).addListener(_onRouteChanged);
+    routeObserver.subscribe(this, ModalRoute.of(context) as ModalRoute);
   }
 
-  void _onRouteChanged() {
+  Size? getSize(GlobalKey key) {
+    if (key.currentContext != null) {
+      final RenderBox renderBox =
+          key.currentContext!.findRenderObject() as RenderBox;
+      Size widgetSize = renderBox.size;
+      return widgetSize;
+    }
+    return null;
+  }
+
+  @override
+  void dispose() {
+    routeObserver.unsubscribe(this);
+    super.dispose();
+  }
+
+  @override
+  void didPopNext() {
     WidgetsBinding.instance.addPostFrameCallback(
       (_) {
-        _animationEffect();
+        Future.delayed(
+          const Duration(milliseconds: 500),
+          () {
+            final size = getSize(_contentKey);
+            if (size == null || size.height == 0) {
+              return;
+            } else {
+              contentHeight = size.height;
+
+              setState(() {});
+            }
+          },
+        );
+        Future.delayed(const Duration(seconds: 1), () {
+          _contentOpacity = 1;
+          setState(() {});
+        });
       },
     );
   }
@@ -73,23 +107,6 @@ class _WriteThreadState extends State<WriteThread> with WidgetsBindingObserver {
       _contentOpacity = 1;
       setState(() {});
     });
-  }
-
-  Size? getSize(GlobalKey key) {
-    if (key.currentContext != null) {
-      final RenderBox renderBox =
-          key.currentContext!.findRenderObject() as RenderBox;
-      Size widgetSize = renderBox.size;
-      return widgetSize;
-    }
-    return null;
-  }
-
-  @override
-  void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
-    GoRouter.of(context).removeListener(_onRouteChanged);
-    super.dispose();
   }
 
   Future<void> _onMediaTap(MediaCapture media) async {

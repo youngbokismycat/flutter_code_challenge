@@ -1,6 +1,5 @@
 import 'package:camerawesome/camerawesome_plugin.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:tread_clone_assignment/features/taking_pictures/preview/widgets/image_preview.dart';
 import 'package:tread_clone_assignment/features/taking_pictures/preview/widgets/video_preview.dart';
 
@@ -18,8 +17,8 @@ class PreviewScreen extends StatelessWidget {
   }
 
   void _onUseTap(BuildContext context) {
-    context.pop(media.captureRequest.path);
-    context.pop(media.captureRequest.path);
+    Navigator.pop(context, media.captureRequest.path!);
+    Navigator.pop(context, media.captureRequest.path!);
   }
 
   @override

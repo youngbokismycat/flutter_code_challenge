@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:tread_clone_assignment/core/consts/sizes.dart';
 import 'package:tread_clone_assignment/core/consts/utils.dart';
 import 'package:tread_clone_assignment/core/router/router.dart';
+import 'package:tread_clone_assignment/features/commons/main_navigations/main_navigation_screen.dart';
 
 final RouteObserver<ModalRoute<void>> routeObserver =
     RouteObserver<ModalRoute<void>>();
@@ -35,8 +36,8 @@ class _MyAppState extends State<MyApp> {
           : SystemUiOverlayStyle.dark,
     );
     setState(() {});
-    return MaterialApp.router(
-      routerConfig: router,
+    return MaterialApp(
+      navigatorObservers: [routeObserver],
       themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
       title: 'Thread Clomne',
@@ -125,6 +126,7 @@ class _MyAppState extends State<MyApp> {
           backgroundColor: Colors.black,
         ),
       ),
+      home: const MainNavigationScreen(),
     );
   }
 }

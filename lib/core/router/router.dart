@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+/* import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tread_clone_assignment/core/router/router_name.dart';
 import 'package:tread_clone_assignment/features/activity/activity_screen.dart';
@@ -46,4 +46,4 @@ final GoRouter router = GoRouter(
       ],
     ),
   ],
-);
+); */

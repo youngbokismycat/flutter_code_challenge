@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:go_router/go_router.dart';
 import 'package:tread_clone_assignment/core/router/router_name.dart';
 import 'package:tread_clone_assignment/features/commons/default_padding.dart';
 import 'package:tread_clone_assignment/core/consts/gaps.dart';
@@ -105,8 +104,11 @@ class SettingsScreen extends StatelessWidget {
           CustomListTile(
             icon: FontAwesomeIcons.lock,
             text: 'Privacy',
-            onTap: () => context.push(
-              "/${RouteNames.settings}/${RouteNames.privacy}",
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const PrivacyScreen(),
+              ),
             ),
           ),
           const CustomListTile(

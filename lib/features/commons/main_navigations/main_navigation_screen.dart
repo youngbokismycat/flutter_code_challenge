@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:go_router/go_router.dart';
 import 'package:tread_clone_assignment/core/router/router_name.dart';
 import 'package:tread_clone_assignment/features/activity/activity_screen.dart';
 import 'package:tread_clone_assignment/core/consts/sizes.dart';
@@ -14,25 +13,20 @@ import 'package:tread_clone_assignment/features/search/search_screen.dart';
 import 'package:tread_clone_assignment/features/writing_thread/writing_thread_screen.dart';
 
 class MainNavigationScreen extends StatefulWidget {
-  final int selectedIndex;
-
-  const MainNavigationScreen({super.key, required this.selectedIndex});
+  const MainNavigationScreen({
+    super.key,
+  });
 
   @override
   State<MainNavigationScreen> createState() => _MainNavigationScreenState();
 }
 
 class _MainNavigationScreenState extends State<MainNavigationScreen> {
-  late int _selectedIndex;
+  // late int _selectedIndex;
   bool _isWritingThread = false;
+  int _selectedIndex = 0;
 
-  @override
-  void initState() {
-    super.initState();
-    _selectedIndex = widget.selectedIndex;
-  }
-
-  void _onselectedTap(int index) {
+/*   void _onselectedTap(int index) {
     _selectedIndex = index;
     setState(() {});
 
@@ -51,6 +45,11 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
         context.go('/${RouteNames.profile}');
         break;
     }
+  } */
+
+  void _onselectedTap(int index) {
+    _selectedIndex = index;
+    setState(() {});
   }
 
   void _onMakeThreadButtonTap(BuildContext cotext) async {

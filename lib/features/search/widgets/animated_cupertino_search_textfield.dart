@@ -20,35 +20,24 @@ class _CustomCupertinoSearchTextFieldState
   late FocusNode _focusSearchNode;
   late AnimationController _animationColorController;
   late AnimationController _animationCancelController;
-
+  late Animation<Color?> _colorAnimation;
   late Animation<double> _cancelAnimation;
 
-  bool _isVisible = false;
+  final bool _isVisible = false;
 
   @override
   void initState() {
     super.initState();
-    _focusSearchNode = FocusNode();
-
-    _animationColorController = AnimationController(
-      duration: const Duration(milliseconds: 100),
-      vsync: this,
-    );
+    _focusNodeInit();
     _animationCancelController = AnimationController(
       duration: const Duration(milliseconds: 300),
       vsync: this,
     );
-
-    _focusSearchNode.addListener(
-      () async {
-        if (_focusSearchNode.hasFocus) {
-          _animationCancelController.forward();
-          await _animationColorController.forward();
-          _animationColorController.reverse();
-        } else {
-          _animationCancelController.reverse();
-        }
-      },
+    _animationColorController = AnimationController(
+      duration: const Duration(
+        milliseconds: 100,
+      ),
+      vsync: this,
     );
   }
 
@@ -64,6 +53,10 @@ class _CustomCupertinoSearchTextFieldState
         curve: Curves.easeOut,
       ),
     );
+    _colorAnimation = ColorTween(
+      begin: isDarkMode(context) ? Colors.grey.shade800 : Colors.grey.shade100,
+      end: isDarkMode(context) ? Colors.grey.shade700 : Colors.grey.shade200,
+    ).animate(_animationColorController);
   }
 
   @override
@@ -72,6 +65,23 @@ class _CustomCupertinoSearchTextFieldState
     _animationCancelController.dispose();
     _animationColorController.dispose();
     super.dispose();
+  }
+
+  void _focusNodeInit() {
+    _focusSearchNode = FocusNode();
+    _focusSearchNode.addListener(
+      _searchAnimation,
+    );
+  }
+
+  void _searchAnimation() async {
+    if (_focusSearchNode.hasFocus) {
+      _animationCancelController.forward();
+      await _animationColorController.forward();
+      _animationColorController.reverse();
+    } else {
+      _animationCancelController.reverse();
+    }
   }
 
   void _onTextFieldTap() {
@@ -83,9 +93,11 @@ class _CustomCupertinoSearchTextFieldState
   }
 
   void _onVisibilityChanged(VisibilityInfo info) {
-    setState(() {
-      _isVisible = info.visibleFraction > 0;
-    });
+    if (info.visibleFraction < 1) {
+      _focusSearchNode.canRequestFocus = false;
+    } else {
+      _focusSearchNode.canRequestFocus = true;
+    }
   }
 
   @override
@@ -93,7 +105,12 @@ class _CustomCupertinoSearchTextFieldState
     return GestureDetector(
       onTap: _onTextFieldTap,
       child: AnimatedBuilder(
-        animation: _animationColorController,
+        animation: Listenable.merge(
+          [
+            _animationCancelController,
+            _animationColorController,
+          ],
+        ),
         builder: (context, child) => SingleChildScrollView(
           physics: const NeverScrollableScrollPhysics(),
           scrollDirection: Axis.horizontal,
@@ -106,22 +123,25 @@ class _CustomCupertinoSearchTextFieldState
                   maxWidth: _cancelAnimation.value,
                 ),
                 child: VisibilityDetector(
-                  key: const Key('asd'),
+                  key: const Key('key-board'),
                   onVisibilityChanged: _onVisibilityChanged,
                   child: CupertinoSearchTextField(
+                    focusNode: _focusSearchNode,
+                    itemColor: isDarkMode(context)
+                        ? Colors.grey.shade500
+                        : Colors.grey.shade900,
                     placeholderStyle: TextStyle(
                       color: isDarkMode(context)
-                          ? Colors.grey.shade700
+                          ? Colors.grey.shade500
                           : Colors.grey.shade500,
                     ),
                     style: TextStyle(
-                      color: isDarkMode(context) ? Colors.white : Colors.black,
+                      color: isDarkMode(context)
+                          ? Colors.grey.shade500
+                          : Colors.black,
                     ),
-                    enabled: _isVisible,
-                    focusNode: _focusSearchNode,
-                    backgroundColor: isDarkMode(context)
-                        ? Colors.grey.shade400
-                        : Colors.grey.shade100,
+                    enabled: true,
+                    backgroundColor: _colorAnimation.value,
                   ),
                 ),
               ),
