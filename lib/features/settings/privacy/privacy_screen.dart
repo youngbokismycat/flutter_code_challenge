@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tread_clone_assignment/features/commons/default_padding.dart';
+import 'package:tread_clone_assignment/features/commons/widgets/default_padding.dart';
 import 'package:tread_clone_assignment/core/consts/gaps.dart';
 import 'package:tread_clone_assignment/core/consts/utils.dart';
 

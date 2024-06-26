@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tread_clone_assignment/features/activity/widgets/activity_profile_list_tile.dart';
-import 'package:tread_clone_assignment/features/commons/default_padding.dart';
-import 'package:tread_clone_assignment/features/commons/follow_button.dart';
-import 'package:tread_clone_assignment/features/commons/stacked_two_profile.dart';
+import 'package:tread_clone_assignment/features/commons/widgets/default_padding.dart';
+import 'package:tread_clone_assignment/features/commons/widgets/follow_button.dart';
+import 'package:tread_clone_assignment/features/commons/widgets/stacked_two_profile.dart';
 import 'package:tread_clone_assignment/core/consts/break_points.dart';
 import 'package:tread_clone_assignment/core/consts/gaps.dart';
 import 'package:tread_clone_assignment/core/consts/sizes.dart';
 import 'package:tread_clone_assignment/core/consts/utils.dart';
-import 'package:tread_clone_assignment/features/search/widgets/pinned_delegate.dart';
+import 'package:tread_clone_assignment/features/commons/widgets/pinned_delegate.dart';
 
 class ActivityScreen extends StatefulWidget {
   const ActivityScreen({super.key});
@@ -53,6 +53,7 @@ class _ActivityScreenState extends State<ActivityScreen>
             return [
               SliverAppBar(
                 systemOverlayStyle: const SystemUiOverlayStyle(
+                  systemNavigationBarContrastEnforced: false,
                   systemStatusBarContrastEnforced: false,
                 ),
                 centerTitle: false,

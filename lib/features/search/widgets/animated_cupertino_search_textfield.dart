@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tread_clone_assignment/core/consts/gaps.dart';
@@ -46,7 +48,7 @@ class _CustomCupertinoSearchTextFieldState
     super.didChangeDependencies();
     _cancelAnimation = Tween<double>(
       begin: MediaQuery.of(context).size.width - 32,
-      end: MediaQuery.of(context).size.width - 92,
+      end: MediaQuery.of(context).size.width - (Platform.isIOS ? 96 : 92),
     ).animate(
       CurvedAnimation(
         parent: _animationCancelController,

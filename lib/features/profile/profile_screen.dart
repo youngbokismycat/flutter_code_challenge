@@ -4,16 +4,16 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tread_clone_assignment/core/router/router_name.dart';
-import 'package:tread_clone_assignment/features/commons/circle_profile_no_index_or_path.dart';
-import 'package:tread_clone_assignment/features/commons/default_padding.dart';
-import 'package:tread_clone_assignment/features/commons/four_buttons.dart';
-import 'package:tread_clone_assignment/features/commons/landscape_card.dart';
-import 'package:tread_clone_assignment/features/commons/stacked_two_profile.dart';
+import 'package:tread_clone_assignment/features/commons/widgets/circle_profile_no_index_or_path.dart';
+import 'package:tread_clone_assignment/features/commons/widgets/default_padding.dart';
+import 'package:tread_clone_assignment/features/commons/widgets/four_buttons.dart';
+import 'package:tread_clone_assignment/features/commons/widgets/landscape_card.dart';
+import 'package:tread_clone_assignment/features/commons/widgets/stacked_two_profile.dart';
 import 'package:tread_clone_assignment/core/consts/gaps.dart';
 import 'package:tread_clone_assignment/core/consts/sizes.dart';
 import 'package:tread_clone_assignment/core/consts/utils.dart';
 import 'package:tread_clone_assignment/features/settings/settings_screen.dart';
-import 'package:tread_clone_assignment/features/search/widgets/pinned_delegate.dart';
+import 'package:tread_clone_assignment/features/commons/widgets/pinned_delegate.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -56,6 +56,7 @@ class _ProfileScreenState extends State<ProfileScreen>
             return [
               SliverAppBar(
                 systemOverlayStyle: const SystemUiOverlayStyle(
+                  systemNavigationBarContrastEnforced: false,
                   systemStatusBarContrastEnforced: false,
                 ),
                 leading: Center(

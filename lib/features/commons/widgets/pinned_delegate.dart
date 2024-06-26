@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tread_clone_assignment/features/commons/default_padding.dart';
+import 'package:tread_clone_assignment/features/commons/widgets/default_padding.dart';
 import 'package:tread_clone_assignment/core/consts/utils.dart';
 
 class PinnedBar extends SliverPersistentHeaderDelegate {
@@ -37,6 +37,6 @@ class PinnedBar extends SliverPersistentHeaderDelegate {
   double get minExtent => 40;
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
-    return false;
+    return true;
   }
 }

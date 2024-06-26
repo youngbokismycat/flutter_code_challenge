@@ -1,10 +1,10 @@
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:tread_clone_assignment/features/commons/circle_profile_no_index_or_path.dart';
-import 'package:tread_clone_assignment/features/commons/default_padding.dart';
-import 'package:tread_clone_assignment/features/commons/follow_button.dart';
-import 'package:tread_clone_assignment/features/commons/stacked_two_profile.dart';
+import 'package:tread_clone_assignment/features/commons/widgets/circle_profile_no_index_or_path.dart';
+import 'package:tread_clone_assignment/features/commons/widgets/default_padding.dart';
+import 'package:tread_clone_assignment/features/commons/widgets/follow_button.dart';
+import 'package:tread_clone_assignment/features/commons/widgets/stacked_two_profile.dart';
 import 'package:tread_clone_assignment/core/consts/gaps.dart';
 import 'package:tread_clone_assignment/core/consts/informations.dart';
 import 'package:tread_clone_assignment/core/consts/sizes.dart';

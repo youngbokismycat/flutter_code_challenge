@@ -98,28 +98,40 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedPadding(
-      duration: const Duration(milliseconds: 500),
-      padding: _isWritingThread && Platform.isIOS
-          ? EdgeInsets.only(
-              top: MediaQuery.of(context).viewPadding.top -
-                  MediaQuery.of(context).size.height * 0.03,
+    return AnimatedSlide(
+      duration: const Duration(
+        milliseconds: 500,
+      ),
+      offset: _isWritingThread && Platform.isIOS
+          ? Offset(
+              0,
+              (MediaQuery.of(context).viewPadding.top /
+                      MediaQuery.of(context).size.height) *
+                  0.5,
             )
-          : EdgeInsets.zero,
+          : const Offset(
+              0,
+              0,
+            ),
       curve: Curves.easeOutCirc,
       child: AnimatedScale(
         curve: Curves.easeOutCirc,
-        duration: const Duration(milliseconds: 500),
-        scale: _isWritingThread && Platform.isIOS ? 0.95 : 1,
-        child: Container(
+        duration: const Duration(
+          milliseconds: 500,
+        ),
+        scale: _isWritingThread ? 0.95 : 1,
+        child: AnimatedContainer(
+          duration: const Duration(
+            milliseconds: 300,
+          ),
           clipBehavior: Clip.hardEdge,
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(
-                Sizes.size14,
+                _isWritingThread ? Sizes.size14 : 0,
               ),
               topRight: Radius.circular(
-                Sizes.size14,
+                _isWritingThread ? Sizes.size14 : 0,
               ),
             ),
           ),

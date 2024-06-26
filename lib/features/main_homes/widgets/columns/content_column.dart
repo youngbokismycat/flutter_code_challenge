@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tread_clone_assignment/features/commons/four_buttons.dart';
+import 'package:tread_clone_assignment/features/commons/widgets/four_buttons.dart';
 import 'package:tread_clone_assignment/core/consts/informations.dart';
 import 'package:tread_clone_assignment/core/consts/gaps.dart';
 import 'package:tread_clone_assignment/features/main_homes/widgets/pageviews/landscape_pageview.dart';

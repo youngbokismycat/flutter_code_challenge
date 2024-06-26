@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tread_clone_assignment/features/commons/landscape_card.dart';
+import 'package:tread_clone_assignment/features/commons/widgets/landscape_card.dart';
 import 'package:tread_clone_assignment/core/consts/break_points.dart';
 import 'package:tread_clone_assignment/core/consts/informations.dart';
 
