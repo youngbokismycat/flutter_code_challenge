@@ -102,7 +102,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
       duration: const Duration(
         milliseconds: 500,
       ),
-      offset: _isWritingThread && Platform.isIOS
+      offset: _isWritingThread
           ? Offset(
               0,
               (MediaQuery.of(context).viewPadding.top /
