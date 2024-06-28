@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:provider/provider.dart';
 import 'package:tread_clone_assignment/core/config/theme_config.dart';
 import 'package:tread_clone_assignment/features/settings/account/view_model.dart/theme_config_vm.dart';
 
-class AccountScreen extends StatelessWidget {
+class AccountScreen extends ConsumerWidget {
   const AccountScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -30,9 +31,10 @@ class AccountScreen extends StatelessWidget {
             style: Theme.of(context).textTheme.bodySmall,
           ),
         ),
-        value: context.watch<ThemeConfigViewModel>().darkmode,
-        onChanged: (value) =>
-            context.read<ThemeConfigViewModel>().setDarkmode(value),
+        value: ref.watch(themeConfigProvider).darkmode,
+        onChanged: (value) {
+          ref.read(themeConfigProvider.notifier).setDarkmode(value);
+        },
       ),
     );
   }

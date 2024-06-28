@@ -1,6 +1,7 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tread_clone_assignment/core/config/theme_config.dart';
@@ -19,31 +20,25 @@ void main() async {
   final repository = ThemeConfigRepository(preferences);
 
   runApp(
-    DevicePreview(
-      enabled: false,
-      tools: const [
-        ...DevicePreview.defaultTools,
+    ProviderScope(
+      overrides: [
+        themeConfigProvider.overrideWith(
+          () => ThemeConfigViewModel(repository),
+        ),
       ],
-      builder: (context) => MultiProvider(
-        providers: [
-          ChangeNotifierProvider(
-            create: (context) => ThemeConfigViewModel(repository),
-          ),
-        ],
-        child: const MyApp(),
-      ),
+      child: const MyApp(),
     ),
   );
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends ConsumerStatefulWidget {
   const MyApp({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
+  MyAppState createState() => MyAppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class MyAppState extends ConsumerState<MyApp> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
@@ -54,7 +49,7 @@ class _MyAppState extends State<MyApp> {
     setState(() {});
     return MaterialApp(
       navigatorObservers: [routeObserver],
-      themeMode: context.watch<ThemeConfigViewModel>().darkmode
+      themeMode: ref.watch(themeConfigProvider).darkmode
           ? ThemeMode.dark
           : ThemeMode.light,
       debugShowCheckedModeBanner: false,
