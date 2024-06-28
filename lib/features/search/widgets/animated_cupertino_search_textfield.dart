@@ -2,22 +2,23 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tread_clone_assignment/core/consts/gaps.dart';
 import 'package:tread_clone_assignment/core/consts/utils.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
-class CustomCupertinoSearchTextField extends StatefulWidget {
+class CustomCupertinoSearchTextField extends ConsumerStatefulWidget {
   const CustomCupertinoSearchTextField({
     super.key,
   });
 
   @override
-  State<CustomCupertinoSearchTextField> createState() =>
-      _CustomCupertinoSearchTextFieldState();
+  CustomCupertinoSearchTextFieldState createState() =>
+      CustomCupertinoSearchTextFieldState();
 }
 
-class _CustomCupertinoSearchTextFieldState
-    extends State<CustomCupertinoSearchTextField>
+class CustomCupertinoSearchTextFieldState
+    extends ConsumerState<CustomCupertinoSearchTextField>
     with TickerProviderStateMixin {
   late FocusNode _focusSearchNode;
   late AnimationController _animationColorController;
@@ -56,8 +57,8 @@ class _CustomCupertinoSearchTextFieldState
       ),
     );
     _colorAnimation = ColorTween(
-      begin: isDarkMode(context) ? Colors.grey.shade800 : Colors.grey.shade100,
-      end: isDarkMode(context) ? Colors.grey.shade700 : Colors.grey.shade200,
+      begin: isDarkMode(ref) ? Colors.grey.shade800 : Colors.grey.shade100,
+      end: isDarkMode(ref) ? Colors.grey.shade700 : Colors.grey.shade200,
     ).animate(_animationColorController);
   }
 
@@ -129,18 +130,17 @@ class _CustomCupertinoSearchTextFieldState
                   onVisibilityChanged: _onVisibilityChanged,
                   child: CupertinoSearchTextField(
                     focusNode: _focusSearchNode,
-                    itemColor: isDarkMode(context)
+                    itemColor: isDarkMode(ref)
                         ? Colors.grey.shade500
                         : Colors.grey.shade900,
                     placeholderStyle: TextStyle(
-                      color: isDarkMode(context)
+                      color: isDarkMode(ref)
                           ? Colors.grey.shade500
                           : Colors.grey.shade500,
                     ),
                     style: TextStyle(
-                      color: isDarkMode(context)
-                          ? Colors.grey.shade500
-                          : Colors.black,
+                      color:
+                          isDarkMode(ref) ? Colors.grey.shade500 : Colors.black,
                     ),
                     enabled: true,
                     backgroundColor: _colorAnimation.value,

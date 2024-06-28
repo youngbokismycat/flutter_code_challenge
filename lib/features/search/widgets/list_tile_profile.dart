@@ -1,5 +1,6 @@
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:tread_clone_assignment/features/commons/widgets/circle_profile_no_index_or_path.dart';
 import 'package:tread_clone_assignment/features/commons/widgets/default_padding.dart';
@@ -10,13 +11,13 @@ import 'package:tread_clone_assignment/core/consts/informations.dart';
 import 'package:tread_clone_assignment/core/consts/sizes.dart';
 import 'package:tread_clone_assignment/core/consts/utils.dart';
 
-class ListTileProfile extends StatelessWidget {
+class ListTileProfile extends ConsumerWidget {
   const ListTileProfile({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return DefaultPadding(
       child: ListTile(
         contentPadding: EdgeInsets.zero,
@@ -71,7 +72,7 @@ class ListTileProfile extends StatelessWidget {
                 children: [
                   if (getBoolean() && getBoolean())
                     StackedTwoProfiles(
-                      backgroundColor: isDarkMode(context)
+                      backgroundColor: isDarkMode(ref)
                           ? const Color.fromARGB(255, 20, 20, 20)
                           : Colors.white,
                     ),

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tread_clone_assignment/core/consts/sizes.dart';
 import 'package:tread_clone_assignment/core/consts/utils.dart';
 
-class FollowButton extends StatelessWidget {
+class FollowButton extends ConsumerWidget {
   final bool isFollow;
   final bool isFilled;
   const FollowButton({
@@ -12,14 +13,14 @@ class FollowButton extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Container(
       padding: const EdgeInsets.symmetric(
         horizontal: Sizes.size24,
         vertical: Sizes.size4,
       ),
       decoration: BoxDecoration(
-        color: isDarkMode(context)
+        color: isDarkMode(ref)
             ? const Color.fromARGB(255, 20, 20, 20)
             : Colors.white,
         borderRadius: BorderRadius.circular(
@@ -41,7 +42,7 @@ class FollowButton extends StatelessWidget {
           child: Text(
             isFollow ? "Following" : "Follow",
             style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                  color: isDarkMode(context) ? Colors.white : Colors.black,
+                  color: isDarkMode(ref) ? Colors.white : Colors.black,
                 ),
           ),
         ),

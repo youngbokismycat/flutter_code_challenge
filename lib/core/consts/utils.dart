@@ -1,10 +1,13 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tread_clone_assignment/features/settings/account/view_model.dart/theme_config_vm.dart';
 
-bool isDarkMode(BuildContext context) =>
-    MediaQuery.of(context).platformBrightness == Brightness.dark;
+bool isDarkMode(WidgetRef ref) {
+  return ref.watch(themeConfigProvider).darkmode;
+}
 
 String getImage() {
   final random = Random();

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tread_clone_assignment/core/consts/sizes.dart';
 import 'package:tread_clone_assignment/core/consts/utils.dart';
 
-class CustomIconButton extends StatefulWidget {
+class CustomIconButton extends ConsumerStatefulWidget {
   final IconData icon;
   final IconData selectedicon;
   const CustomIconButton({
@@ -13,10 +14,10 @@ class CustomIconButton extends StatefulWidget {
   });
 
   @override
-  State<CustomIconButton> createState() => _CustomIconButtonState();
+  CustomIconButtonState createState() => CustomIconButtonState();
 }
 
-class _CustomIconButtonState extends State<CustomIconButton> {
+class CustomIconButtonState extends ConsumerState<CustomIconButton> {
   bool _isSelected = false;
   void _isTap() {
     _isSelected = !_isSelected;
@@ -33,7 +34,7 @@ class _CustomIconButtonState extends State<CustomIconButton> {
         child: Center(
           child: FaIcon(
             _isSelected ? widget.selectedicon : widget.icon,
-            color: isDarkMode(context) ? Colors.white : Colors.black,
+            color: isDarkMode(ref) ? Colors.white : Colors.black,
             size: Sizes.size20 + 2,
           ),
         ),

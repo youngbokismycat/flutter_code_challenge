@@ -1,6 +1,7 @@
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tread_clone_assignment/features/activity/widgets/activity_profile_list_tile.dart';
 import 'package:tread_clone_assignment/features/commons/widgets/default_padding.dart';
@@ -12,13 +13,13 @@ import 'package:tread_clone_assignment/core/consts/sizes.dart';
 import 'package:tread_clone_assignment/core/consts/utils.dart';
 import 'package:tread_clone_assignment/features/commons/widgets/pinned_delegate.dart';
 
-class ActivityScreen extends StatefulWidget {
+class ActivityScreen extends ConsumerStatefulWidget {
   const ActivityScreen({super.key});
   @override
-  State<ActivityScreen> createState() => _ActivityScreenState();
+  ActivityScreenState createState() => ActivityScreenState();
 }
 
-class _ActivityScreenState extends State<ActivityScreen>
+class ActivityScreenState extends ConsumerState<ActivityScreen>
     with SingleTickerProviderStateMixin {
   final PageController _pageController = PageController(
     viewportFraction: 0.5,
@@ -82,6 +83,7 @@ class _ActivityScreenState extends State<ActivityScreen>
               SliverPersistentHeader(
                 pinned: true,
                 delegate: PinnedBar(
+                  ref: ref,
                   isTabBar: true,
                   child: SizedBox(
                     height: 40,
@@ -91,22 +93,22 @@ class _ActivityScreenState extends State<ActivityScreen>
                       labelPadding: const EdgeInsets.only(
                         left: Sizes.size16,
                       ),
-                      labelStyle:
-                          Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                color: isDarkMode(context)
-                                    ? Colors.black
-                                    : Colors.white,
-                              ),
+                      labelStyle: Theme.of(context)
+                          .textTheme
+                          .bodyMedium!
+                          .copyWith(
+                            color:
+                                isDarkMode(ref) ? Colors.black : Colors.white,
+                          ),
                       unselectedLabelColor:
-                          isDarkMode(context) ? Colors.white : Colors.black,
+                          isDarkMode(ref) ? Colors.white : Colors.black,
                       dividerColor: Colors.transparent,
                       indicatorColor: Colors.white,
                       indicator: BoxDecoration(
                         borderRadius: BorderRadius.circular(
                           Sizes.size10,
                         ),
-                        color:
-                            isDarkMode(context) ? Colors.white : Colors.black,
+                        color: isDarkMode(ref) ? Colors.white : Colors.black,
                       ),
                       isScrollable: true,
                       controller: _tabController,
@@ -258,16 +260,16 @@ class _ActivityScreenState extends State<ActivityScreen>
   }
 }
 
-class RecommendCard extends StatefulWidget {
+class RecommendCard extends ConsumerStatefulWidget {
   const RecommendCard({
     super.key,
   });
 
   @override
-  State<RecommendCard> createState() => _RecommendCardState();
+  RecommendCardState createState() => RecommendCardState();
 }
 
-class _RecommendCardState extends State<RecommendCard>
+class RecommendCardState extends ConsumerState<RecommendCard>
     with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
@@ -277,9 +279,8 @@ class _RecommendCardState extends State<RecommendCard>
         padding: const EdgeInsets.only(right: Sizes.size5),
         child: Container(
           decoration: BoxDecoration(
-            color: isDarkMode(context)
-                ? Colors.grey.shade800
-                : Colors.grey.shade300,
+            color:
+                isDarkMode(ref) ? Colors.grey.shade800 : Colors.grey.shade300,
             borderRadius: BorderRadius.circular(
               Sizes.size14,
             ),
@@ -364,7 +365,7 @@ class _RecommendCardState extends State<RecommendCard>
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 StackedTwoProfiles(
-                                  backgroundColor: isDarkMode(context)
+                                  backgroundColor: isDarkMode(ref)
                                       ? Colors.grey.shade800
                                       : Theme.of(context)
                                           .dividerColor

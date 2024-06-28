@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:camerawesome/camerawesome_plugin.dart';
 import 'package:defer_pointer/defer_pointer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tread_clone_assignment/core/consts/gaps.dart';
@@ -12,7 +13,7 @@ import 'package:tread_clone_assignment/features/taking_pictures/preview/preview_
 import 'package:tread_clone_assignment/features/writing_thread/widgets/thread_file_button.dart';
 import 'package:tread_clone_assignment/main.dart';
 
-class WriteThread extends StatefulWidget {
+class WriteThread extends ConsumerStatefulWidget {
   const WriteThread({
     super.key,
     required this.dividerHeight,
@@ -30,10 +31,10 @@ class WriteThread extends StatefulWidget {
   final Function onChanged;
 
   @override
-  State<WriteThread> createState() => _WriteThreadState();
+  WriteThreadState createState() => WriteThreadState();
 }
 
-class _WriteThreadState extends State<WriteThread>
+class WriteThreadState extends ConsumerState<WriteThread>
     with RouteAware, WidgetsBindingObserver {
   final GlobalKey _contentKey = GlobalKey();
   String? imageOrVideo;
@@ -195,12 +196,11 @@ class _WriteThreadState extends State<WriteThread>
                       autofocus: true,
                       onChanged: (value) => widget.onChanged(),
                       style: TextStyle(
-                        color:
-                            isDarkMode(context) ? Colors.white : Colors.black,
+                        color: isDarkMode(ref) ? Colors.white : Colors.black,
                         height: 1.2,
                       ),
                       cursorColor:
-                          isDarkMode(context) ? Colors.white : Colors.black,
+                          isDarkMode(ref) ? Colors.white : Colors.black,
                       controller: widget.controller,
                       focusNode: widget.focusNode,
                       decoration: InputDecoration(
@@ -209,7 +209,7 @@ class _WriteThreadState extends State<WriteThread>
                         hintText: "Start a thread...",
                         hintStyle:
                             Theme.of(context).textTheme.bodySmall!.copyWith(
-                                  color: isDarkMode(context)
+                                  color: isDarkMode(ref)
                                       ? Colors.white.withOpacity(
                                           0.4,
                                         )
@@ -326,7 +326,7 @@ class _WriteThreadState extends State<WriteThread>
                     icon: FaIcon(
                       FontAwesomeIcons.images,
                       size: Sizes.size20,
-                      color: isDarkMode(context) ? Colors.white : Colors.black,
+                      color: isDarkMode(ref) ? Colors.white : Colors.black,
                     ),
                     onTap: () => _onImagesTap(),
                   ),
@@ -335,7 +335,7 @@ class _WriteThreadState extends State<WriteThread>
                     left: 90,
                     icon: Icon(
                       Icons.photo_camera_outlined,
-                      color: isDarkMode(context) ? Colors.white : Colors.black,
+                      color: isDarkMode(ref) ? Colors.white : Colors.black,
                     ),
                     onTap: () => _onPhotoTap(),
                   ),

@@ -1,8 +1,7 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:tread_clone_assignment/core/router/router_name.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:tread_clone_assignment/features/activity/activity_screen.dart';
 import 'package:tread_clone_assignment/core/consts/sizes.dart';
 import 'package:tread_clone_assignment/core/consts/utils.dart';
@@ -12,16 +11,16 @@ import 'package:tread_clone_assignment/features/profile/profile_screen.dart';
 import 'package:tread_clone_assignment/features/search/search_screen.dart';
 import 'package:tread_clone_assignment/features/writing_thread/writing_thread_screen.dart';
 
-class MainNavigationScreen extends StatefulWidget {
+class MainNavigationScreen extends ConsumerStatefulWidget {
   const MainNavigationScreen({
     super.key,
   });
 
   @override
-  State<MainNavigationScreen> createState() => _MainNavigationScreenState();
+  MainNavigationScreenState createState() => MainNavigationScreenState();
 }
 
-class _MainNavigationScreenState extends State<MainNavigationScreen> {
+class MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
   // late int _selectedIndex;
   bool _isWritingThread = false;
   int _selectedIndex = 0;
@@ -70,8 +69,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
         ),
       ),
       barrierColor: Colors.black.withOpacity(0.2),
-      backgroundColor:
-          isDarkMode(context) ? Colors.grey.shade900 : Colors.white,
+      backgroundColor: isDarkMode(ref) ? Colors.grey.shade900 : Colors.white,
       builder: (context) {
         return const WritingThreadScreen();
       },
@@ -85,7 +83,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
         }
         if (!mounted) return;
         SystemChrome.setSystemUIOverlayStyle(
-          isDarkMode(context)
+          isDarkMode(ref)
               ? SystemUiOverlayStyle.light
               : SystemUiOverlayStyle.dark,
         );

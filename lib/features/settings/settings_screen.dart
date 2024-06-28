@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tread_clone_assignment/core/router/router_name.dart';
 import 'package:tread_clone_assignment/features/commons/widgets/default_padding.dart';
@@ -152,7 +153,7 @@ class SettingsScreen extends StatelessWidget {
   }
 }
 
-class CustomListTile extends StatelessWidget {
+class CustomListTile extends ConsumerWidget {
   final IconData icon;
   final String text;
   final Function()? onTap;
@@ -165,11 +166,11 @@ class CustomListTile extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return ListTile(
       leading: FaIcon(
         icon,
-        color: isDarkMode(context) ? Colors.white : Colors.black,
+        color: isDarkMode(ref) ? Colors.white : Colors.black,
       ),
       title: Text(
         text,

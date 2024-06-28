@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tread_clone_assignment/features/commons/widgets/default_padding.dart';
 import 'package:tread_clone_assignment/core/consts/gaps.dart';
 import 'package:tread_clone_assignment/core/consts/utils.dart';
 
-class PrivacyScreen extends StatefulWidget {
+class PrivacyScreen extends ConsumerStatefulWidget {
   const PrivacyScreen({super.key});
 
   @override
-  _PrivacyScreenState createState() => _PrivacyScreenState();
+  PrivacyScreenState createState() => PrivacyScreenState();
 }
 
-class _PrivacyScreenState extends State<PrivacyScreen> {
+class PrivacyScreenState extends ConsumerState<PrivacyScreen> {
   bool _isPrivateProfile = true;
 
   @override
@@ -32,7 +33,7 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
               children: [
                 FaIcon(
                   FontAwesomeIcons.chevronLeft,
-                  color: isDarkMode(context) ? Colors.white : Colors.black,
+                  color: isDarkMode(ref) ? Colors.white : Colors.black,
                   size: 18,
                 ),
                 Gaps.h5,
@@ -52,12 +53,12 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
             title: Text(
               'Private profile',
               style: TextStyle(
-                color: isDarkMode(context) ? Colors.white : Colors.black,
+                color: isDarkMode(ref) ? Colors.white : Colors.black,
               ),
             ),
             value: _isPrivateProfile,
-            activeColor: isDarkMode(context) ? Colors.black : Colors.white,
-            activeTrackColor: isDarkMode(context) ? Colors.teal : Colors.black,
+            activeColor: isDarkMode(ref) ? Colors.black : Colors.white,
+            activeTrackColor: isDarkMode(ref) ? Colors.teal : Colors.black,
             onChanged: (bool value) {
               setState(() {
                 _isPrivateProfile = value;
@@ -65,7 +66,7 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
             },
             secondary: Icon(
               Icons.lock,
-              color: isDarkMode(context) ? Colors.white : Colors.black,
+              color: isDarkMode(ref) ? Colors.white : Colors.black,
             ),
           ),
           PrivacyListTile(
@@ -74,7 +75,7 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
             trailing: Text(
               "Everyone",
               style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                    color: isDarkMode(context) ? Colors.white : Colors.black,
+                    color: isDarkMode(ref) ? Colors.white : Colors.black,
                   ),
             ),
             onTap: () {
@@ -166,7 +167,7 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
   }
 }
 
-class PrivacyListTile extends StatelessWidget {
+class PrivacyListTile extends ConsumerWidget {
   final String title;
   final String subtitle;
   final IconData icon;
@@ -183,18 +184,18 @@ class PrivacyListTile extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return ListTile(
       title: Text(
         title,
         style: TextStyle(
-          color: isDarkMode(context) ? Colors.white : Colors.black,
+          color: isDarkMode(ref) ? Colors.white : Colors.black,
         ),
       ),
       subtitle: subtitle.isNotEmpty ? Text(subtitle) : null,
       leading: Icon(
         icon,
-        color: isDarkMode(context) ? Colors.white : Colors.black,
+        color: isDarkMode(ref) ? Colors.white : Colors.black,
       ),
       trailing: Opacity(
         opacity: 0.4,

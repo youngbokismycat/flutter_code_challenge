@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tread_clone_assignment/features/commons/widgets/default_padding.dart';
 import 'package:tread_clone_assignment/core/consts/utils.dart';
 
 class PinnedBar extends SliverPersistentHeaderDelegate {
   final Widget child;
   final bool isTabBar;
+  final WidgetRef ref;
 
-  PinnedBar({
-    required this.child,
-    required this.isTabBar,
-  });
+  PinnedBar({required this.child, required this.isTabBar, required this.ref});
   @override
   Widget build(
     BuildContext context,
@@ -17,7 +16,7 @@ class PinnedBar extends SliverPersistentHeaderDelegate {
     bool overlapsContent,
   ) {
     return Container(
-      color: isDarkMode(context)
+      color: isDarkMode(ref)
           ? const Color.fromARGB(255, 20, 20, 20)
           : Colors.white,
       child: Align(

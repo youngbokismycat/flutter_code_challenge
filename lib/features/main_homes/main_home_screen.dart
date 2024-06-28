@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tread_clone_assignment/core/consts/informations.dart';
 import 'package:tread_clone_assignment/core/consts/utils.dart';
 import 'package:tread_clone_assignment/features/main_homes/widgets/cards/thread.dart';
 
-class MainHomeScreen extends StatelessWidget {
+class MainHomeScreen extends ConsumerWidget {
   const MainHomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return NestedScrollView(
       physics: const BouncingScrollPhysics(),
       headerSliverBuilder: (context, innerBoxIsScrolled) => [
@@ -25,7 +26,7 @@ class MainHomeScreen extends StatelessWidget {
               Informations.threadsLogoPath,
               width: 40,
               height: 40,
-              color: isDarkMode(context) ? Colors.white : Colors.black,
+              color: isDarkMode(ref) ? Colors.white : Colors.black,
             ),
           ),
         ),

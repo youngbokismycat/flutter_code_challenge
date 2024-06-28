@@ -1,5 +1,6 @@
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tread_clone_assignment/core/consts/informations.dart';
@@ -9,7 +10,7 @@ import 'package:tread_clone_assignment/core/consts/sizes.dart';
 import 'package:tread_clone_assignment/core/consts/utils.dart';
 import 'package:tread_clone_assignment/features/main_homes/pop_up_screens/i_hate_you_screen.dart';
 
-class WriterAndAgoRow extends StatelessWidget {
+class WriterAndAgoRow extends ConsumerWidget {
   final int index;
   const WriterAndAgoRow({
     super.key,
@@ -17,7 +18,7 @@ class WriterAndAgoRow extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final size = MediaQuery.of(context).size;
     void onElipsisTap(BuildContext context) {
       showModalBottomSheet(
@@ -27,8 +28,7 @@ class WriterAndAgoRow extends StatelessWidget {
         constraints: BoxConstraints(
           maxHeight: size.height * 0.35,
         ),
-        backgroundColor:
-            isDarkMode(context) ? Colors.grey.shade900 : Colors.white,
+        backgroundColor: isDarkMode(ref) ? Colors.grey.shade900 : Colors.white,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(Sizes.size16),
         ),
@@ -70,7 +70,7 @@ class WriterAndAgoRow extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(vertical: 3.0),
                   child: FaIcon(
                     FontAwesomeIcons.ellipsis,
-                    color: isDarkMode(context) ? Colors.white : Colors.black,
+                    color: isDarkMode(ref) ? Colors.white : Colors.black,
                     size: 18,
                   ),
                 ),

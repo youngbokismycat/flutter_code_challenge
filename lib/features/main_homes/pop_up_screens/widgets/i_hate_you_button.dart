@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tread_clone_assignment/core/consts/sizes.dart';
 import 'package:tread_clone_assignment/core/consts/utils.dart';
 import 'package:tread_clone_assignment/features/main_homes/pop_up_screens/report_screen.dart';
 
-class IHateYouButton extends StatelessWidget {
+class IHateYouButton extends ConsumerWidget {
   final String hateness;
   const IHateYouButton({
     super.key,
@@ -11,7 +12,7 @@ class IHateYouButton extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final size = MediaQuery.of(context).size;
     void onReportButtonTap(BuildContext context) {
       if (hateness == "Report") {
@@ -21,7 +22,7 @@ class IHateYouButton extends StatelessWidget {
             0.7,
           ),
           backgroundColor:
-              isDarkMode(context) ? Colors.grey.shade900 : Colors.white,
+              isDarkMode(ref) ? Colors.grey.shade900 : Colors.white,
           context: context,
           isScrollControlled: false,
           clipBehavior: Clip.hardEdge,
@@ -46,7 +47,7 @@ class IHateYouButton extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                   color: hateness == "Report"
                       ? Colors.red
-                      : isDarkMode(context)
+                      : isDarkMode(ref)
                           ? Colors.white
                           : Colors.black,
                 ),

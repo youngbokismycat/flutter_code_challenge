@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tread_clone_assignment/core/consts/utils.dart';
 
-class CircularProfile extends StatelessWidget {
+class CircularProfile extends ConsumerWidget {
   final int index;
 
   const CircularProfile({
@@ -11,7 +12,7 @@ class CircularProfile extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Stack(
       clipBehavior: Clip.none,
       children: [
@@ -27,19 +28,18 @@ class CircularProfile extends StatelessWidget {
             height: 23,
             width: 23,
             decoration: BoxDecoration(
-              color: isDarkMode(context) ? Colors.black : Colors.white,
+              color: isDarkMode(ref) ? Colors.black : Colors.white,
               shape: BoxShape.circle,
             ),
             child: FractionallySizedBox(
               widthFactor: 0.83,
               heightFactor: 0.83,
               child: CircleAvatar(
-                backgroundColor:
-                    isDarkMode(context) ? Colors.white : Colors.black,
+                backgroundColor: isDarkMode(ref) ? Colors.white : Colors.black,
                 child: FaIcon(
                   FontAwesomeIcons.plus,
                   size: 12,
-                  color: isDarkMode(context) ? Colors.black : Colors.white,
+                  color: isDarkMode(ref) ? Colors.black : Colors.white,
                 ),
               ),
             ),

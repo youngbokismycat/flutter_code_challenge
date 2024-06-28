@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tread_clone_assignment/core/consts/utils.dart';
 
-class NavTab extends StatelessWidget {
+class NavTab extends ConsumerWidget {
   const NavTab({
     super.key,
     required this.icon,
@@ -19,7 +20,7 @@ class NavTab extends StatelessWidget {
   final Function onTap;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Expanded(
       child: Align(
         child: GestureDetector(
@@ -29,7 +30,7 @@ class NavTab extends StatelessWidget {
             opacity: isSelected ? 1 : 0.3,
             child: FaIcon(
               isSelected ? selectedIcon : icon,
-              color: isDarkMode(context) ? Colors.white : Colors.black,
+              color: isDarkMode(ref) ? Colors.white : Colors.black,
             ),
           ),
         ),

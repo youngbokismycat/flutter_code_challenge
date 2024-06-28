@@ -1,6 +1,7 @@
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tread_clone_assignment/core/router/router_name.dart';
@@ -15,14 +16,14 @@ import 'package:tread_clone_assignment/core/consts/utils.dart';
 import 'package:tread_clone_assignment/features/settings/settings_screen.dart';
 import 'package:tread_clone_assignment/features/commons/widgets/pinned_delegate.dart';
 
-class ProfileScreen extends StatefulWidget {
+class ProfileScreen extends ConsumerStatefulWidget {
   const ProfileScreen({super.key});
 
   @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
+  ProfileScreenState createState() => ProfileScreenState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen>
+class ProfileScreenState extends ConsumerState<ProfileScreen>
     with SingleTickerProviderStateMixin {
   late final TabController _tabController;
 
@@ -62,7 +63,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                 leading: Center(
                   child: FaIcon(
                     FontAwesomeIcons.globe,
-                    color: isDarkMode(context) ? Colors.white : Colors.black,
+                    color: isDarkMode(ref) ? Colors.white : Colors.black,
                   ),
                 ),
                 actions: [
@@ -70,12 +71,12 @@ class _ProfileScreenState extends State<ProfileScreen>
                     onPressed: () {},
                     icon: FaIcon(
                       FontAwesomeIcons.instagram,
-                      color: isDarkMode(context) ? Colors.white : Colors.black,
+                      color: isDarkMode(ref) ? Colors.white : Colors.black,
                     ),
                   ),
                   IconButton(
                     icon: const FaIcon(FontAwesomeIcons.gripLines),
-                    color: isDarkMode(context) ? Colors.white : Colors.black,
+                    color: isDarkMode(ref) ? Colors.white : Colors.black,
                     onPressed: () => _onSettingsTab(),
                   ),
                 ],
@@ -99,14 +100,15 @@ class _ProfileScreenState extends State<ProfileScreen>
               SliverPersistentHeader(
                 pinned: true,
                 delegate: PinnedBar(
+                  ref: ref,
                   isTabBar: true,
                   child: TabBar(
                     indicatorWeight: 2,
-                    unselectedLabelColor: isDarkMode(context)
+                    unselectedLabelColor: isDarkMode(ref)
                         ? Colors.grey.shade700
                         : Colors.grey.shade500,
                     indicatorColor:
-                        isDarkMode(context) ? Colors.white : Colors.black,
+                        isDarkMode(ref) ? Colors.white : Colors.black,
                     labelStyle: Theme.of(context).textTheme.bodyMedium,
                     indicatorSize: TabBarIndicatorSize.tab,
                     controller: _tabController,
@@ -474,17 +476,17 @@ class ProfileButtons extends StatelessWidget {
   }
 }
 
-class ProfileFollowers extends StatelessWidget {
+class ProfileFollowers extends ConsumerWidget {
   const ProfileFollowers({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Row(
       children: [
         StackedTwoProfiles(
-          backgroundColor: isDarkMode(context)
+          backgroundColor: isDarkMode(ref)
               ? const Color.fromARGB(255, 20, 20, 20)
               : Colors.white,
         ),

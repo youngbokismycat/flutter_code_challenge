@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tread_clone_assignment/core/consts/informations.dart';
 import 'package:tread_clone_assignment/core/consts/utils.dart';
 import 'package:tread_clone_assignment/features/main_homes/widgets/profiles/circular_profile.dart';
 
-class BubbleProfiles extends StatefulWidget {
+class BubbleProfiles extends ConsumerStatefulWidget {
   final int index;
   const BubbleProfiles({
     super.key,
@@ -11,10 +12,10 @@ class BubbleProfiles extends StatefulWidget {
   });
 
   @override
-  State<BubbleProfiles> createState() => _BubbleProfilesState();
+  BubbleProfilesState createState() => BubbleProfilesState();
 }
 
-class _BubbleProfilesState extends State<BubbleProfiles>
+class BubbleProfilesState extends ConsumerState<BubbleProfiles>
     with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
@@ -86,7 +87,7 @@ class _BubbleProfilesState extends State<BubbleProfiles>
                 child: Container(
                   width: 50,
                   decoration: BoxDecoration(
-                    color: isDarkMode(context)
+                    color: isDarkMode(ref)
                         ? const Color.fromARGB(255, 20, 20, 20)
                         : Colors.white,
                     shape: BoxShape.circle,

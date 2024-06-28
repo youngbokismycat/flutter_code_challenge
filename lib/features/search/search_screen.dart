@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tread_clone_assignment/features/commons/widgets/default_padding.dart';
 import 'package:tread_clone_assignment/core/consts/sizes.dart';
 import 'package:tread_clone_assignment/features/search/widgets/animated_cupertino_search_textfield.dart';
 import 'package:tread_clone_assignment/features/search/widgets/list_tile_profile.dart';
 import 'package:tread_clone_assignment/features/commons/widgets/pinned_delegate.dart';
 
-class SearchScreen extends StatelessWidget {
+class SearchScreen extends ConsumerWidget {
   const SearchScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return SafeArea(
       child: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
@@ -43,6 +44,7 @@ class SearchScreen extends StatelessWidget {
               SliverPersistentHeader(
                 pinned: true,
                 delegate: PinnedBar(
+                  ref: ref,
                   isTabBar: false,
                   child: const CustomCupertinoSearchTextField(),
                 ),

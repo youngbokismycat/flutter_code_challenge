@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tread_clone_assignment/core/consts/gaps.dart';
 import 'package:tread_clone_assignment/core/consts/utils.dart';
 import 'package:tread_clone_assignment/features/writing_thread/widgets/bottom_sheet_appbar.dart';
 import 'package:tread_clone_assignment/features/writing_thread/widgets/write_thread.dart';
 
-class WritingThreadScreen extends StatefulWidget {
+class WritingThreadScreen extends ConsumerStatefulWidget {
   const WritingThreadScreen({super.key});
 
   @override
-  State<WritingThreadScreen> createState() => _WritingThreadScreenState();
+  WritingThreadScreenState createState() => WritingThreadScreenState();
 }
 
-class _WritingThreadScreenState extends State<WritingThreadScreen> {
+class WritingThreadScreenState extends ConsumerState<WritingThreadScreen> {
   final TextEditingController _controller = TextEditingController();
   final FocusNode _focusNode = FocusNode();
   final GlobalKey _commentskey = GlobalKey();
@@ -111,8 +112,7 @@ class _WritingThreadScreenState extends State<WritingThreadScreen> {
                   horizontal: 18,
                   vertical: 14,
                 ),
-                color:
-                    isDarkMode(context) ? Colors.grey.shade900 : Colors.white,
+                color: isDarkMode(ref) ? Colors.grey.shade900 : Colors.white,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

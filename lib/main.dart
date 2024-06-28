@@ -42,9 +42,7 @@ class MyAppState extends ConsumerState<MyApp> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
-      isDarkMode(context)
-          ? SystemUiOverlayStyle.light
-          : SystemUiOverlayStyle.dark,
+      isDarkMode(ref) ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark,
     );
     setState(() {});
     return MaterialApp(
