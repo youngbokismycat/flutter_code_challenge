@@ -49,6 +49,7 @@ dependencies:
   go_router: 6.0.2
   routemaster: ^1.0.1
   provider: ^6.1.2
+  shared_preferences: ^2.2.3
   
 dev_dependencies:
   flutter_test:
