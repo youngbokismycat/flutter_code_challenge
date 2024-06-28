@@ -6,6 +6,7 @@ import 'package:tread_clone_assignment/features/commons/widgets/default_padding.
 import 'package:tread_clone_assignment/core/consts/gaps.dart';
 import 'package:tread_clone_assignment/core/consts/sizes.dart';
 import 'package:tread_clone_assignment/core/consts/utils.dart';
+import 'package:tread_clone_assignment/features/settings/account/views/accounr_screen.dart';
 import 'package:tread_clone_assignment/features/settings/privacy/privacy_screen.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -111,9 +112,15 @@ class SettingsScreen extends StatelessWidget {
               ),
             ),
           ),
-          const CustomListTile(
+          CustomListTile(
             icon: FontAwesomeIcons.user,
             text: 'Account',
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const AccountScreen(),
+              ),
+            ),
           ),
           const CustomListTile(
             icon: FontAwesomeIcons.questionCircle,

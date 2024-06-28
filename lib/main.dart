@@ -1,21 +1,37 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tread_clone_assignment/core/config/theme_config.dart';
 import 'package:tread_clone_assignment/core/consts/sizes.dart';
 import 'package:tread_clone_assignment/core/consts/utils.dart';
 import 'package:tread_clone_assignment/core/router/router.dart';
 import 'package:tread_clone_assignment/features/commons/main_navigations/main_navigation_screen.dart';
+import 'package:tread_clone_assignment/features/settings/account/repo/theme_config_repo.dart';
+import 'package:tread_clone_assignment/features/settings/account/view_model.dart/theme_config_vm.dart';
 
 final RouteObserver<ModalRoute<void>> routeObserver =
     RouteObserver<ModalRoute<void>>();
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final preferences = await SharedPreferences.getInstance();
+  final repository = ThemeConfigRepository(preferences);
+
   runApp(
     DevicePreview(
       enabled: false,
       tools: const [
         ...DevicePreview.defaultTools,
       ],
-      builder: (context) => const MyApp(),
+      builder: (context) => MultiProvider(
+        providers: [
+          ChangeNotifierProvider(
+            create: (context) => ThemeConfigViewModel(repository),
+          ),
+        ],
+        child: const MyApp(),
+      ),
     ),
   );
 }
@@ -38,7 +54,9 @@ class _MyAppState extends State<MyApp> {
     setState(() {});
     return MaterialApp(
       navigatorObservers: [routeObserver],
-      themeMode: ThemeMode.system,
+      themeMode: context.watch<ThemeConfigViewModel>().darkmode
+          ? ThemeMode.dark
+          : ThemeMode.light,
       debugShowCheckedModeBanner: false,
       title: 'Thread Clomne',
       theme: ThemeData(
