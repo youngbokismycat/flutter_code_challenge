@@ -4,12 +4,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tread_clone_assignment/core/router/router_name.dart';
-import 'package:tread_clone_assignment/features/commons/widgets/default_padding.dart';
+import 'package:tread_clone_assignment/features/common/widgets/default_padding.dart';
 import 'package:tread_clone_assignment/core/consts/gaps.dart';
 import 'package:tread_clone_assignment/core/consts/sizes.dart';
 import 'package:tread_clone_assignment/core/consts/utils.dart';
-import 'package:tread_clone_assignment/features/settings/account/views/account_screen.dart';
-import 'package:tread_clone_assignment/features/settings/privacy/privacy_screen.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});

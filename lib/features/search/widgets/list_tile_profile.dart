@@ -2,10 +2,11 @@ import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:tread_clone_assignment/features/commons/widgets/circle_profile_no_index_or_path.dart';
-import 'package:tread_clone_assignment/features/commons/widgets/default_padding.dart';
-import 'package:tread_clone_assignment/features/commons/widgets/follow_button.dart';
-import 'package:tread_clone_assignment/features/commons/widgets/stacked_two_profile.dart';
+import 'package:tread_clone_assignment/core/theme/thread_colors.dart';
+import 'package:tread_clone_assignment/features/common/widgets/circle_profile_no_index_or_path.dart';
+import 'package:tread_clone_assignment/features/common/widgets/default_padding.dart';
+import 'package:tread_clone_assignment/features/common/widgets/follow_button.dart';
+import 'package:tread_clone_assignment/features/common/widgets/stacked_two_profile.dart';
 import 'package:tread_clone_assignment/core/consts/gaps.dart';
 import 'package:tread_clone_assignment/core/consts/informations.dart';
 import 'package:tread_clone_assignment/core/consts/sizes.dart';
@@ -73,7 +74,7 @@ class ListTileProfile extends ConsumerWidget {
                   if (getBoolean() && getBoolean())
                     StackedTwoProfiles(
                       backgroundColor: isDarkMode(ref)
-                          ? const Color.fromARGB(255, 20, 20, 20)
+                          ? ThreadColors.darkBgColor
                           : Colors.white,
                     ),
                   Text(

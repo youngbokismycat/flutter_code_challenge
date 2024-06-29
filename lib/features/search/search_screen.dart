@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tread_clone_assignment/features/commons/widgets/default_padding.dart';
+import 'package:tread_clone_assignment/features/common/widgets/default_padding.dart';
 import 'package:tread_clone_assignment/core/consts/sizes.dart';
 import 'package:tread_clone_assignment/features/search/widgets/animated_cupertino_search_textfield.dart';
 import 'package:tread_clone_assignment/features/search/widgets/list_tile_profile.dart';
-import 'package:tread_clone_assignment/features/commons/widgets/pinned_delegate.dart';
+import 'package:tread_clone_assignment/features/common/widgets/pinned_delegate.dart';
 
 class SearchScreen extends ConsumerWidget {
   const SearchScreen({super.key});

@@ -9,9 +9,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:tread_clone_assignment/core/consts/gaps.dart';
 import 'package:tread_clone_assignment/core/consts/sizes.dart';
 import 'package:tread_clone_assignment/core/consts/utils.dart';
-import 'package:tread_clone_assignment/features/taking_pictures/preview/preview_screen.dart';
+import 'package:tread_clone_assignment/features/picture/preview/preview_screen.dart';
 import 'package:tread_clone_assignment/features/writing_thread/widgets/thread_file_button.dart';
-import 'package:tread_clone_assignment/main.dart';
 
 class WriteThread extends ConsumerStatefulWidget {
   const WriteThread({

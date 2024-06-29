@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tread_clone_assignment/core/router/router_name.dart';
+import 'package:tread_clone_assignment/features/authentication/sign_in_screen.dart';
 
-import 'package:tread_clone_assignment/features/commons/main_navigations/main_navigation_screen.dart';
+import 'package:tread_clone_assignment/features/common/main_navigations/main_navigation_screen.dart';
 import 'package:tread_clone_assignment/features/settings/account/views/account_screen.dart';
 import 'package:tread_clone_assignment/features/settings/privacy/privacy_screen.dart';
 import 'package:tread_clone_assignment/features/settings/settings_screen.dart';
@@ -13,8 +14,13 @@ final routeObserverProvider = RouteObserver<ModalRoute<void>>();
 final routerProvider = Provider(
   (ref) {
     return GoRouter(
-      initialLocation: '/home',
+      initialLocation: '/${RouteNames.authentication}',
       routes: [
+        GoRoute(
+          path: "/${RouteNames.authentication}",
+          name: RouteNames.authentication,
+          builder: (context, state) => const SignInScreen(),
+        ),
         GoRoute(
           path: '/:tab(home|search|activity|profile)',
           name: RouteNames.mainNavigationRouteName,

@@ -6,16 +6,16 @@ import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tread_clone_assignment/core/router/router_name.dart';
-import 'package:tread_clone_assignment/features/commons/widgets/circle_profile_no_index_or_path.dart';
-import 'package:tread_clone_assignment/features/commons/widgets/default_padding.dart';
-import 'package:tread_clone_assignment/features/commons/widgets/four_buttons.dart';
-import 'package:tread_clone_assignment/features/commons/widgets/landscape_card.dart';
-import 'package:tread_clone_assignment/features/commons/widgets/stacked_two_profile.dart';
+import 'package:tread_clone_assignment/core/theme/thread_colors.dart';
+import 'package:tread_clone_assignment/features/common/widgets/circle_profile_no_index_or_path.dart';
+import 'package:tread_clone_assignment/features/common/widgets/default_padding.dart';
+import 'package:tread_clone_assignment/features/common/widgets/four_buttons.dart';
+import 'package:tread_clone_assignment/features/common/widgets/landscape_card.dart';
+import 'package:tread_clone_assignment/features/common/widgets/stacked_two_profile.dart';
 import 'package:tread_clone_assignment/core/consts/gaps.dart';
 import 'package:tread_clone_assignment/core/consts/sizes.dart';
 import 'package:tread_clone_assignment/core/consts/utils.dart';
-import 'package:tread_clone_assignment/features/settings/settings_screen.dart';
-import 'package:tread_clone_assignment/features/commons/widgets/pinned_delegate.dart';
+import 'package:tread_clone_assignment/features/common/widgets/pinned_delegate.dart';
 
 class ProfileScreen extends ConsumerStatefulWidget {
   const ProfileScreen({super.key});
@@ -484,9 +484,8 @@ class ProfileFollowers extends ConsumerWidget {
     return Row(
       children: [
         StackedTwoProfiles(
-          backgroundColor: isDarkMode(ref)
-              ? const Color.fromARGB(255, 20, 20, 20)
-              : Colors.white,
+          backgroundColor:
+              isDarkMode(ref) ? ThreadColors.darkBgColor : Colors.white,
         ),
         Opacity(
           opacity: 0.4,

@@ -10,4 +10,5 @@ class RouteNames {
   static const String privacyRouteName = 'privacy';
   static const String accountRouteName = 'account';
   static const String mainNavigationRouteName = 'navigation';
+  static const String authentication = 'authentication';
 }

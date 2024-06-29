@@ -2,8 +2,9 @@ import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tread_clone_assignment/features/commons/widgets/circle_profile_no_index_or_path.dart';
-import 'package:tread_clone_assignment/features/commons/widgets/follow_button.dart';
+import 'package:tread_clone_assignment/core/theme/thread_colors.dart';
+import 'package:tread_clone_assignment/features/common/widgets/circle_profile_no_index_or_path.dart';
+import 'package:tread_clone_assignment/features/common/widgets/follow_button.dart';
 import 'package:tread_clone_assignment/core/consts/gaps.dart';
 import 'package:tread_clone_assignment/core/consts/sizes.dart';
 import 'package:tread_clone_assignment/core/consts/utils.dart';
@@ -33,9 +34,8 @@ class ActivityProfileListTile extends ConsumerWidget {
               height: 23,
               width: 23,
               decoration: BoxDecoration(
-                color: isDarkMode(ref)
-                    ? const Color.fromARGB(255, 20, 20, 20)
-                    : Colors.white,
+                color:
+                    isDarkMode(ref) ? ThreadColors.darkBgColor : Colors.white,
                 shape: BoxShape.circle,
               ),
               child: FractionallySizedBox(
