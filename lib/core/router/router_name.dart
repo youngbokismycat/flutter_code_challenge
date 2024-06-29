@@ -1,9 +1,13 @@
 class RouteNames {
-  static const home = 'home';
-  static const search = 'search';
-  static const activity = 'activity';
-  static const profile = 'profile';
-  static const settings = 'settings';
-  static const privacy = 'privacy';
-  static const camera = 'camera';
+  static const List<String> mainNavigationRoutes = [
+    'home',
+    'search',
+    'xxxx',
+    'activity',
+    'profile',
+  ];
+  static const String settingsRouteName = 'settings';
+  static const String privacyRouteName = 'privacy';
+  static const String accountRouteName = 'account';
+  static const String mainNavigationRouteName = 'navigation';
 }

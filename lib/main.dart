@@ -1,11 +1,8 @@
-import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:tread_clone_assignment/core/config/theme_config.dart';
 import 'package:tread_clone_assignment/core/consts/sizes.dart';
 import 'package:tread_clone_assignment/core/consts/utils.dart';
 import 'package:tread_clone_assignment/core/router/router.dart';
@@ -51,8 +48,8 @@ class MyAppState extends ConsumerState<MyApp> {
       isDarkMode(ref) ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark,
     );
     setState(() {});
-    return MaterialApp(
-      navigatorObservers: [routeObserver],
+    return MaterialApp.router(
+      routerConfig: ref.watch(routerProvider),
       themeMode: ref.watch(themeConfigProvider).darkmode
           ? ThemeMode.dark
           : ThemeMode.light,
@@ -143,7 +140,6 @@ class MyAppState extends ConsumerState<MyApp> {
           backgroundColor: Colors.black,
         ),
       ),
-      home: const MainNavigationScreen(),
     );
   }
 }

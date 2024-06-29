@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:provider/provider.dart';
-import 'package:tread_clone_assignment/core/config/theme_config.dart';
 import 'package:tread_clone_assignment/features/settings/account/view_model.dart/theme_config_vm.dart';
 
 class AccountScreen extends ConsumerWidget {

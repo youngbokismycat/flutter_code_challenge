@@ -34,8 +34,7 @@ class WriteThread extends ConsumerStatefulWidget {
   WriteThreadState createState() => WriteThreadState();
 }
 
-class WriteThreadState extends ConsumerState<WriteThread>
-    with RouteAware, WidgetsBindingObserver {
+class WriteThreadState extends ConsumerState<WriteThread> {
   final GlobalKey _contentKey = GlobalKey();
   String? imageOrVideo;
   bool isRecieveResult = false;
@@ -46,7 +45,6 @@ class WriteThreadState extends ConsumerState<WriteThread>
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    routeObserver.subscribe(this, ModalRoute.of(context) as ModalRoute);
   }
 
   Size? getSize(GlobalKey key) {
@@ -61,13 +59,7 @@ class WriteThreadState extends ConsumerState<WriteThread>
 
   @override
   void dispose() {
-    routeObserver.unsubscribe(this);
     super.dispose();
-  }
-
-  @override
-  void didPopNext() {
-    _animationEffect();
   }
 
   void _animationEffect() {
@@ -127,8 +119,8 @@ class WriteThreadState extends ConsumerState<WriteThread>
     }
   }
 
-  void _onPhotoTap() {
-    Navigator.push(
+  void _onPhotoTap() async {
+    final result = await Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => CameraAwesomeBuilder.awesome(
@@ -140,6 +132,14 @@ class WriteThreadState extends ConsumerState<WriteThread>
         ),
       ),
     );
+    if (result != null) {
+      imageOrVideo = result;
+      isRecieveResult = true;
+
+      setState(() {});
+
+      _animationEffect();
+    }
   }
 
   void _deletecontent() {
@@ -190,7 +190,7 @@ class WriteThreadState extends ConsumerState<WriteThread>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
-                      "jane_mobbinnnn",
+                      "jane_mobbin",
                     ),
                     TextField(
                       autofocus: true,

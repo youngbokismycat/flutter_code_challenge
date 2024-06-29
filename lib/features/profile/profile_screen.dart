@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tread_clone_assignment/core/router/router_name.dart';
 import 'package:tread_clone_assignment/features/commons/widgets/circle_profile_no_index_or_path.dart';
 import 'package:tread_clone_assignment/features/commons/widgets/default_padding.dart';
@@ -37,11 +38,8 @@ class ProfileScreenState extends ConsumerState<ProfileScreen>
   }
 
   void _onSettingsTab() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const SettingsScreen(),
-      ),
+    context.go(
+      "/${RouteNames.mainNavigationRoutes[4]}/${RouteNames.settingsRouteName}",
     );
   }
 

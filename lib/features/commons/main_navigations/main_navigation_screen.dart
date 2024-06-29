@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:tread_clone_assignment/core/router/router_name.dart';
 
 import 'package:tread_clone_assignment/features/activity/activity_screen.dart';
 import 'package:tread_clone_assignment/core/consts/sizes.dart';
@@ -12,8 +14,10 @@ import 'package:tread_clone_assignment/features/search/search_screen.dart';
 import 'package:tread_clone_assignment/features/writing_thread/writing_thread_screen.dart';
 
 class MainNavigationScreen extends ConsumerStatefulWidget {
+  final String tab;
   const MainNavigationScreen({
     super.key,
+    required this.tab,
   });
 
   @override
@@ -21,34 +25,16 @@ class MainNavigationScreen extends ConsumerStatefulWidget {
 }
 
 class MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
-  // late int _selectedIndex;
   bool _isWritingThread = false;
-  int _selectedIndex = 0;
-
-/*   void _onselectedTap(int index) {
-    _selectedIndex = index;
-    setState(() {});
-
-    // Navigate to the appropriate route
-    switch (_selectedIndex) {
-      case 0:
-        context.go('/');
-        break;
-      case 1:
-        context.go('/${RouteNames.search}');
-        break;
-      case 3:
-        context.go('/${RouteNames.activity}');
-        break;
-      case 4:
-        context.go('/${RouteNames.profile}');
-        break;
-    }
-  } */
+  late int _selectedIndex = RouteNames.mainNavigationRoutes.indexOf(
+    widget.tab,
+  );
 
   void _onselectedTap(int index) {
-    _selectedIndex = index;
-    setState(() {});
+    context.go('/${RouteNames.mainNavigationRoutes[index]}');
+    setState(() {
+      _selectedIndex = index;
+    });
   }
 
   void _onMakeThreadButtonTap(BuildContext cotext) async {

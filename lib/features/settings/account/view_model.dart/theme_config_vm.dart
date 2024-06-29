@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tread_clone_assignment/core/config/theme_config.dart';
 import 'package:tread_clone_assignment/features/settings/account/model/theme_config_model.dart';
 import 'package:tread_clone_assignment/features/settings/account/repo/theme_config_repo.dart';
 
