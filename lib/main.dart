@@ -1,4 +1,5 @@
 import 'package:device_preview/device_preview.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -11,11 +12,16 @@ import 'package:tread_clone_assignment/core/router/router.dart';
 import 'package:tread_clone_assignment/features/commons/main_navigations/main_navigation_screen.dart';
 import 'package:tread_clone_assignment/features/settings/account/repo/theme_config_repo.dart';
 import 'package:tread_clone_assignment/features/settings/account/view_model.dart/theme_config_vm.dart';
+import 'package:tread_clone_assignment/firebase_options.dart';
 
 final RouteObserver<ModalRoute<void>> routeObserver =
     RouteObserver<ModalRoute<void>>();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   final preferences = await SharedPreferences.getInstance();
   final repository = ThemeConfigRepository(preferences);
 

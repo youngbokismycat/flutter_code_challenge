@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "25065872577",
+    "project_id": "nomad-coder-thread",
+    "storage_bucket": "nomad-coder-thread.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:25065872577:android:69e7afc39f8638d3268840",
+        "android_client_info": {
+          "package_name": "com.example.tread_clone_assignment"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMcKy2wv8tZxAKrW0MV50ZkIoU9QA4lCs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
