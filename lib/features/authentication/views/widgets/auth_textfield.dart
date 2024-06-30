@@ -5,8 +5,14 @@ import 'package:tread_clone_assignment/core/consts/utils.dart';
 
 class AuthTextfield extends ConsumerWidget {
   final String hintText;
+  final bool obscureText;
+  final String? Function(String?)? validator;
+  final void Function(String?)? onSaved;
   const AuthTextfield({
     super.key,
+    this.obscureText = false,
+    required this.validator,
+    required this.onSaved,
     required this.hintText,
   });
 
@@ -22,12 +28,16 @@ class AuthTextfield extends ConsumerWidget {
     }
 
     return TextFormField(
+      validator: validator,
+      onSaved: onSaved,
+      obscureText: obscureText,
       cursorColor: Theme.of(context).disabledColor.withOpacity(0.55),
       decoration: InputDecoration(
         filled: true,
         fillColor: isDarkMode(ref) ? Colors.grey.shade800 : Colors.white,
         enabledBorder: authOutLineInputBorder(),
         focusedBorder: authOutLineInputBorder(),
+        errorBorder: authOutLineInputBorder(),
         contentPadding: const EdgeInsets.symmetric(
           vertical: Sizes.size18,
           horizontal: Sizes.size14,

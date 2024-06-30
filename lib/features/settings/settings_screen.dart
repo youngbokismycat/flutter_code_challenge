@@ -4,13 +4,20 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tread_clone_assignment/core/router/router_name.dart';
+import 'package:tread_clone_assignment/features/authentication/repos/authentication_repo.dart';
 import 'package:tread_clone_assignment/features/common/widgets/default_padding.dart';
 import 'package:tread_clone_assignment/core/consts/gaps.dart';
 import 'package:tread_clone_assignment/core/consts/sizes.dart';
 import 'package:tread_clone_assignment/core/consts/utils.dart';
 
-class SettingsScreen extends StatelessWidget {
+class SettingsScreen extends ConsumerStatefulWidget {
   const SettingsScreen({super.key});
+
+  @override
+  SettingsScreenState createState() => SettingsScreenState();
+}
+
+class SettingsScreenState extends ConsumerState<SettingsScreen> {
   void _showLogoutDialog(BuildContext context) {
     if (Theme.of(context).platform == TargetPlatform.iOS) {
       showCupertinoDialog(
@@ -28,8 +35,7 @@ class SettingsScreen extends StatelessWidget {
             CupertinoDialogAction(
               child: const Text('Logout'),
               onPressed: () {
-                // Handle the logout action
-                Navigator.of(context).pop();
+                ref.read(authRepo).signOut();
               },
             ),
           ],
@@ -51,8 +57,7 @@ class SettingsScreen extends StatelessWidget {
             TextButton(
               child: const Text('Logout'),
               onPressed: () {
-                // Handle the logout action
-                Navigator.of(context).pop();
+                ref.read(authRepo).signOut();
               },
             ),
           ],

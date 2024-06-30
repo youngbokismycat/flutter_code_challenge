@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -67,3 +68,13 @@ String getInt() {
 
 double getScreenHeight(BuildContext context) =>
     MediaQuery.of(context).size.height;
+
+void showErrorSnackBar(BuildContext context, Object? error) {
+  final snack = SnackBar(
+    action: SnackBarAction(label: "OK", onPressed: () {}),
+    content: Text(
+      (error as FirebaseException).message ?? "Something went wrong",
+    ),
+  );
+  ScaffoldMessenger.of(context).showSnackBar(snack);
+}

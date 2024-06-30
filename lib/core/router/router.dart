@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tread_clone_assignment/core/router/router_name.dart';
-import 'package:tread_clone_assignment/features/authentication/sign_in_screen.dart';
+import 'package:tread_clone_assignment/features/authentication/repos/authentication_repo.dart';
+import 'package:tread_clone_assignment/features/authentication/views/create_account_screen.dart';
+import 'package:tread_clone_assignment/features/authentication/views/sign_in_screen.dart';
 
 import 'package:tread_clone_assignment/features/common/main_navigations/main_navigation_screen.dart';
 import 'package:tread_clone_assignment/features/settings/account/views/account_screen.dart';
@@ -13,13 +15,30 @@ final routeObserverProvider = RouteObserver<ModalRoute<void>>();
 
 final routerProvider = Provider(
   (ref) {
+    ref.watch(authState);
     return GoRouter(
-      initialLocation: '/${RouteNames.authentication}',
+      initialLocation: '/home',
+      redirect: (context, state) {
+        final isLoggedIn = ref.read(authRepo).isLoggIn;
+        if (!isLoggedIn) {
+          if (state.subloc != "/${RouteNames.signUpRouteName}" &&
+              state.subloc != "/${RouteNames.createAccountRouteName}") {
+            return "/${RouteNames.signUpRouteName}";
+          }
+        }
+
+        return null;
+      },
       routes: [
         GoRoute(
-          path: "/${RouteNames.authentication}",
-          name: RouteNames.authentication,
-          builder: (context, state) => const SignInScreen(),
+          path: "/${RouteNames.signUpRouteName}",
+          name: RouteNames.signUpRouteName,
+          builder: (context, state) => SignInScreen(),
+        ),
+        GoRoute(
+          path: "/${RouteNames.createAccountRouteName}",
+          name: RouteNames.createAccountRouteName,
+          builder: (context, state) => const CreateAccountScreen(),
         ),
         GoRoute(
           path: '/:tab(home|search|activity|profile)',
