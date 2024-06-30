@@ -154,7 +154,6 @@ class CreateAccountScreenState extends ConsumerState<CreateAccountScreen> {
                         hintText: 'Password',
                       ),
                       Gaps.v14,
-                      Gaps.v14,
                       RoundedButton(
                         text: 'Create account',
                         textColor: Colors.white,

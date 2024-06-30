@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:tread_clone_assignment/core/consts/sizes.dart';
+import 'package:tread_clone_assignment/core/consts/utils.dart';
 
-class RoundedButton extends StatelessWidget {
+class RoundedButton extends ConsumerWidget {
   final String text;
   final bool disabled;
   final Color color;
@@ -23,7 +25,7 @@ class RoundedButton extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
       onTap: disabled ? null : onPressed,
       child: Container(
@@ -32,7 +34,9 @@ class RoundedButton extends StatelessWidget {
         ),
         decoration: BoxDecoration(
           border: Border.all(
-            color: borderColor,
+            color: isDarkMode(ref) && color == Colors.transparent
+                ? Colors.grey.shade600
+                : borderColor,
           ),
           borderRadius: BorderRadius.circular(
             Sizes.size5,
@@ -50,7 +54,7 @@ class RoundedButton extends StatelessWidget {
                 : Text(
                     text,
                     style: TextStyle(
-                      color: textColor,
+                      color: isDarkMode(ref) ? Colors.white : textColor,
                     ),
                   ),
           ],

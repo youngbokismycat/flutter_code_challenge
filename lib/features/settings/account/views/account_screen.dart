@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tread_clone_assignment/features/settings/account/view_model.dart/theme_config_vm.dart';
+import 'package:tread_clone_assignment/features/settings/account/views/widgets/back_leading_button.dart';
 
 class AccountScreen extends ConsumerWidget {
   const AccountScreen({super.key});
@@ -9,6 +10,8 @@ class AccountScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
+        leadingWidth: 100,
+        leading: const BackLeadingButton(),
         title: Text(
           "Account",
           style: Theme.of(context).textTheme.bodyMedium,
