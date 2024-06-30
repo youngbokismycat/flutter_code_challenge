@@ -9,6 +9,7 @@ import 'package:tread_clone_assignment/features/common/widgets/default_padding.d
 import 'package:tread_clone_assignment/core/consts/gaps.dart';
 import 'package:tread_clone_assignment/core/consts/sizes.dart';
 import 'package:tread_clone_assignment/core/consts/utils.dart';
+import 'package:tread_clone_assignment/features/settings/account/views/widgets/back_leading_button.dart';
 
 class SettingsScreen extends ConsumerStatefulWidget {
   const SettingsScreen({super.key});
@@ -18,22 +19,55 @@ class SettingsScreen extends ConsumerStatefulWidget {
 }
 
 class SettingsScreenState extends ConsumerState<SettingsScreen> {
-  void _showLogoutDialog(BuildContext context) {
-    if (Theme.of(context).platform == TargetPlatform.iOS) {
+  void _showLogoutDialog(BuildContext context, WidgetRef ref) {
+    final isDark = isDarkMode(ref);
+    final theme = Theme.of(context);
+
+    final dialogTitle = Text(
+      'Logout',
+      style: TextStyle(color: isDark ? Colors.white : Colors.black),
+    );
+
+    final dialogContent = Text(
+      'Are you sure you want to logout?',
+      style: TextStyle(color: isDark ? Colors.white : Colors.black),
+    );
+
+    final cancelButton = TextButton(
+      child: Text(
+        'Cancel',
+        style: TextStyle(color: isDark ? Colors.blue : Colors.black),
+      ),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+
+    final logoutButton = TextButton(
+      child: Text(
+        'Logout',
+        style: TextStyle(color: isDark ? Colors.blue : Colors.red),
+      ),
+      onPressed: () {
+        ref.read(authRepo).signOut();
+      },
+    );
+
+    if (theme.platform == TargetPlatform.iOS) {
       showCupertinoDialog(
         context: context,
         builder: (context) => CupertinoAlertDialog(
-          title: const Text('Logout'),
-          content: const Text('Are you sure you want to logout?'),
+          title: dialogTitle,
+          content: dialogContent,
           actions: <Widget>[
             CupertinoDialogAction(
-              child: const Text('Cancel'),
+              child: cancelButton,
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
             CupertinoDialogAction(
-              child: const Text('Logout'),
+              child: logoutButton,
               onPressed: () {
                 ref.read(authRepo).signOut();
               },
@@ -45,21 +79,12 @@ class SettingsScreenState extends ConsumerState<SettingsScreen> {
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          title: const Text('Logout'),
-          content: const Text('Are you sure you want to logout?'),
+          backgroundColor: isDark ? Colors.grey[850] : Colors.white,
+          title: dialogTitle,
+          content: dialogContent,
           actions: <Widget>[
-            TextButton(
-              child: const Text('Cancel'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            TextButton(
-              child: const Text('Logout'),
-              onPressed: () {
-                ref.read(authRepo).signOut();
-              },
-            ),
+            cancelButton,
+            logoutButton,
           ],
         ),
       );
@@ -71,26 +96,7 @@ class SettingsScreenState extends ConsumerState<SettingsScreen> {
     return Scaffold(
       appBar: AppBar(
         leadingWidth: 100,
-        leading: DefaultPadding(
-          child: GestureDetector(
-            onTap: () => Navigator.pop(context),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const FaIcon(
-                  FontAwesomeIcons.chevronLeft,
-                  size: Sizes.size18,
-                ),
-                Gaps.h5,
-                Text(
-                  "Back",
-                  style: Theme.of(context).textTheme.bodySmall,
-                  textScaleFactor: 1.2,
-                ),
-              ],
-            ),
-          ),
-        ),
+        leading: const BackLeadingButton(),
         title: Text(
           "Settings",
           style: Theme.of(context).textTheme.bodyMedium,
@@ -142,7 +148,7 @@ class SettingsScreenState extends ConsumerState<SettingsScreen> {
               ),
             ),
             onTap: () {
-              _showLogoutDialog(context);
+              _showLogoutDialog(context, ref);
             },
           ),
         ],

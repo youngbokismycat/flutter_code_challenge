@@ -186,6 +186,7 @@ class SignInScreenState extends ConsumerState<SignInScreen> {
                           children: [
                             FaIcon(
                               FontAwesomeIcons.meta,
+                              color: Colors.grey,
                             ),
                             Gaps.h5,
                             Text(

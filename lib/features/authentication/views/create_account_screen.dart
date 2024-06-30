@@ -154,7 +154,6 @@ class CreateAccountScreenState extends ConsumerState<CreateAccountScreen> {
                         hintText: 'Password',
                       ),
                       Gaps.v14,
-                      Gaps.v14,
                       RoundedButton(
                         text: 'Create account',
                         textColor: Colors.white,
@@ -191,6 +190,7 @@ class CreateAccountScreenState extends ConsumerState<CreateAccountScreen> {
                           children: [
                             FaIcon(
                               FontAwesomeIcons.meta,
+                              color: Colors.grey,
                             ),
                             Gaps.h5,
                             Text(

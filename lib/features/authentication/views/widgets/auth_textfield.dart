@@ -31,7 +31,12 @@ class AuthTextfield extends ConsumerWidget {
       validator: validator,
       onSaved: onSaved,
       obscureText: obscureText,
-      cursorColor: Theme.of(context).disabledColor.withOpacity(0.55),
+      style: Theme.of(context).textTheme.bodySmall!.copyWith(
+            color: isDarkMode(ref) ? Colors.grey.shade400 : Colors.black,
+          ),
+      cursorColor: isDarkMode(ref)
+          ? Colors.grey.shade400
+          : Theme.of(context).disabledColor.withOpacity(0.55),
       decoration: InputDecoration(
         filled: true,
         fillColor: isDarkMode(ref) ? Colors.grey.shade800 : Colors.white,
@@ -45,9 +50,11 @@ class AuthTextfield extends ConsumerWidget {
         hintText: hintText,
         hintStyle: Theme.of(context).textTheme.bodySmall!.copyWith(
               letterSpacing: 0.6,
-              color: Theme.of(context).disabledColor.withOpacity(
-                    0.4,
-                  ),
+              color: isDarkMode(ref)
+                  ? Colors.grey.shade400
+                  : Theme.of(context).disabledColor.withOpacity(
+                        0.4,
+                      ),
             ),
       ),
     );
