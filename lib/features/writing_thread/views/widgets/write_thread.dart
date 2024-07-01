@@ -10,7 +10,7 @@ import 'package:tread_clone_assignment/core/consts/gaps.dart';
 import 'package:tread_clone_assignment/core/consts/sizes.dart';
 import 'package:tread_clone_assignment/core/consts/utils.dart';
 import 'package:tread_clone_assignment/features/picture/preview/preview_screen.dart';
-import 'package:tread_clone_assignment/features/writing_thread/widgets/thread_file_button.dart';
+import 'package:tread_clone_assignment/features/writing_thread/views/widgets/thread_file_button.dart';
 
 class WriteThread extends ConsumerStatefulWidget {
   const WriteThread({
@@ -41,10 +41,6 @@ class WriteThreadState extends ConsumerState<WriteThread> {
   Size? widgetSize;
 
   double _contentOpacity = 0;
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-  }
 
   Size? getSize(GlobalKey key) {
     if (key.currentContext != null) {
@@ -58,6 +54,8 @@ class WriteThreadState extends ConsumerState<WriteThread> {
 
   @override
   void dispose() {
+    widget.controller.dispose();
+    widget.focusNode.dispose();
     super.dispose();
   }
 

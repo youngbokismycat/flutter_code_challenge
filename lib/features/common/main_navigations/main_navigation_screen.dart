@@ -11,7 +11,7 @@ import 'package:tread_clone_assignment/features/main_home/main_home_screen.dart'
 import 'package:tread_clone_assignment/features/common/main_navigations/widgets/custom_navigation_bar.dart';
 import 'package:tread_clone_assignment/features/profile/profile_screen.dart';
 import 'package:tread_clone_assignment/features/search/search_screen.dart';
-import 'package:tread_clone_assignment/features/writing_thread/writing_thread_screen.dart';
+import 'package:tread_clone_assignment/features/writing_thread/views/writing_thread_screen.dart';
 
 class MainNavigationScreen extends ConsumerStatefulWidget {
   final String tab;

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tread_clone_assignment/core/consts/gaps.dart';
 import 'package:tread_clone_assignment/core/consts/utils.dart';
-import 'package:tread_clone_assignment/features/writing_thread/widgets/bottom_sheet_appbar.dart';
-import 'package:tread_clone_assignment/features/writing_thread/widgets/write_thread.dart';
+import 'package:tread_clone_assignment/features/writing_thread/views/widgets/bottom_sheet_appbar.dart';
+import 'package:tread_clone_assignment/features/writing_thread/views/widgets/write_thread.dart';
 
 class WritingThreadScreen extends ConsumerStatefulWidget {
   const WritingThreadScreen({super.key});
