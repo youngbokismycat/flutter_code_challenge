@@ -31,6 +31,7 @@ class CustomCupertinoSearchTextFieldState
   @override
   void initState() {
     super.initState();
+
     _focusNodeInit();
     _animationCancelController = AnimationController(
       duration: const Duration(milliseconds: 300),

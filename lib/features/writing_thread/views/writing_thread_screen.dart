@@ -1,7 +1,14 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+
 import 'package:tread_clone_assignment/core/consts/gaps.dart';
 import 'package:tread_clone_assignment/core/consts/utils.dart';
+import 'package:tread_clone_assignment/features/writing_thread/view_model/image_vm.dart';
+import 'package:tread_clone_assignment/features/writing_thread/view_model/post_vm.dart';
+import 'package:tread_clone_assignment/features/writing_thread/view_model/upload_thread_vm.dart';
 import 'package:tread_clone_assignment/features/writing_thread/views/widgets/bottom_sheet_appbar.dart';
 import 'package:tread_clone_assignment/features/writing_thread/views/widgets/write_thread.dart';
 
@@ -16,8 +23,6 @@ class WritingThreadScreenState extends ConsumerState<WritingThreadScreen> {
   final TextEditingController _controller = TextEditingController();
   final FocusNode _focusNode = FocusNode();
   final GlobalKey _commentskey = GlobalKey();
-
-  bool _isPostEnabled = false;
   Size? widgetSize;
   Size? contentSize;
   Offset? offset;
@@ -44,8 +49,8 @@ class WritingThreadScreenState extends ConsumerState<WritingThreadScreen> {
 
   void _onChanged() async {
     _controller.value.text.isEmpty
-        ? _isPostEnabled = false
-        : _isPostEnabled = true;
+        ? ref.read(postViewModelProvider.notifier).setPostEnabled(false)
+        : ref.read(postViewModelProvider.notifier).setPostEnabled(true);
 
     await Future.delayed(
       const Duration(
@@ -58,6 +63,15 @@ class WritingThreadScreenState extends ConsumerState<WritingThreadScreen> {
   }
 
   void _onPostTap() {
+    ref.read(uploadThreadProvider.notifier).uploadThread(
+          ref.read(imageProvider).url == null
+              ? null
+              : File(ref.read(imageProvider).url!),
+          _controller.value.text,
+          context,
+        );
+    context.pop();
+
     FocusScope.of(context).unfocus();
   }
 
@@ -106,46 +120,61 @@ class WritingThreadScreenState extends ConsumerState<WritingThreadScreen> {
             ),
             Positioned(
               bottom: 0,
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 18,
-                  vertical: 14,
-                ),
-                color: isDarkMode(ref) ? Colors.grey.shade900 : Colors.white,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Opacity(
-                      opacity: 0.4,
-                      child: Text(
-                        "Anyone can reply",
-                        textScaler: const TextScaler.linear(
-                          0.9,
-                        ),
-                        style: Theme.of(context).textTheme.bodySmall,
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: _isPostEnabled ? _onPostTap : null,
-                      child: Opacity(
-                        opacity: _isPostEnabled ? 1 : 0.5,
-                        child: Text(
-                          "Post",
-                          style:
-                              Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                    fontWeight: FontWeight.w900,
-                                    color: Colors.blueAccent,
-                                  ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+              child: PostButton(
+                onTap: () => _onPostTap(),
               ),
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class PostButton extends ConsumerWidget {
+  final Function() onTap;
+  const PostButton({
+    super.key,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      padding: const EdgeInsets.symmetric(
+        horizontal: 18,
+        vertical: 14,
+      ),
+      color: isDarkMode(ref) ? Colors.grey.shade900 : Colors.white,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Opacity(
+            opacity: 0.4,
+            child: Text(
+              "Anyone can reply",
+              textScaler: const TextScaler.linear(
+                0.9,
+              ),
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
+          ),
+          GestureDetector(
+            onTap:
+                ref.watch(postViewModelProvider).isPostEnabled ? onTap : null,
+            child: Opacity(
+              opacity: ref.watch(postViewModelProvider).isPostEnabled ? 1 : 0.5,
+              child: Text(
+                "Post",
+                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      fontWeight: FontWeight.w900,
+                      color: Colors.blueAccent,
+                    ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

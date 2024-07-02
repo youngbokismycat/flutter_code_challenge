@@ -10,6 +10,8 @@ import 'package:tread_clone_assignment/core/consts/gaps.dart';
 import 'package:tread_clone_assignment/core/consts/sizes.dart';
 import 'package:tread_clone_assignment/core/consts/utils.dart';
 import 'package:tread_clone_assignment/features/picture/preview/preview_screen.dart';
+import 'package:tread_clone_assignment/features/writing_thread/view_model/image_vm.dart';
+import 'package:tread_clone_assignment/features/writing_thread/view_model/post_vm.dart';
 import 'package:tread_clone_assignment/features/writing_thread/views/widgets/thread_file_button.dart';
 
 class WriteThread extends ConsumerStatefulWidget {
@@ -56,6 +58,7 @@ class WriteThreadState extends ConsumerState<WriteThread> {
   void dispose() {
     widget.controller.dispose();
     widget.focusNode.dispose();
+
     super.dispose();
   }
 
@@ -109,11 +112,13 @@ class WriteThreadState extends ConsumerState<WriteThread> {
     if (result != null) {
       imageOrVideo = result.path;
       isRecieveResult = true;
-
+      ref.read(postViewModelProvider.notifier).setPostEnabled(true);
+      ref.read(imageProvider.notifier).setUrl(imageOrVideo!);
       setState(() {});
 
       _animationEffect();
     }
+    widget.focusNode.requestFocus();
   }
 
   void _onPhotoTap() async {
@@ -132,7 +137,8 @@ class WriteThreadState extends ConsumerState<WriteThread> {
     if (result != null) {
       imageOrVideo = result;
       isRecieveResult = true;
-
+      ref.read(postViewModelProvider.notifier).setPostEnabled(true);
+      ref.read(imageProvider.notifier).setUrl(imageOrVideo!);
       setState(() {});
 
       _animationEffect();
@@ -144,6 +150,7 @@ class WriteThreadState extends ConsumerState<WriteThread> {
     imageOrVideo = null;
     contentHeight = 0;
     _contentOpacity = 0;
+    ref.read(postViewModelProvider.notifier).setPostEnabled(false);
     setState(() {});
   }
 
@@ -190,6 +197,8 @@ class WriteThreadState extends ConsumerState<WriteThread> {
                       "jane_mobbin",
                     ),
                     TextField(
+                      keyboardAppearance:
+                          isDarkMode(ref) ? Brightness.dark : Brightness.light,
                       autofocus: true,
                       onChanged: (value) => widget.onChanged(),
                       style: TextStyle(

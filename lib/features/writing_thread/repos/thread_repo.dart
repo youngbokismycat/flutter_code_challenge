@@ -26,7 +26,9 @@ class ThreadRepository {
   }
 
   // upload document
-  Future<void> saveThread(ThreadModel data) async {
+  Future<void> saveThread(
+    ThreadModel data,
+  ) async {
     await _db.collection('thread').add(data.toMap());
   }
 }

@@ -11,6 +11,7 @@ import 'package:tread_clone_assignment/features/main_home/main_home_screen.dart'
 import 'package:tread_clone_assignment/features/common/main_navigations/widgets/custom_navigation_bar.dart';
 import 'package:tread_clone_assignment/features/profile/profile_screen.dart';
 import 'package:tread_clone_assignment/features/search/search_screen.dart';
+import 'package:tread_clone_assignment/features/writing_thread/view_model/post_vm.dart';
 import 'package:tread_clone_assignment/features/writing_thread/views/writing_thread_screen.dart';
 
 class MainNavigationScreen extends ConsumerStatefulWidget {
@@ -74,7 +75,7 @@ class MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
               : SystemUiOverlayStyle.dark,
         );
         _isWritingThread = false;
-
+        ref.read(postViewModelProvider.notifier).setPostEnabled(false);
         setState(() {});
       },
     );

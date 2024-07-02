@@ -31,6 +31,7 @@ class AuthTextfield extends ConsumerWidget {
       validator: validator,
       onSaved: onSaved,
       obscureText: obscureText,
+      keyboardAppearance: isDarkMode(ref) ? Brightness.dark : Brightness.light,
       style: Theme.of(context).textTheme.bodySmall!.copyWith(
             color: isDarkMode(ref) ? Colors.grey.shade400 : Colors.black,
           ),

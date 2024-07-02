@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tread_clone_assignment/features/settings/account/view_model.dart/theme_config_vm.dart';
 
 bool isDarkMode(WidgetRef ref) {
@@ -77,4 +78,17 @@ void showErrorSnackBar(BuildContext context, Object? error) {
     ),
   );
   ScaffoldMessenger.of(context).showSnackBar(snack);
+}
+
+void showLoadingSnackBar(BuildContext context) {
+  final snackBar = SnackBar(
+    content: const Text('Make a thread...'),
+    action: SnackBarAction(
+      label: 'go to there',
+      onPressed: () => context.go(
+        '/profile',
+      ),
+    ),
+  );
+  ScaffoldMessenger.of(context).showSnackBar(snackBar);
 }
