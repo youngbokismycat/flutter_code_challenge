@@ -77,8 +77,6 @@ class WritingThreadScreenState extends ConsumerState<WritingThreadScreen> {
 
   @override
   void dispose() {
-    _focusNode.dispose();
-    _controller.dispose();
     super.dispose();
   }
 
