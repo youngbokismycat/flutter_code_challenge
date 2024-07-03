@@ -4,7 +4,7 @@ import 'package:tread_clone_assignment/features/writing_thread/model/image_model
 class ImageViewModel extends StateNotifier<ImageModel> {
   ImageViewModel() : super(ImageModel());
 
-  void setUrl(String url) {
+  void setUrl(String? url) {
     state = ImageModel(url: url);
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tread_clone_assignment/core/consts/sizes.dart';
-import 'package:tread_clone_assignment/features/main_home/pop_up_screens/widgets/i_hate_you_button.dart';
+import 'package:tread_clone_assignment/features/main_home/view/pop_up_screens/widgets/i_hate_you_button.dart';
 
 class HatenessContainer extends StatelessWidget {
   final String secondHateness;

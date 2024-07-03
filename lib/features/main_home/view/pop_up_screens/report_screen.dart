@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:tread_clone_assignment/core/consts/gaps.dart';
 import 'package:tread_clone_assignment/core/consts/informations.dart';
 import 'package:tread_clone_assignment/core/consts/sizes.dart';
-import 'package:tread_clone_assignment/features/main_home/pop_up_screens/widgets/report_button.dart';
-import 'package:tread_clone_assignment/features/main_home/pop_up_screens/widgets/stick_handler.dart';
+import 'package:tread_clone_assignment/features/main_home/view/pop_up_screens/widgets/report_button.dart';
+import 'package:tread_clone_assignment/features/main_home/view/pop_up_screens/widgets/stick_handler.dart';
 
 class ReportScreen extends StatelessWidget {
   const ReportScreen({super.key});

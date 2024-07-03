@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tread_clone_assignment/features/main_home/pop_up_screens/widgets/hateness_container.dart';
-import 'package:tread_clone_assignment/features/main_home/pop_up_screens/widgets/stick_handler.dart';
+import 'package:tread_clone_assignment/features/main_home/view/pop_up_screens/widgets/hateness_container.dart';
+import 'package:tread_clone_assignment/features/main_home/view/pop_up_screens/widgets/stick_handler.dart';
 
 class IHateYouScreen extends StatelessWidget {
   const IHateYouScreen({super.key});

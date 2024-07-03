@@ -3,19 +3,36 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tread_clone_assignment/core/consts/informations.dart';
+
 import 'package:tread_clone_assignment/core/consts/custom_text_style.dart';
 import 'package:tread_clone_assignment/core/consts/gaps.dart';
+import 'package:tread_clone_assignment/core/consts/informations.dart';
 import 'package:tread_clone_assignment/core/consts/sizes.dart';
 import 'package:tread_clone_assignment/core/consts/utils.dart';
-import 'package:tread_clone_assignment/features/main_home/pop_up_screens/i_hate_you_screen.dart';
+import 'package:tread_clone_assignment/features/main_home/view/pop_up_screens/i_hate_you_screen.dart';
+import 'package:tread_clone_assignment/features/writing_thread/model/thread_model.dart';
 
 class WriterAndAgoRow extends ConsumerWidget {
   final int index;
+  final ThreadModel threadData;
   const WriterAndAgoRow({
     super.key,
     required this.index,
+    required this.threadData,
   });
+  String timeDifference(int pastTimestamp) {
+    final now = DateTime.now();
+    final past = DateTime.fromMillisecondsSinceEpoch(pastTimestamp);
+    final difference = now.difference(past);
+
+    if (difference.inHours >= 1) {
+      return '${difference.inHours}h';
+    } else if (difference.inMinutes >= 1) {
+      return '${difference.inMinutes}m';
+    } else {
+      return '${difference.inSeconds}s';
+    }
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -42,14 +59,14 @@ class WriterAndAgoRow extends ConsumerWidget {
       builder: (context, constraints) => Row(
         children: [
           Text(
-            faker.person.name(),
+            threadData.username,
             style: Theme.of(context).textTheme.bodyMedium,
           ),
           Gaps.h5,
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 5.0),
             child: Opacity(
-              opacity: info['verified'] ? 1 : 0,
+              opacity: threadData.isVerified ? 1 : 0,
               child: SvgPicture.asset(
                 Informations.verifiedSVGPath,
                 width: 15,
@@ -60,7 +77,7 @@ class WriterAndAgoRow extends ConsumerWidget {
           Row(
             children: [
               Text(
-                info['ago'],
+                timeDifference(threadData.createAt),
                 style: CustomTextStyle.greyBodyMidium,
               ),
               Gaps.h14,

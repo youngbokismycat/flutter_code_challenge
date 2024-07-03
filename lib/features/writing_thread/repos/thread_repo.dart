@@ -31,6 +31,16 @@ class ThreadRepository {
   ) async {
     await _db.collection('thread').add(data.toMap());
   }
+
+  Future<QuerySnapshot<Map<String, dynamic>>> fetchThread() {
+    return _db
+        .collection('thread')
+        .orderBy(
+          'createAt',
+          descending: true,
+        )
+        .get();
+  }
 }
 
 final threadRepoProvider = Provider(

@@ -66,14 +66,14 @@ class _BubbleProfileState extends State<BubbleProfile>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return CircleAvatar(
-      backgroundImage: const AssetImage(
+    return const CircleAvatar(
+      backgroundImage: AssetImage(
         "assets/images/default_profile.webp",
       ),
       backgroundColor: Colors.white,
       radius: 23,
-      foregroundImage: NetworkImage(
-        widget.profilePath,
+      foregroundImage: AssetImage(
+        "assets/images/default_profile.webp",
       ),
     );
   }

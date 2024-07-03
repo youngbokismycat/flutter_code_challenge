@@ -1,23 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:tread_clone_assignment/core/consts/informations.dart';
+
 import 'package:tread_clone_assignment/core/consts/custom_text_style.dart';
+import 'package:tread_clone_assignment/core/consts/informations.dart';
 
 class RepliesAndLikesRow extends StatelessWidget {
   final int index;
+  final int likes;
+  final int replies;
   const RepliesAndLikesRow({
     super.key,
     required this.index,
+    required this.likes,
+    required this.replies,
   });
 
   @override
   Widget build(BuildContext context) {
-    final info = Informations.infos[index];
     return DefaultTextStyle(
       style: CustomTextStyle.greyBodyMidium,
       child: Row(
         children: [
           Text(
-            "${info['replies']} replies ",
+            "$replies replies ",
           ),
           const Text(
             ".",
@@ -28,7 +32,7 @@ class RepliesAndLikesRow extends StatelessWidget {
             ),
           ),
           Text(
-            " ${info['likes']} likes",
+            " $likes likes",
           ),
         ],
       ),

@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:tread_clone_assignment/core/consts/gaps.dart';
-import 'package:tread_clone_assignment/features/main_home/widgets/profiles/bubble_profiles.dart';
-import 'package:tread_clone_assignment/features/main_home/widgets/profiles/circular_profile.dart';
+import 'package:tread_clone_assignment/features/main_home/view/widgets/profiles/bubble_profiles.dart';
+import 'package:tread_clone_assignment/features/main_home/view/widgets/profiles/circular_profile.dart';
+import 'package:tread_clone_assignment/features/writing_thread/model/thread_model.dart';
 
 class WriterRepliersColumn extends StatelessWidget {
   const WriterRepliersColumn({
     super.key,
     required this.index,
     required this.contentsHeight,
+    required this.threadData,
   });
   final double? contentsHeight;
-
+  final ThreadModel threadData;
   final int index;
 
   @override
@@ -38,6 +40,7 @@ class WriterRepliersColumn extends StatelessWidget {
                 ),
               ),
               BubbleProfiles(
+                threadData: threadData,
                 index: index,
               ),
               Gaps.v20,

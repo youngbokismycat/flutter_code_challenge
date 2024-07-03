@@ -64,14 +64,14 @@ class WritingThreadScreenState extends ConsumerState<WritingThreadScreen> {
 
   void _onPostTap() {
     ref.read(uploadThreadProvider.notifier).uploadThread(
-          ref.read(imageProvider).url == null
-              ? null
-              : File(ref.read(imageProvider).url!),
+          ref.read(imageProvider).url != null
+              ? File(ref.read(imageProvider).url!)
+              : null,
           _controller.value.text,
           context,
         );
     context.pop();
-
+    ref.read(imageProvider.notifier).setUrl(null);
     FocusScope.of(context).unfocus();
   }
 

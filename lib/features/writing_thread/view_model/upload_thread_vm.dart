@@ -17,8 +17,9 @@ class UploadThreadViewModel extends AsyncNotifier<void> {
   late final ThreadRepository _repo;
 
   @override
-  FutureOr<void> build() {
+  FutureOr<void> build() async {
     _repo = ref.read(threadRepoProvider);
+    final result = await _repo.fetchThread();
   }
 
   Future<void> uploadThread(
@@ -35,31 +36,25 @@ class UploadThreadViewModel extends AsyncNotifier<void> {
     }
     state = await AsyncValue.guard(
       () async {
-        if (image == null && text == null) {
-          throw Exception('Both image and text cannot be null.');
-        }
-
-        if (image != null) {
-          textTask = await _repo.uploadThreadText(text!, uid);
-        }
-
         if (text != null) {
-          imageTask = await _repo.uploadThreadImageFile(image!, uid);
+          textTask = await _repo.uploadThreadText(text, uid);
         }
-        if (textTask != null || imageTask != null) {
-          await _repo.saveThread(
-            ThreadModel(
-              username: 'anon',
-              userProfileUrl: 'assets/images/default_profile.webp',
-              isVerified: true,
-              thread: await textTask?.ref.getDownloadURL(),
-              imageUrl: await imageTask?.ref.getDownloadURL(),
-              replies: 0,
-              likes: 0,
-              createAt: DateTime.now().millisecondsSinceEpoch,
-            ),
-          );
+        if (image != null) {
+          imageTask = await _repo.uploadThreadImageFile(image, uid);
         }
+
+        await _repo.saveThread(
+          ThreadModel(
+            username: 'anon',
+            userProfileUrl: 'assets/images/default_profile.webp',
+            isVerified: true,
+            thread: text,
+            imageUrl: await imageTask?.ref.getDownloadURL(),
+            replies: 0,
+            likes: 0,
+            createAt: DateTime.now().millisecondsSinceEpoch,
+          ),
+        );
       },
     );
     if (state.hasError) {

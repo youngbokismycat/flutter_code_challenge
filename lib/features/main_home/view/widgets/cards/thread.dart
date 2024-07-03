@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+
 import 'package:tread_clone_assignment/core/consts/gaps.dart';
-import 'package:tread_clone_assignment/features/main_home/widgets/columns/content_column.dart';
-import 'package:tread_clone_assignment/features/main_home/widgets/columns/writer_to_repliers_column.dart';
+import 'package:tread_clone_assignment/features/main_home/view/widgets/columns/content_column.dart';
+import 'package:tread_clone_assignment/features/main_home/view/widgets/columns/writer_to_repliers_column.dart';
+import 'package:tread_clone_assignment/features/writing_thread/model/thread_model.dart';
 
 class Thread extends StatefulWidget {
   final int index;
+  final ThreadModel threadData;
   const Thread({
     super.key,
     required this.index,
+    required this.threadData,
   });
 
   @override
@@ -52,11 +56,13 @@ class _ThreadState extends State<Thread> {
           WriterRepliersColumn(
             index: widget.index,
             contentsHeight: columnSize?.height,
+            threadData: widget.threadData,
           ),
           Gaps.h10,
           ContentsColumn(
             key: _contentskey,
             index: widget.index,
+            threadData: widget.threadData,
           ),
         ],
       ),

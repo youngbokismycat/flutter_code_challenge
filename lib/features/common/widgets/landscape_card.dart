@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+
 import 'package:tread_clone_assignment/core/consts/utils.dart';
+import 'package:tread_clone_assignment/features/writing_thread/model/thread_model.dart';
 
 class LandScapeCard extends StatefulWidget {
+  final String? url;
   const LandScapeCard({
     super.key,
+    this.url,
   });
 
   @override
@@ -28,7 +32,7 @@ class _LandScapeCardState extends State<LandScapeCard>
           ),
         ),
         child: Image.network(
-          getImage(),
+          widget.url ?? getImage(),
           fit: BoxFit.fitWidth,
         ),
       ),

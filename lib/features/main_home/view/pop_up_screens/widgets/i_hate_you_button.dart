@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tread_clone_assignment/core/consts/sizes.dart';
 import 'package:tread_clone_assignment/core/consts/utils.dart';
-import 'package:tread_clone_assignment/features/main_home/pop_up_screens/report_screen.dart';
+import 'package:tread_clone_assignment/features/main_home/view/pop_up_screens/report_screen.dart';
 
 class IHateYouButton extends ConsumerWidget {
   final String hateness;
