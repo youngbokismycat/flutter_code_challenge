@@ -19,29 +19,48 @@ class Thread extends StatefulWidget {
 }
 
 class _ThreadState extends State<Thread> {
-  final GlobalKey _contentskey = GlobalKey();
-
+  final GlobalKey _contentsKey = GlobalKey();
   Size? columnSize;
-  Offset? offset;
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      setState(() {
-        columnSize = getSize();
-      });
+      _checkSizeChange();
     });
   }
 
+  @override
+  void didUpdateWidget(covariant Thread oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _checkSizeChange();
+    });
+  }
+
+  void _checkSizeChange() {
+    final newSize = getSize();
+    if (newSize != columnSize) {
+      columnSize = newSize;
+      _onSizeChanged(newSize);
+      setState(() {});
+    }
+  }
+
   Size? getSize() {
-    if (_contentskey.currentContext != null) {
+    if (_contentsKey.currentContext != null) {
       final RenderBox renderBox =
-          _contentskey.currentContext!.findRenderObject() as RenderBox;
-      Size columnSize = renderBox.size;
-      return columnSize;
+          _contentsKey.currentContext!.findRenderObject() as RenderBox;
+      return renderBox.size;
     }
     return null;
+  }
+
+  void _onSizeChanged(Size? newSize) {
+    if (newSize != null) {
+      columnSize = newSize;
+      setState(() {});
+    }
   }
 
   @override
@@ -60,7 +79,7 @@ class _ThreadState extends State<Thread> {
           ),
           Gaps.h10,
           ContentsColumn(
-            key: _contentskey,
+            key: _contentsKey,
             index: widget.index,
             threadData: widget.threadData,
           ),

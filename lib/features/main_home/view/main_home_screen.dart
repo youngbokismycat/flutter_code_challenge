@@ -60,6 +60,7 @@ class MainHomeScreen extends ConsumerWidget {
                     itemCount: threads.length,
                     itemBuilder: (context, index) {
                       final threadData = threads[index];
+                      print(index);
                       return Thread(
                         index: index,
                         threadData: threadData,

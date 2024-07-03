@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import 'package:tread_clone_assignment/core/consts/informations.dart';
 import 'package:tread_clone_assignment/core/consts/utils.dart';
 import 'package:tread_clone_assignment/core/theme/thread_colors.dart';
 import 'package:tread_clone_assignment/features/main_home/view/widgets/profiles/circular_profile.dart';
@@ -25,8 +23,6 @@ class BubbleProfilesState extends ConsumerState<BubbleProfiles>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    final info = Informations.infos[widget.index];
-
     return SizedBox(
       width: 50,
       height: 30,

@@ -20,6 +20,7 @@ class WriterAndAgoRow extends ConsumerWidget {
     required this.index,
     required this.threadData,
   });
+
   String timeDifference(int pastTimestamp) {
     final now = DateTime.now();
     final past = DateTime.fromMillisecondsSinceEpoch(pastTimestamp);
@@ -54,7 +55,6 @@ class WriterAndAgoRow extends ConsumerWidget {
       );
     }
 
-    final info = Informations.infos[index];
     return LayoutBuilder(
       builder: (context, constraints) => Row(
         children: [
