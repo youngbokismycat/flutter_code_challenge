@@ -3,13 +3,18 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tread_clone_assignment/core/consts/gaps.dart';
-import 'package:tread_clone_assignment/core/consts/utils.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
+import 'package:tread_clone_assignment/core/consts/gaps.dart';
+import 'package:tread_clone_assignment/core/consts/utils.dart';
+
 class CustomCupertinoSearchTextField extends ConsumerStatefulWidget {
+  final FocusNode focusNode;
+  final TextEditingController textEditingController;
   const CustomCupertinoSearchTextField({
     super.key,
+    required this.focusNode,
+    required this.textEditingController,
   });
 
   @override
@@ -20,7 +25,6 @@ class CustomCupertinoSearchTextField extends ConsumerStatefulWidget {
 class CustomCupertinoSearchTextFieldState
     extends ConsumerState<CustomCupertinoSearchTextField>
     with TickerProviderStateMixin {
-  late FocusNode _focusSearchNode;
   late AnimationController _animationColorController;
   late AnimationController _animationCancelController;
   late Animation<Color?> _colorAnimation;
@@ -39,7 +43,7 @@ class CustomCupertinoSearchTextFieldState
     );
     _animationColorController = AnimationController(
       duration: const Duration(
-        milliseconds: 100,
+        milliseconds: 50,
       ),
       vsync: this,
     );
@@ -65,21 +69,20 @@ class CustomCupertinoSearchTextFieldState
 
   @override
   void dispose() {
-    _focusSearchNode.dispose();
+    widget.focusNode.dispose();
     _animationCancelController.dispose();
     _animationColorController.dispose();
     super.dispose();
   }
 
   void _focusNodeInit() {
-    _focusSearchNode = FocusNode();
-    _focusSearchNode.addListener(
+    widget.focusNode.addListener(
       _searchAnimation,
     );
   }
 
   void _searchAnimation() async {
-    if (_focusSearchNode.hasFocus) {
+    if (widget.focusNode.hasFocus) {
       _animationCancelController.forward();
       await _animationColorController.forward();
       _animationColorController.reverse();
@@ -89,18 +92,19 @@ class CustomCupertinoSearchTextFieldState
   }
 
   void _onTextFieldTap() {
-    _focusSearchNode.requestFocus();
+    widget.focusNode.requestFocus();
   }
 
   void _onCancelTap() {
-    _focusSearchNode.unfocus();
+    widget.textEditingController.clear();
+    widget.focusNode.unfocus();
   }
 
   void _onVisibilityChanged(VisibilityInfo info) {
     if (info.visibleFraction < 1) {
-      _focusSearchNode.canRequestFocus = false;
+      widget.focusNode.canRequestFocus = false;
     } else {
-      _focusSearchNode.canRequestFocus = true;
+      widget.focusNode.canRequestFocus = true;
     }
   }
 
@@ -130,7 +134,8 @@ class CustomCupertinoSearchTextFieldState
                   key: const Key('key-board'),
                   onVisibilityChanged: _onVisibilityChanged,
                   child: CupertinoSearchTextField(
-                    focusNode: _focusSearchNode,
+                    controller: widget.textEditingController,
+                    focusNode: widget.focusNode,
                     itemColor: isDarkMode(ref)
                         ? Colors.grey.shade500
                         : Colors.grey.shade900,
