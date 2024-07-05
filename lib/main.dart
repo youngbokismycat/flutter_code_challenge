@@ -9,7 +9,7 @@ import 'package:tread_clone_assignment/core/router/router.dart';
 import 'package:tread_clone_assignment/core/theme/thread_theme.dart';
 import 'package:tread_clone_assignment/features/settings/account/repo/theme_config_repo.dart';
 import 'package:tread_clone_assignment/features/settings/account/view_model.dart/theme_config_vm.dart';
-import 'package:tread_clone_assignment/firebase_options.dart';
+import 'package:tread_clone_assignment/core/firebase_options.dart';
 
 final RouteObserver<ModalRoute<void>> routeObserver =
     RouteObserver<ModalRoute<void>>();
