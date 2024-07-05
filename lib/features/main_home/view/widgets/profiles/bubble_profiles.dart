@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tread_clone_assignment/core/consts/utils.dart';
 import 'package:tread_clone_assignment/core/theme/thread_colors.dart';
 import 'package:tread_clone_assignment/features/main_home/view/widgets/profiles/circular_profile.dart';
-import 'package:tread_clone_assignment/features/writing_thread/model/thread_model.dart';
+import 'package:tread_clone_assignment/features/common/model/thread_model.dart';
 
 class BubbleProfiles extends ConsumerStatefulWidget {
   final int index;
@@ -104,6 +104,21 @@ class BubbleProfilesState extends ConsumerState<BubbleProfiles>
                     child: BubbleProfile(
                       profilePath: getImage(),
                     ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            left: 4,
+            child: Opacity(
+              opacity: 0.5,
+              child: Offstage(
+                offstage: widget.threadData.replies.toString() != "0",
+                child: Transform.scale(
+                  scale: 0.4,
+                  child: BubbleProfile(
+                    profilePath: getImage(),
                   ),
                 ),
               ),

@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tread_clone_assignment/features/main_home/view/widgets/cards/thread.dart';
-import 'package:tread_clone_assignment/features/writing_thread/model/thread_model.dart';
-import 'package:tread_clone_assignment/features/writing_thread/repos/thread_repo.dart';
+import 'package:tread_clone_assignment/features/common/model/thread_model.dart';
+import 'package:tread_clone_assignment/features/common/repo/thread_repo.dart';
 
 class ThreadTimelineViewModel extends AsyncNotifier<List<ThreadModel>> {
   late final ThreadRepository _repo;

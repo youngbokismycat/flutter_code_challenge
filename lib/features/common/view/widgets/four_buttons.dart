@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tread_clone_assignment/core/consts/gaps.dart';
-import 'package:tread_clone_assignment/features/common/widgets/cusom_icon_button.dart';
+import 'package:tread_clone_assignment/features/common/view/widgets/cusom_icon_button.dart';
 
 class FourButtons extends StatelessWidget {
   const FourButtons({

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tread_clone_assignment/core/consts/gaps.dart';
 import 'package:tread_clone_assignment/features/main_home/view/widgets/profiles/bubble_profiles.dart';
 import 'package:tread_clone_assignment/features/main_home/view/widgets/profiles/circular_profile.dart';
-import 'package:tread_clone_assignment/features/writing_thread/model/thread_model.dart';
+import 'package:tread_clone_assignment/features/common/model/thread_model.dart';
 
 class WriterRepliersColumn extends StatelessWidget {
   const WriterRepliersColumn({

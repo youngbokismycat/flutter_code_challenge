@@ -10,7 +10,7 @@ import 'package:tread_clone_assignment/core/consts/informations.dart';
 import 'package:tread_clone_assignment/core/consts/sizes.dart';
 import 'package:tread_clone_assignment/core/consts/utils.dart';
 import 'package:tread_clone_assignment/features/main_home/view/pop_up_screens/i_hate_you_screen.dart';
-import 'package:tread_clone_assignment/features/writing_thread/model/thread_model.dart';
+import 'package:tread_clone_assignment/features/common/model/thread_model.dart';
 
 class WriterAndAgoRow extends ConsumerWidget {
   final int index;

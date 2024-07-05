@@ -7,15 +7,15 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tread_clone_assignment/core/router/router_name.dart';
 import 'package:tread_clone_assignment/core/theme/thread_colors.dart';
-import 'package:tread_clone_assignment/features/common/widgets/circle_profile_no_index_or_path.dart';
-import 'package:tread_clone_assignment/features/common/widgets/default_padding.dart';
-import 'package:tread_clone_assignment/features/common/widgets/four_buttons.dart';
-import 'package:tread_clone_assignment/features/common/widgets/landscape_card.dart';
-import 'package:tread_clone_assignment/features/common/widgets/stacked_two_profile.dart';
+import 'package:tread_clone_assignment/features/common/view/widgets/circle_profile_no_index_or_path.dart';
+import 'package:tread_clone_assignment/features/common/view/widgets/default_padding.dart';
+import 'package:tread_clone_assignment/features/common/view/widgets/four_buttons.dart';
+import 'package:tread_clone_assignment/features/common/view/widgets/landscape_card.dart';
+import 'package:tread_clone_assignment/features/common/view/widgets/stacked_two_profile.dart';
 import 'package:tread_clone_assignment/core/consts/gaps.dart';
 import 'package:tread_clone_assignment/core/consts/sizes.dart';
 import 'package:tread_clone_assignment/core/consts/utils.dart';
-import 'package:tread_clone_assignment/features/common/widgets/pinned_delegate.dart';
+import 'package:tread_clone_assignment/features/common/view/widgets/pinned_delegate.dart';
 
 class ProfileScreen extends ConsumerStatefulWidget {
   const ProfileScreen({super.key});
@@ -99,6 +99,7 @@ class ProfileScreenState extends ConsumerState<ProfileScreen>
                 pinned: true,
                 delegate: PinnedBar(
                   ref: ref,
+                  height: 40,
                   isTabBar: true,
                   child: TabBar(
                     indicatorWeight: 2,

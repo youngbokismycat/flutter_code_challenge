@@ -4,14 +4,15 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tread_clone_assignment/features/activity/widgets/activity_profile_list_tile.dart';
-import 'package:tread_clone_assignment/features/common/widgets/default_padding.dart';
-import 'package:tread_clone_assignment/features/common/widgets/follow_button.dart';
-import 'package:tread_clone_assignment/features/common/widgets/stacked_two_profile.dart';
+import 'package:tread_clone_assignment/features/common/view/widgets/custom_animated_tab_bar.dart';
+import 'package:tread_clone_assignment/features/common/view/widgets/default_padding.dart';
+import 'package:tread_clone_assignment/features/common/view/widgets/follow_button.dart';
+import 'package:tread_clone_assignment/features/common/view/widgets/stacked_two_profile.dart';
 import 'package:tread_clone_assignment/core/consts/break_points.dart';
 import 'package:tread_clone_assignment/core/consts/gaps.dart';
 import 'package:tread_clone_assignment/core/consts/sizes.dart';
 import 'package:tread_clone_assignment/core/consts/utils.dart';
-import 'package:tread_clone_assignment/features/common/widgets/pinned_delegate.dart';
+import 'package:tread_clone_assignment/features/common/view/widgets/pinned_delegate.dart';
 
 class ActivityScreen extends ConsumerStatefulWidget {
   const ActivityScreen({super.key});
@@ -83,86 +84,18 @@ class ActivityScreenState extends ConsumerState<ActivityScreen>
               SliverPersistentHeader(
                 pinned: true,
                 delegate: PinnedBar(
+                  height: 40,
                   ref: ref,
                   isTabBar: true,
                   child: SizedBox(
                     height: 40,
-                    child: TabBar(
-                      tabAlignment: TabAlignment.center,
-                      padding: EdgeInsets.zero,
-                      labelPadding: const EdgeInsets.only(
+                    child: CustomAnimatedTabBar(
+                      ref: ref,
+                      padding: const EdgeInsets.only(
                         left: Sizes.size16,
                       ),
-                      labelStyle: Theme.of(context)
-                          .textTheme
-                          .bodyMedium!
-                          .copyWith(
-                            color:
-                                isDarkMode(ref) ? Colors.black : Colors.white,
-                          ),
-                      unselectedLabelColor:
-                          isDarkMode(ref) ? Colors.white : Colors.black,
-                      dividerColor: Colors.transparent,
-                      indicatorColor: Colors.white,
-                      indicator: BoxDecoration(
-                        borderRadius: BorderRadius.circular(
-                          Sizes.size10,
-                        ),
-                        color: isDarkMode(ref) ? Colors.white : Colors.black,
-                      ),
-                      isScrollable: true,
-                      controller: _tabController,
-                      tabs: [
-                        for (var option in options)
-                          FractionallySizedBox(
-                            heightFactor: 1.06,
-                            child: Transform.translate(
-                              offset: const Offset(0, 1),
-                              child: Stack(
-                                children: [
-                                  Container(
-                                    clipBehavior: Clip.none,
-                                    padding: EdgeInsets.zero,
-                                    child: SizedBox(
-                                      width: 110,
-                                      child: Center(
-                                        child: Text(
-                                          option,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Positioned.fill(
-                                    child: AnimatedOpacity(
-                                      duration: const Duration(
-                                        milliseconds: 100,
-                                      ),
-                                      opacity: option ==
-                                              options.elementAt(
-                                                _tabController.index,
-                                              )
-                                          ? 0
-                                          : 1,
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          color: Colors.transparent,
-                                          border: Border.all(
-                                            width: 1,
-                                            color:
-                                                Theme.of(context).dividerColor,
-                                          ),
-                                          borderRadius: BorderRadius.circular(
-                                            Sizes.size10,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                      ],
+                      tabController: _tabController,
+                      options: options,
                     ),
                   ),
                 ),

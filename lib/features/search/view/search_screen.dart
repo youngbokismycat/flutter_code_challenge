@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tread_clone_assignment/features/common/widgets/default_padding.dart';
+import 'package:go_router/go_router.dart';
+import 'package:tread_clone_assignment/core/router/router_name.dart';
+import 'package:tread_clone_assignment/features/common/view/widgets/default_padding.dart';
 import 'package:tread_clone_assignment/core/consts/sizes.dart';
-import 'package:tread_clone_assignment/features/search/widgets/animated_cupertino_search_textfield.dart';
-import 'package:tread_clone_assignment/features/search/widgets/list_tile_profile.dart';
-import 'package:tread_clone_assignment/features/common/widgets/pinned_delegate.dart';
+import 'package:tread_clone_assignment/features/search/view/widgets/animated_cupertino_search_textfield.dart';
+import 'package:tread_clone_assignment/features/search/view/widgets/list_tile_profile.dart';
+import 'package:tread_clone_assignment/features/common/view/widgets/pinned_delegate.dart';
+import 'package:tread_clone_assignment/features/search/vm/search_vm.dart';
 
 class SearchScreen extends ConsumerStatefulWidget {
   const SearchScreen({super.key});
@@ -112,6 +115,7 @@ class SearchScreenState extends ConsumerState<SearchScreen> {
               pinned: true,
               delegate: PinnedBar(
                 ref: ref,
+                height: 40,
                 isTabBar: false,
                 child: CustomCupertinoSearchTextField(
                   textEditingController: _textEditingController,
@@ -129,24 +133,8 @@ class SearchScreenState extends ConsumerState<SearchScreen> {
                 child: DefaultPadding(
                   child: Offstage(
                     offstage: _isSearchImpossible(),
-                    child: ListTile(
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: Sizes.size7,
-                      ),
-                      leading: const FaIcon(
-                        FontAwesomeIcons.magnifyingGlass,
-                        size: Sizes.size18,
-                        color: Colors.grey,
-                      ),
-                      title: Text(
-                        "Search for '${_textEditingController.text}'",
-                        style: Theme.of(context).textTheme.bodySmall,
-                      ),
-                      trailing: const FaIcon(
-                        FontAwesomeIcons.chevronRight,
-                        color: Colors.grey,
-                        size: Sizes.size20,
-                      ),
+                    child: SearchForGOGO(
+                      textEditingController: _textEditingController,
                     ),
                   ),
                 ),
@@ -172,6 +160,55 @@ class SearchScreenState extends ConsumerState<SearchScreen> {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class SearchForGOGO extends ConsumerWidget {
+  const SearchForGOGO({
+    super.key,
+    required TextEditingController textEditingController,
+  }) : _textEditingController = textEditingController;
+
+  final TextEditingController _textEditingController;
+  void _onSearchChevronTap(BuildContext context, WidgetRef ref) async {
+    final String initialText = _textEditingController.text;
+    final results =
+        await ref.read(searchProvider.notifier).searchThread(initialText);
+
+    context.push(
+      "/search/${RouteNames.searchThread}",
+      extra: {
+        'initialText': initialText,
+        'results': results,
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return GestureDetector(
+      onTap: () => _onSearchChevronTap(context, ref),
+      behavior: HitTestBehavior.translucent,
+      child: ListTile(
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: Sizes.size7,
+        ),
+        leading: const FaIcon(
+          FontAwesomeIcons.magnifyingGlass,
+          size: Sizes.size18,
+          color: Colors.grey,
+        ),
+        title: Text(
+          "Search for '${_textEditingController.text}'",
+          style: Theme.of(context).textTheme.bodySmall,
+        ),
+        trailing: const FaIcon(
+          FontAwesomeIcons.chevronRight,
+          color: Colors.grey,
+          size: Sizes.size20,
         ),
       ),
     );

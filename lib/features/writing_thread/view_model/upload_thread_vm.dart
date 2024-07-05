@@ -10,8 +10,8 @@ import 'package:go_router/go_router.dart';
 import 'package:tread_clone_assignment/core/consts/utils.dart';
 import 'package:tread_clone_assignment/core/router/router_name.dart';
 import 'package:tread_clone_assignment/features/authentication/repos/authentication_repo.dart';
-import 'package:tread_clone_assignment/features/writing_thread/model/thread_model.dart';
-import 'package:tread_clone_assignment/features/writing_thread/repos/thread_repo.dart';
+import 'package:tread_clone_assignment/features/common/model/thread_model.dart';
+import 'package:tread_clone_assignment/features/common/repo/thread_repo.dart';
 
 class UploadThreadViewModel extends AsyncNotifier<void> {
   late final ThreadRepository _repo;
@@ -19,7 +19,6 @@ class UploadThreadViewModel extends AsyncNotifier<void> {
   @override
   FutureOr<void> build() async {
     _repo = ref.read(threadRepoProvider);
-    final result = await _repo.fetchThread();
   }
 
   Future<void> uploadThread(

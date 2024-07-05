@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tread_clone_assignment/features/writing_thread/model/thread_model.dart';
+import 'package:tread_clone_assignment/features/common/model/thread_model.dart';
 
 class ThreadRepository {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
@@ -39,6 +39,14 @@ class ThreadRepository {
           'createAt',
           descending: true,
         )
+        .get();
+  }
+
+  Future<QuerySnapshot<Map<String, dynamic>>> searchThread(String value) {
+    return _db
+        .collection('thread')
+        .orderBy('createAt', descending: true)
+        .limit(100)
         .get();
   }
 }

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:tread_clone_assignment/core/consts/break_points.dart';
 import 'package:tread_clone_assignment/core/consts/informations.dart';
-import 'package:tread_clone_assignment/features/common/widgets/landscape_card.dart';
-import 'package:tread_clone_assignment/features/writing_thread/model/thread_model.dart';
+import 'package:tread_clone_assignment/features/common/view/widgets/landscape_card.dart';
+import 'package:tread_clone_assignment/features/common/model/thread_model.dart';
 
 class LandscapePageView extends StatelessWidget {
   final PageController pageController = PageController(

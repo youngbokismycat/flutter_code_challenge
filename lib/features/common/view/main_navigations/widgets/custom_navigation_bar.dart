@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tread_clone_assignment/features/common/main_navigations/widgets/make_thread_button.dart';
-import 'package:tread_clone_assignment/features/common/main_navigations/widgets/nav_tab.dart';
+import 'package:tread_clone_assignment/features/common/view/main_navigations/widgets/make_thread_button.dart';
+import 'package:tread_clone_assignment/features/common/view/main_navigations/widgets/nav_tab.dart';
 
 class CustomNavigationBar extends StatelessWidget {
   const CustomNavigationBar({

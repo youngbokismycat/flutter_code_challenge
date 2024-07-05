@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:tread_clone_assignment/core/consts/gaps.dart';
 import 'package:tread_clone_assignment/features/main_home/view/widgets/columns/content_column.dart';
 import 'package:tread_clone_assignment/features/main_home/view/widgets/columns/writer_to_repliers_column.dart';
-import 'package:tread_clone_assignment/features/writing_thread/model/thread_model.dart';
+import 'package:tread_clone_assignment/features/common/model/thread_model.dart';
 
 class Thread extends StatefulWidget {
   final int index;

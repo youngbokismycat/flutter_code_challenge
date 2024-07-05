@@ -5,7 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tread_clone_assignment/core/router/router_name.dart';
 import 'package:tread_clone_assignment/features/authentication/repos/authentication_repo.dart';
-import 'package:tread_clone_assignment/features/common/widgets/default_padding.dart';
+import 'package:tread_clone_assignment/features/common/view/widgets/default_padding.dart';
 import 'package:tread_clone_assignment/core/consts/gaps.dart';
 import 'package:tread_clone_assignment/core/consts/sizes.dart';
 import 'package:tread_clone_assignment/core/consts/utils.dart';

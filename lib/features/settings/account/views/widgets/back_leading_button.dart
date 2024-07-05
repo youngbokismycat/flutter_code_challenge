@@ -4,7 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tread_clone_assignment/core/consts/gaps.dart';
 import 'package:tread_clone_assignment/core/consts/sizes.dart';
 import 'package:tread_clone_assignment/core/consts/utils.dart';
-import 'package:tread_clone_assignment/features/common/widgets/default_padding.dart';
+import 'package:tread_clone_assignment/features/common/view/widgets/default_padding.dart';
 
 class BackLeadingButton extends ConsumerWidget {
   const BackLeadingButton({super.key});

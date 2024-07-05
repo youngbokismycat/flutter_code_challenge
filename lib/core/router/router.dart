@@ -5,8 +5,10 @@ import 'package:tread_clone_assignment/core/router/router_name.dart';
 import 'package:tread_clone_assignment/features/authentication/repos/authentication_repo.dart';
 import 'package:tread_clone_assignment/features/authentication/views/create_account_screen.dart';
 import 'package:tread_clone_assignment/features/authentication/views/sign_in_screen.dart';
+import 'package:tread_clone_assignment/features/common/model/thread_model.dart';
 
-import 'package:tread_clone_assignment/features/common/main_navigations/main_navigation_screen.dart';
+import 'package:tread_clone_assignment/features/common/view/main_navigations/main_navigation_screen.dart';
+import 'package:tread_clone_assignment/features/search/view/search_thread_screen.dart';
 import 'package:tread_clone_assignment/features/settings/account/views/account_screen.dart';
 import 'package:tread_clone_assignment/features/settings/privacy/privacy_screen.dart';
 import 'package:tread_clone_assignment/features/settings/settings_screen.dart';
@@ -33,7 +35,7 @@ final routerProvider = Provider(
         GoRoute(
           path: "/${RouteNames.signUpRouteName}",
           name: RouteNames.signUpRouteName,
-          builder: (context, state) => SignInScreen(),
+          builder: (context, state) => const SignInScreen(),
         ),
         GoRoute(
           path: "/${RouteNames.createAccountRouteName}",
@@ -46,6 +48,21 @@ final routerProvider = Provider(
           builder: (context, state) =>
               MainNavigationScreen(tab: state.params['tab']!),
           routes: [
+            GoRoute(
+              path: RouteNames.searchThread,
+              name: RouteNames.searchThread,
+              builder: (context, state) {
+                final Map<String, dynamic> extraData =
+                    state.extra as Map<String, dynamic>;
+                final String initialText = extraData['initialText'] as String;
+                final List<ThreadModel> results =
+                    extraData['results'] as List<ThreadModel>;
+                return SearchThreadScreen(
+                  initialText: initialText,
+                  results: results,
+                );
+              },
+            ),
             GoRoute(
               path: RouteNames.settingsRouteName,
               name: RouteNames.settingsRouteName,

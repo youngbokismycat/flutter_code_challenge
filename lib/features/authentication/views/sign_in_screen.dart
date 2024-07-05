@@ -13,7 +13,7 @@ import 'package:tread_clone_assignment/core/theme/thread_colors.dart';
 import 'package:tread_clone_assignment/features/authentication/view_models/signin_vm.dart';
 import 'package:tread_clone_assignment/features/authentication/views/widgets/auth_textfield.dart';
 import 'package:tread_clone_assignment/features/authentication/views/widgets/rounded_button.dart';
-import 'package:tread_clone_assignment/features/common/widgets/default_padding.dart';
+import 'package:tread_clone_assignment/features/common/view/widgets/default_padding.dart';
 
 class SignInScreen extends ConsumerStatefulWidget {
   const SignInScreen({super.key});

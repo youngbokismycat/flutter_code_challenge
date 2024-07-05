@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:tread_clone_assignment/core/consts/gaps.dart';
-import 'package:tread_clone_assignment/features/common/widgets/four_buttons.dart';
+import 'package:tread_clone_assignment/features/common/view/widgets/four_buttons.dart';
 import 'package:tread_clone_assignment/features/main_home/view/widgets/pageviews/landscape_pageview.dart';
 import 'package:tread_clone_assignment/features/main_home/view/widgets/rows/replies_and_likes_row.dart';
 import 'package:tread_clone_assignment/features/main_home/view/widgets/rows/writer_and_ago_row.dart';
-import 'package:tread_clone_assignment/features/writing_thread/model/thread_model.dart';
+import 'package:tread_clone_assignment/features/common/model/thread_model.dart';
 
 class ContentsColumn extends StatelessWidget {
   const ContentsColumn({
